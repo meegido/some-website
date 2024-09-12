@@ -1,0 +1,17 @@
+.wrapper {
+  padding: 0 var(--container-padding);
+  display: flex;
+  justify-content: center;
+  padding-top: 8rem;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
