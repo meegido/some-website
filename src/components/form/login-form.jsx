@@ -1,17 +1,19 @@
 import React from 'react';
-import styles from './form.module.css';
+import styles from './login-form.module.css';
 import Field from './field';
 
-function Form() {
+function LoginForm() {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  // TBD: set option as theme color (lift up state)
   const [option, setSelectedOption] = React.useState('');
 
   const handleLogin = (event) => {
     event.preventDefault();
-    window.alert('you are logged in');
+
     console.log({ name, email, password, option });
+    window.alert('you are logged in');
 
     setName('');
     setEmail('');
@@ -63,4 +65,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default LoginForm;
