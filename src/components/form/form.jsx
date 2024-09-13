@@ -6,15 +6,17 @@ function Form() {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [option, setSelectedOption] = React.useState('');
 
   const handleLogin = (event) => {
     event.preventDefault();
     window.alert('you are logged in');
-    console.log({ name, email, password });
+    console.log({ name, email, password, option });
 
     setName('');
     setEmail('');
     setPassword('');
+    setSelectedOption('');
   };
 
   return (
@@ -43,6 +45,18 @@ function Form() {
           label="Password"
           onChange={(event) => setPassword(event.target.value)}
         />
+        <fieldset>
+          <legend>What is your favorite color?</legend>
+          <select
+            name="color"
+            id="color"
+            onChange={(event) => setSelectedOption(event.target.value)}
+          >
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+          </select>
+        </fieldset>
         <button>Log in</button>
       </form>
     </>
