@@ -5,4 +5,6 @@
   background-color: rgb(193, 243, 194);
   justify-content: space-between;
   width: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }

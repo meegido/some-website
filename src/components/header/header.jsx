@@ -3,7 +3,15 @@ import styles from './header.module.css';
 
 function Header({ isDarkMode, handleToggle }) {
   return (
-    <header className={styles.wrapper}>
+    <header
+      className={styles.wrapper}
+      style={{
+        // NOTE: This is a just-for-fun mini demo, not a
+        // full-featured Dark Mode implementation!
+        '--color-bg': isDarkMode ? 'white' : 'black',
+        '--color-text': isDarkMode ? 'black' : 'white',
+      }}
+    >
       <h1>Some website</h1>
       <div className="actions">
         <div className="actions-item">
