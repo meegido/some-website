@@ -8,8 +8,8 @@ function Header({ isDarkMode, handleToggle }) {
       style={{
         // NOTE: This is a just-for-fun mini demo, not a
         // full-featured Dark Mode implementation!
-        '--color-bg': isDarkMode ? 'white' : 'black',
-        '--color-text': isDarkMode ? 'black' : 'white',
+        '--color-bg': isDarkMode ? 'black' : 'white',
+        '--color-text': isDarkMode ? 'white' : 'black',
       }}
     >
       <h1>Some website</h1>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './login-form.module.css';
 import Field from './field';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [name, setName] = React.useState('');
@@ -8,6 +9,7 @@ function LoginForm() {
   const [password, setPassword] = React.useState('');
   // TBD: set option as theme color (lift up state)
   const [option, setSelectedOption] = React.useState('');
+  const navigate = useNavigate();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -19,6 +21,7 @@ function LoginForm() {
     setEmail('');
     setPassword('');
     setSelectedOption('');
+    navigate('/home');
   };
 
   return (
