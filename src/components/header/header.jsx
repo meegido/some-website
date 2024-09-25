@@ -1,7 +1,15 @@
 import React from 'react';
 import styles from './header.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function Header({ isDarkMode, handleToggle }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('user');
+    navigate('/');
+  };
+
   return (
     <header
       className={styles.wrapper}
@@ -22,6 +30,7 @@ function Header({ isDarkMode, handleToggle }) {
           >
             {!isDarkMode ? 'Activate dark mode' : 'Deactivate dark mode'}
           </button>
+          <button onClick={handleLogout}>Log out</button>
         </div>
       </div>
     </header>

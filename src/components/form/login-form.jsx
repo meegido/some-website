@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import InputField from './input-field';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   // TBD: set option as theme color (lift up state)
   const [favouriteColor, setFavouriteColor] = React.useState('');
   const [user, setUser] = React.useState({
@@ -11,8 +12,6 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const eventName = event.target.name;
