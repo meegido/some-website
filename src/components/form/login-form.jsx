@@ -4,58 +4,64 @@ import Field from './field';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
   // TBD: set option as theme color (lift up state)
-  const [option, setSelectedOption] = React.useState('');
+  const [favouriteColor, setFavouriteColor] = React.useState('');
+  const [user, setUser] = React.useState({
+    userName: '',
+    email: '',
+    password: '',
+  });
+  const id = React.useId();
   const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    const eventName = event.target.name;
+    const eventValue = event.target.value;
+    setUser({
+      ...user,
+      [eventName]: eventValue,
+    });
+  };
 
   const handleLogin = (event) => {
     event.preventDefault();
-
-    console.log({ name, email, password, option });
-    window.alert('you are logged in');
-
-    setName('');
-    setEmail('');
-    setPassword('');
-    setSelectedOption('');
+    window.localStorage.setItem('user', JSON.stringify(user));
     navigate('/home');
   };
 
   return (
     <>
       <form className={styles['login__form']} onSubmit={handleLogin}>
-        <Field
-          type="text"
-          id="text"
-          value={name}
-          label="Loved name"
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-        />
-        <Field
-          type="email"
-          id="email"
-          value={email}
-          label="Email Address"
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <Field
-          type="password"
-          id="password"
-          value={password}
-          label="Password"
-          onChange={(event) => setPassword(event.target.value)}
-        />
+        <div className={styles['input']}>
+          <label htmlFor={`${id}-name`}>Loved name</label>
+          <input
+            type="text"
+            id={id}
+            name="userName"
+            value={user.userName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles['input']}>
+          <label htmlFor={`${id}-email`}>Email</label>
+          <input type="email" id={id} name="email" value={user.email} onChange={handleChange} />
+        </div>
+        <div className={styles['input']}>
+          <label htmlFor={`${id}-password`}>Password</label>
+          <input
+            type="password"
+            id={id}
+            name="password"
+            value={user.password}
+            onChange={handleChange}
+          />
+        </div>
         <fieldset>
           <legend>What is your favorite color?</legend>
           <select
             name="color"
             id="color"
-            onChange={(event) => setSelectedOption(event.target.value)}
+            onChange={(event) => setFavouriteColor(event.target.value)}
           >
             <option value="red">Red</option>
             <option value="blue">Blue</option>
