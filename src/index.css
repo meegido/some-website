@@ -16,8 +16,8 @@
   --site-spacing: 32px;
   --header-height: 8rem;
 
-  --color-bg: "black";
-  --color-text: "white";
+  --color-bg: 'black';
+  --color-text: 'white';
 }
 
 @media (min-width: 360px) {
@@ -90,10 +90,22 @@
   }
 }
 
+.light-mode {
+  --color-text: hsl(0deg 0% 95%);
+  --color-bg: hsl(0deg 0% 8%);
+}
+
+[data-theme='dark'] {
+  --color-text: #cccccc;
+  --color-bg: hsl(0deg 0% 8%);
+}
+
 body {
   font-size: 16px;
   height: 100vh;
   box-sizing: border-box;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 h1 {
