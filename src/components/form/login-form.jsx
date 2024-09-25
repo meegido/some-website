@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './login-form.module.css';
-import Field from './field';
 import { useNavigate } from 'react-router-dom';
+import InputField from './input-field';
 
-function LoginForm() {
+const LoginForm = () => {
   // TBD: set option as theme color (lift up state)
   const [favouriteColor, setFavouriteColor] = React.useState('');
   const [user, setUser] = React.useState({
@@ -11,7 +11,7 @@ function LoginForm() {
     email: '',
     password: '',
   });
-  const id = React.useId();
+
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -32,30 +32,27 @@ function LoginForm() {
   return (
     <>
       <form className={styles['login__form']} onSubmit={handleLogin}>
-        <div className={styles['input']}>
-          <label htmlFor={`${id}-name`}>Loved name</label>
-          <input
-            type="text"
-            id={id}
-            name="userName"
-            value={user.userName}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles['input']}>
-          <label htmlFor={`${id}-email`}>Email</label>
-          <input type="email" id={id} name="email" value={user.email} onChange={handleChange} />
-        </div>
-        <div className={styles['input']}>
-          <label htmlFor={`${id}-password`}>Password</label>
-          <input
-            type="password"
-            id={id}
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </div>
+        <InputField
+          label="Loved name"
+          type="text"
+          name="userName"
+          value={user.userName}
+          onChange={handleChange}
+        />
+        <InputField
+          label="Email"
+          type="email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}
+        />
+        <InputField
+          label="Password"
+          type="password"
+          name="password"
+          value={user.password}
+          onChange={handleChange}
+        />
         <fieldset>
           <legend>What is your favorite color?</legend>
           <select
@@ -72,6 +69,6 @@ function LoginForm() {
       </form>
     </>
   );
-}
+};
 
 export default LoginForm;
