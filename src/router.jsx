@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginForm from './components/form/login-form';
 import Layout from './layout';
 import Home from './components/home';
+import PrivateRoute from './private-route';
 
 const router = createBrowserRouter([
   {
@@ -10,14 +11,17 @@ const router = createBrowserRouter([
     children: [
       {
         // "index query param": useful when logged in and logged out routes
-        index: true,
+        path: '/login',
         element: <LoginForm />,
-        action: '/',
       },
       {
-        index: true,
-        path: 'home',
-        element: <Home />,
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: 'home',
+            element: <Home />,
+          },
+        ],
       },
     ],
   },
