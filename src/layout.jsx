@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main className={styles.wrapper}>
+      <main className={styles.wrapper} data-theme={theme}>
         <Outlet />
       </main>
     </>
