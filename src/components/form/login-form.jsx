@@ -2,28 +2,22 @@ import React from 'react';
 import styles from './login-form.module.css';
 import { useNavigate } from 'react-router-dom';
 import InputField from './input-field';
+import { UserContext } from '../../providers/user-provider';
 
 const LoginForm = () => {
   // const navigate = useNavigate();
-  const [user, setUser] = React.useState({
-    email: '',
-    username: '',
-    password: '',
-  });
-  const [isUser, setIsUser] = React.useState(false);
+  const { user, updateUser } = React.useContext(UserContext);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUser((prevUser) => ({
-      ...prevUser,
+    updateUser({
       [name]: value,
-    }));
+    });
   };
 
   const handleLogin = (event) => {
     event.preventDefault();
-    setUser(user);
-    setIsUser(true);
+    console.log('User logged in:', user);
 
     // navigate('/home');
   };

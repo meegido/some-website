@@ -3,16 +3,16 @@ import styles from './layout.module.css';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { ThemeContext } from './providers/theme-provider';
+import { UserContext } from './providers/user-provider';
 
 const Layout = () => {
   const { theme } = React.useContext(ThemeContext);
 
-  console.log(theme, 'layout');
   return (
     <>
       <Header />
       <main className={styles.wrapper} data-theme={theme}>
-        <Outlet value={{ user }} />
+        <Outlet />
       </main>
     </>
   );
