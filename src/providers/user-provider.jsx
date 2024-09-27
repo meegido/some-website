@@ -9,6 +9,8 @@ const UserProvider = ({ children }) => {
     password: '',
   });
 
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
   const updateUser = (newUser) => {
     setUser((prevUser) => ({
       ...prevUser,
@@ -16,7 +18,25 @@ const UserProvider = ({ children }) => {
     }));
   };
 
-  return <UserContext.Provider value={{ user, updateUser }}>{children}</UserContext.Provider>;
+  const login = (newUser) => {
+    setUser(newUser);
+    setIsLoggedIn(true);
+  };
+
+  const logout = () => {
+    setUser({
+      email: '',
+      username: '',
+      password: '',
+    });
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <UserContext.Provider value={{ user, updateUser, logout, login, isLoggedIn }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export default UserProvider;

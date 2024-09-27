@@ -5,21 +5,27 @@ import InputField from './input-field';
 import { UserContext } from '../../providers/user-provider';
 
 const LoginForm = () => {
-  // const navigate = useNavigate();
-  const { user, updateUser } = React.useContext(UserContext);
+  const navigate = useNavigate();
+  const { user, login } = React.useContext(UserContext);
+  const [formData, setFormData] = React.useState({
+    email: '',
+    username: '',
+    password: '',
+  });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    updateUser({
+    setFormData({
+      ...formData,
       [name]: value,
     });
   };
 
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log('User logged in:', user);
+    login(formData);
 
-    // navigate('/home');
+    navigate('/home');
   };
 
   return (
@@ -29,21 +35,21 @@ const LoginForm = () => {
           label="Loved name"
           type="text"
           name="username"
-          value={user.username}
+          value={formData.formDataname}
           onChange={handleInputChange}
         />
         <InputField
           label="Email"
           type="email"
           name="email"
-          value={user.email}
+          value={formData.email}
           onChange={handleInputChange}
         />
         <InputField
           label="Password"
           type="password"
           name="password"
-          value={user.password}
+          value={formData.password}
           onChange={handleInputChange}
         />
         <button>Log in</button>
