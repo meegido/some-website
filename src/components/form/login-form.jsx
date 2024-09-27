@@ -6,7 +6,7 @@ import { UserContext } from '../../providers/user-provider';
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { user, login } = React.useContext(UserContext);
+  const { login } = React.useContext(UserContext);
   const [formData, setFormData] = React.useState({
     email: '',
     username: '',
