@@ -6,10 +6,8 @@ import { ThemeContext } from '../../providers/theme-provider';
 function Header() {
   const navigate = useNavigate();
   const { theme, toggleTheme } = React.useContext(ThemeContext);
-  console.log(theme);
 
   const handleLogout = () => {
-    window.localStorage.removeItem('user');
     navigate('/login');
   };
 
@@ -21,6 +19,7 @@ function Header() {
           <button onClick={toggleTheme}>
             {theme === 'light' ? 'Activate dark mode' : 'Deactivate dark mode'}
           </button>
+          {/* {user.userName !== '' && <button onClick={handleLogout}>Log out</button>} */}
           <button onClick={handleLogout}>Log out</button>
         </div>
       </div>
