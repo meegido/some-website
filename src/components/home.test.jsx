@@ -39,9 +39,9 @@ describe('Home page', () => {
 
     const tipButton = screen.getByText('5%');
     expect(tipButton).not.toHaveClass('selected');
-    expect(tipButton).toHaveClass('_config__button_0891d1');
+    expect(tipButton).toHaveClass('config__button');
 
     fireEvent.click(tipButton);
-    expect(tipButton).toHaveClass(['config__button', 'selected']);
+    expect(tipButton).toHaveClass('selected');
   });
 });
