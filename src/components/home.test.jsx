@@ -6,8 +6,6 @@ describe('Home page', () => {
   it('should render the home page', () => {
     render(<Home />);
 
-    expect(document.querySelector('h1')).toHaveTextContent(
-      'Hello to Some website, you are logged in! 🤠'
-    );
+    expect(document.querySelector('h1')).toHaveTextContent('Split your bill 💸');
   });
 });
