@@ -1,6 +1,19 @@
+import React from 'react';
 import styles from './home.module.css';
 
 const Home = () => {
+  const [totalBillAmount, setTotalBillAmount] = React.useState(0);
+  const [totalPeopleAmount, setTotalPeopleAmount] = React.useState(0);
+  const [selectedTipAmount, setSelectedTipAmount] = React.useState(0);
+
+  const tipOptions = [5, 10, 15, 20, 50, 'Custom'];
+  const handleSelectTip = (tip) => {
+    console.log('Selected tip:', tip);
+    if (tipOptions.includes(tip)) {
+      setSelectedTipAmount(tip);
+    }
+  };
+
   return (
     <>
       <section className={styles['page__wrapper']}>
@@ -9,22 +22,41 @@ const Home = () => {
           <section className={styles['calculator__config']}>
             <article className={`${styles.config}`}>
               <label>Bill</label>
-              <input type="text" placeholder="0" />
+              <input
+                type="number"
+                placeholder="0"
+                name="bill-amount"
+                id="totalBillAmount"
+                value={totalBillAmount}
+                onChange={(event) => setTotalBillAmount(event.target.value)}
+              />
             </article>
             <article className={styles.config}>
               <p>Select a tip</p>
               <div className={styles.tip}>
-                <button className={styles['config__button']}>5%</button>
-                <button className={styles['config__button']}>10%</button>
-                <button className={styles['config__button']}>15%</button>
-                <button className={styles['config__button']}>20%</button>
-                <button className={styles['config__button']}>50%</button>
-                <button className={styles['config__button']}>Custom</button>
+                {tipOptions.map((tip) => (
+                  <button
+                    aria-label="tip-button"
+                    type="button"
+                    key={tip}
+                    className={`${styles['config__button']} ${selectedTipAmount === tip ? styles.selected : ''}`}
+                    onClick={() => handleSelectTip(tip)}
+                  >
+                    {tip === 'Custom' ? 'Custom' : `${tip}%`}
+                  </button>
+                ))}
               </div>
             </article>
             <article className={styles.config}>
               <label htmlFor="people">Number of people</label>
-              <input type="text" placeholder="0" />
+              <input
+                type="number"
+                placeholder="0"
+                name="people"
+                id="totalPeopleAmount"
+                value={totalPeopleAmount}
+                onChange={(event) => setTotalPeopleAmount(event.target.value)}
+              />
             </article>
           </section>
           <section className={styles.display}>
@@ -47,7 +79,9 @@ const Home = () => {
               </div>
             </article>
             <div className={styles.reset}>
-              <button className={styles['reset__button']}>Reset</button>
+              <button type="submit" className={styles['reset__button']}>
+                Reset
+              </button>
             </div>
           </section>
         </div>

@@ -87,6 +87,11 @@ h1 {
   opacity: 0.9;
 }
 
+.selected {
+  background-color: var(--strong-cyan);
+  color: var(--very-dark-cyan);
+}
+
 .config__button:hover {
   background-color: var(--strong-cyan);
   color: var(--very-dark-cyan);
