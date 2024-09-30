@@ -1,0 +1,133 @@
+.page__wrapper,
+.calculator__wrapper {
+  width: 100%;
+  display: flex;
+
+  flex-direction: column;
+}
+
+.page__wrapper {
+  --strong-cyan: hsl(172, 67%, 45%);
+  --very-dark-cyan: hsl(183, 100%, 15%);
+  --dary-grayish-cyan: hsl(186, 14%, 43%);
+  --grayish-cyan: hsl(184, 14%, 56%);
+  --light-grayish-cyan: hsl(185, 41%, 84%);
+  --very-light-grayish-cyan: hsl(189, 41%, 97%);
+  --white: hsl(0, 0%, 100%);
+
+  background-color: var(--light-grayish-cyan);
+  padding: 0;
+  height: 100vh;
+  align-items: flex-start;
+  gap: 48px;
+  padding-top: 48px;
+}
+
+h1 {
+  padding: 0 var(--container-padding);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.calculator__wrapper {
+  align-items: flex-start;
+  background-color: var(--white);
+  padding: 24px var(--container-padding);
+  border-radius: 24px;
+  gap: 32px;
+  height: 100%;
+}
+
+.calculator__config {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.config {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.config p,
+.config label {
+  font-weight: bold;
+}
+
+.config input {
+  height: 48px;
+  border: none;
+  background-color: var(--very-light-grayish-cyan);
+  border-radius: 8px;
+  padding: 0 16px;
+}
+
+.config .tip {
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.config__button {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  width: 48%;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--very-dark-cyan);
+  color: var(--very-light-grayish-cyan);
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.config__button:hover {
+  background-color: var(--strong-cyan);
+  color: var(--very-dark-cyan);
+}
+
+.display {
+  background-color: var(--very-dark-cyan);
+  width: 100%;
+  border-radius: 16px;
+  color: var(--very-light-grayish-cyan);
+  padding: 32px var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.display__result {
+  display: flex;
+  justify-content: space-between;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  opacity: 0.9;
+}
+
+.amount {
+  display: flex;
+  color: var(--strong-cyan);
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.reset__button {
+  width: 100%;
+  background-color: var(--strong-cyan);
+  color: var(--very-light-grayish-cyan);
+  font-weight: bold;
+}
+
+.reset__button:hover {
+  background-color: var(--strong-cyan);
+  color: var(--very-dark-cyan);
+}

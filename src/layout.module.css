@@ -1,9 +1,7 @@
 .wrapper {
-  padding: 0 var(--container-padding);
   display: flex;
   justify-content: center;
   padding-top: 8rem;
   background-color: var(--color-bg);
   color: var(--color-text);
 }
-

@@ -2,7 +2,6 @@
   display: flex;
   height: var(--header-height);
   padding: var(--site-spacing);
-  background-color: rgb(193, 243, 194);
   justify-content: space-between;
   width: 100%;
   background-color: var(--color-bg);
