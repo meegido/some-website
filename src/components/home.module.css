@@ -63,6 +63,7 @@ h1 {
   background-color: var(--very-light-grayish-cyan);
   border-radius: 8px;
   padding: 0 16px;
+  color: var(--grayish-cyan);
 }
 
 .config .tip {
@@ -130,4 +131,26 @@ h1 {
 .reset__button:hover {
   background-color: var(--strong-cyan);
   color: var(--very-dark-cyan);
+}
+
+@media (min-width: 1440px) {
+  .page__wrapper {
+    padding: 0 var(--container-padding);
+    gap: 0;
+  }
+
+  .page__wrapper h1 {
+    padding: 72px;
+  }
+
+  .calculator__wrapper {
+    flex-direction: row;
+    height: fit-content;
+    align-items: normal;
+    padding: 42px var(--container-padding);
+  }
+
+  .display > div {
+    margin-top: auto;
+  }
 }

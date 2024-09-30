@@ -9,7 +9,7 @@ const Home = () => {
           <section className={styles['calculator__config']}>
             <article className={`${styles.config}`}>
               <label>Bill</label>
-              <input type="text" />
+              <input type="text" placeholder="0" />
             </article>
             <article className={styles.config}>
               <p>Select a tip</p>
@@ -24,7 +24,7 @@ const Home = () => {
             </article>
             <article className={styles.config}>
               <label htmlFor="people">Number of people</label>
-              <input type="text" />
+              <input type="text" placeholder="0" />
             </article>
           </section>
           <section className={styles.display}>
