@@ -3,6 +3,7 @@ import globals from 'globals';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   { ignores: ['dist'] },
@@ -17,7 +18,13 @@ export default [
         sourceType: 'module',
       },
     },
-    settings: { react: { version: '18.3' } },
+    settings: {
+      react: {
+        version: 'detect', // Automatically detect the React version
+        pragma: 'React',
+        fragment: 'Fragment',
+      },
+    },
     plugins: {
       react,
       'react-hooks': reactHooks,
@@ -30,6 +37,11 @@ export default [
       ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'react/react-in-jsx-scope': 'off', // Disable the rule that requires React in scope
+      // PropTypes validation rules
+      'react/prop-types': 'off',
+      'react/require-default-props': 'off',
+      'react/no-unused-prop-types': 'off',
     },
   },
   eslintConfigPrettier,
