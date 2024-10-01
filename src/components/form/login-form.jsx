@@ -25,7 +25,7 @@ const LoginForm = () => {
     event.preventDefault();
     login(formData);
 
-    navigate('/home');
+    navigate('/');
   };
 
   return (

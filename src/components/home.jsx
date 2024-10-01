@@ -77,7 +77,7 @@ const Home = () => {
                   </button>
                 ))}
                 {selectedTipOption === 'Custom' && (
-                  <p>⚠️ Check your welthness before choosing a tip bigger than 50%</p>
+                  <p>⚠️ Watch your wealth before choosing to tip more than 50%</p>
                 )}
               </div>
             </article>
@@ -86,6 +86,7 @@ const Home = () => {
               <input
                 type="number"
                 aria-label="People amount"
+                min="1"
                 name="people"
                 id="totalPeople"
                 value={totalPeople}

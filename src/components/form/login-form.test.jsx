@@ -67,6 +67,6 @@ describe('LoginForm Component', () => {
     });
 
     expect(mockUserContextValue.login).toHaveBeenCalledTimes(1);
-    expect(mockNavigate).toHaveBeenLastCalledWith('/home');
+    expect(mockNavigate).toHaveBeenLastCalledWith('/');
   });
 });
