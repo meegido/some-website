@@ -6,10 +6,10 @@ const Home = () => {
   const [totalPeople, setTotalPeople] = React.useState('');
   const [selectedTipOption, setSelectedTipOption] = React.useState('');
 
-  const [billPerPerson, setBillPerPerson] = React.useState('');
-  const [tipPerPerson, setTipPerPerson] = React.useState('');
+  const [billPerPerson, setBillPerPerson] = React.useState(Number(0));
+  const [tipPerPerson, setTipPerPerson] = React.useState(Number(0));
 
-  const tipOption = [5, 10, 15, 20, 50, 'Custom'];
+  const tipOptions = [5, 10, 15, 20, 50, 'Custom'];
 
   const handleSelectTip = (option) => {
     setSelectedTipOption(option);
@@ -19,13 +19,13 @@ const Home = () => {
     if (selectedTipOption === 'Custom') {
       return;
     }
-    const tipCalculationNumber = parseFloat(selectedTipOption) / 100;
+    const tipCalculationNumber = parseFloat(selectedTipOption || 0) / 100; // Ensure it's a valid number
 
-    const totalTipAmount = parseFloat(rawBill) * tipCalculationNumber;
+    const totalTipAmount = parseInt(rawBill) * tipCalculationNumber;
     const billAmount = parseFloat(rawBill) + totalTipAmount;
 
-    const billPerPerson = billAmount / parseFloat(totalPeople);
-    const tipPerPerson = totalTipAmount / parseFloat(totalPeople);
+    const billPerPerson = billAmount / parseFloat(totalPeople || 1); // Default to 1 to avoid division by 0
+    const tipPerPerson = totalTipAmount / parseFloat(totalPeople || 1); // Default to 1 to avoid division by 0
 
     setBillPerPerson(billPerPerson);
     setTipPerPerson(tipPerPerson);
@@ -41,6 +41,8 @@ const Home = () => {
     setRawBill(0);
     setTotalPeople(0);
     setSelectedTipOption(0);
+    setBillPerPerson(0);
+    setTipPerPerson(0);
   };
 
   return (
@@ -63,7 +65,7 @@ const Home = () => {
             <article className={styles.config}>
               <p>Select a tip</p>
               <div className={styles.tip}>
-                {tipOption.map((option) => (
+                {tipOptions.map((option) => (
                   <button
                     aria-label="Tip button"
                     type="button"
@@ -97,8 +99,8 @@ const Home = () => {
                 <h3>Tip Amount</h3>
                 <p>/person</p>
               </div>
-              <div data-test-id="tip-per-person" className={styles.amount}>
-                {<p>{tipPerPerson}€</p>}
+              <div className={styles.amount}>
+                {<p data-testid="tip-per-person">{tipPerPerson}€</p>}
               </div>
             </article>
             <article className={styles['display__result']}>
@@ -106,8 +108,8 @@ const Home = () => {
                 <h3>Total</h3>
                 <p>/person</p>
               </div>
-              <div data-test-id="bill-per-person" className={styles.amount}>
-                {<p>{billPerPerson}€</p>}
+              <div className={styles.amount}>
+                {<p data-testid="bill-per-person">{billPerPerson}€</p>}
               </div>
             </article>
             <div className={styles.reset}>
