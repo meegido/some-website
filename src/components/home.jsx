@@ -2,16 +2,37 @@ import React from 'react';
 import styles from './home.module.css';
 
 const Home = () => {
-  const [totalBillAmount, setTotalBillAmount] = React.useState(0);
-  const [totalPeopleAmount, setTotalPeopleAmount] = React.useState(0);
-  const [selectedTipAmount, setSelectedTipAmount] = React.useState(0);
+  const [rawBill, setRawBill] = React.useState('');
+  const [totalPeople, setTotalPeople] = React.useState('');
+  const [selectedTipOption, setSelectedTipOption] = React.useState('');
 
-  const tipOptions = [5, 10, 15, 20, 50, 'Custom'];
-  const handleSelectTip = (tip) => {
-    console.log('Selected tip:', tip);
-    if (tipOptions.includes(tip)) {
-      setSelectedTipAmount(tip);
+  const tipOption = [5, 10, 15, 20, 50, 'Custom'];
+
+  const handleSelectTip = (option) => {
+    setSelectedTipOption(option);
+  };
+
+  const calculateAmounts = () => {
+    if (selectedTipOption === 'Custom') {
+      return;
     }
+    const tipCalculationNumber = parseFloat(selectedTipOption) / 100;
+
+    const totalTipAmount = parseFloat(rawBill) * tipCalculationNumber;
+    const billAmount = parseFloat(rawBill) + totalTipAmount;
+
+    return {
+      billPerPerson: billAmount / parseFloat(totalPeople),
+      tipPerPerson: totalTipAmount / parseFloat(totalPeople),
+    };
+  };
+
+  const allInfoFilled = rawBill && totalPeople && selectedTipOption;
+
+  const handleReset = () => {
+    setRawBill(0);
+    setTotalPeople(0);
+    setSelectedTipOption(0);
   };
 
   return (
@@ -24,38 +45,41 @@ const Home = () => {
               <label>Bill</label>
               <input
                 type="number"
-                placeholder="0"
+                aria-label="Bill amount"
                 name="bill-amount"
-                id="totalBillAmount"
-                value={totalBillAmount}
-                onChange={(event) => setTotalBillAmount(event.target.value)}
+                id="rawBill"
+                value={rawBill}
+                onChange={(event) => setRawBill(event.target.value)}
               />
             </article>
             <article className={styles.config}>
               <p>Select a tip</p>
               <div className={styles.tip}>
-                {tipOptions.map((tip) => (
+                {tipOption.map((option) => (
                   <button
-                    aria-label="tip-button"
+                    aria-label="Tip button"
                     type="button"
-                    key={tip}
-                    className={`${styles['config__button']} ${selectedTipAmount === tip ? styles.selected : ''}`}
-                    onClick={() => handleSelectTip(tip)}
+                    key={option}
+                    className={`${styles['config__button']} ${selectedTipOption === option ? styles.selected : ''}`}
+                    onClick={() => handleSelectTip(option)}
                   >
-                    {tip === 'Custom' ? 'Custom' : `${tip}%`}
+                    {option === 'Custom' ? 'Custom' : `${option}%`}
                   </button>
                 ))}
+                {selectedTipOption === 'Custom' && (
+                  <p>⚠️ Check your welthness before choosing a tip bigger than 50%</p>
+                )}
               </div>
             </article>
             <article className={styles.config}>
               <label htmlFor="people">Number of people</label>
               <input
                 type="number"
-                placeholder="0"
+                aria-label="People amount"
                 name="people"
-                id="totalPeopleAmount"
-                value={totalPeopleAmount}
-                onChange={(event) => setTotalPeopleAmount(event.target.value)}
+                id="totalPeople"
+                value={totalPeople}
+                onChange={(event) => setTotalPeople(event.target.value)}
               />
             </article>
           </section>
@@ -65,8 +89,8 @@ const Home = () => {
                 <h3>Tip Amount</h3>
                 <p>/person</p>
               </div>
-              <div className={styles.amount}>
-                <p>4.5€</p>
+              <div data-test-id="tip-per-person" className={styles.amount}>
+                {allInfoFilled ? <p>{calculateAmounts().tipPerPerson}€</p> : '-'}
               </div>
             </article>
             <article className={styles['display__result']}>
@@ -74,12 +98,17 @@ const Home = () => {
                 <h3>Total</h3>
                 <p>/person</p>
               </div>
-              <div className={styles.amount}>
-                <p>34.5€</p>
+              <div data-test-id="bill-per-person" className={styles.amount}>
+                {allInfoFilled ? <p>{calculateAmounts().billPerPerson}€</p> : '-'}
               </div>
             </article>
             <div className={styles.reset}>
-              <button type="submit" className={styles['reset__button']}>
+              <button
+                type="submit"
+                aria-label="reset-button"
+                onClick={() => handleReset()}
+                className={styles['reset__button']}
+              >
                 Reset
               </button>
             </div>

@@ -12,36 +12,52 @@ describe('Home page', () => {
   it('should update the bill amount', () => {
     render(<Home />);
 
-    const billAmount = document.querySelector('#totalBillAmount');
-    expect(billAmount).toHaveValue(0);
+    const billInput = screen.getByLabelText('Bill amount');
 
-    billAmount.value = 100;
-    expect(billAmount).toHaveValue(100);
+    fireEvent.change(billInput, { target: { value: '100' } });
+
+    expect(billInput.value).toBe('100');
   });
 
   it('should update the person amount', () => {
     render(<Home />);
-    const peopleAmount = document.querySelector('#totalPeopleAmount');
-    expect(peopleAmount).toHaveValue(0);
+    const peopleInput = screen.getByLabelText('People amount');
+    fireEvent.change(peopleInput, { target: { value: 5 } });
 
-    peopleAmount.value = 5;
-    expect(peopleAmount).toHaveValue(5);
+    expect(peopleInput).toHaveValue(5);
   });
 
   it('should render the options for the tip', () => {
     render(<Home />);
-    const tipOptions = screen.getAllByLabelText('tip-button');
-    expect(tipOptions).toHaveLength(6);
+    const tipOptions = screen.getAllByLabelText('Tip button');
+    expect(tipOptions.length).toBe(6);
   });
 
-  it('should update the tip amount', () => {
+  it('should select the tip amouont', () => {
     render(<Home />);
 
-    const tipButton = screen.getByText('5%');
-    expect(tipButton).not.toHaveClass('selected');
-    expect(tipButton).toHaveClass('config__button');
+    const tipButtonFive = screen.getByText('5%');
+    expect(tipButtonFive).not.toHaveClass('selected');
+    expect(tipButtonFive).toHaveClass('config__button');
 
-    fireEvent.click(tipButton);
-    expect(tipButton).toHaveClass('selected');
+    const tipButtonTen = screen.getByText('10%');
+
+    fireEvent.click(tipButtonFive);
+    expect(tipButtonFive).toHaveClass('selected');
+    expect(tipButtonTen).not.toHaveClass('selected');
+
+    fireEvent.click(tipButtonFive);
+    fireEvent.click(tipButtonTen);
+    expect(tipButtonTen).toHaveClass('selected');
+    expect(tipButtonFive).not.toHaveClass('selected');
+  });
+
+  it("should not render the amounts per person if the user hasn't filled all the fields", () => {
+    render(<Home />);
+    const tipPerPerson = screen.queryByTestId('tip-per-person');
+    const billPerPerson = screen.queryByTestId('bill-per-person');
+
+    expect(tipPerPerson).toBe('-');
+    expect(billPerPerson).toBe('-');
   });
 });
