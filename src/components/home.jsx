@@ -6,13 +6,16 @@ const Home = () => {
   const [totalPeople, setTotalPeople] = React.useState('');
   const [selectedTipOption, setSelectedTipOption] = React.useState('');
 
+  const [billPerPerson, setBillPerPerson] = React.useState('');
+  const [tipPerPerson, setTipPerPerson] = React.useState('');
+
   const tipOption = [5, 10, 15, 20, 50, 'Custom'];
 
   const handleSelectTip = (option) => {
     setSelectedTipOption(option);
   };
 
-  const calculateAmounts = () => {
+  const calculateAmounts = React.useCallback(() => {
     if (selectedTipOption === 'Custom') {
       return;
     }
@@ -21,13 +24,18 @@ const Home = () => {
     const totalTipAmount = parseFloat(rawBill) * tipCalculationNumber;
     const billAmount = parseFloat(rawBill) + totalTipAmount;
 
-    return {
-      billPerPerson: billAmount / parseFloat(totalPeople),
-      tipPerPerson: totalTipAmount / parseFloat(totalPeople),
-    };
-  };
+    const billPerPerson = billAmount / parseFloat(totalPeople);
+    const tipPerPerson = totalTipAmount / parseFloat(totalPeople);
 
-  const allInfoFilled = rawBill && totalPeople && selectedTipOption;
+    setBillPerPerson(billPerPerson);
+    setTipPerPerson(tipPerPerson);
+  }, [rawBill, totalPeople, selectedTipOption]);
+
+  React.useEffect(() => {
+    if (rawBill && totalPeople && selectedTipOption) {
+      calculateAmounts();
+    }
+  }, [calculateAmounts, rawBill, totalPeople, selectedTipOption]);
 
   const handleReset = () => {
     setRawBill(0);
@@ -90,7 +98,7 @@ const Home = () => {
                 <p>/person</p>
               </div>
               <div data-test-id="tip-per-person" className={styles.amount}>
-                {allInfoFilled ? <p>{calculateAmounts().tipPerPerson}€</p> : '-'}
+                {<p>{tipPerPerson}€</p>}
               </div>
             </article>
             <article className={styles['display__result']}>
@@ -99,7 +107,7 @@ const Home = () => {
                 <p>/person</p>
               </div>
               <div data-test-id="bill-per-person" className={styles.amount}>
-                {allInfoFilled ? <p>{calculateAmounts().billPerPerson}€</p> : '-'}
+                {<p>{billPerPerson}€</p>}
               </div>
             </article>
             <div className={styles.reset}>
