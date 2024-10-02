@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './login-form.module.css';
 import { useNavigate } from 'react-router-dom';
-import InputField from './input-field';
+import InputField from '../shared/input-field/input-field';
 import { UserContext } from '../../providers/user-provider';
 
 const LoginForm = () => {

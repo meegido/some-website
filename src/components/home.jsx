@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './home.module.css';
+import InputField from './shared/input-field/input-field';
 
 const Home = () => {
   const [rawBill, setRawBill] = React.useState('');
@@ -52,8 +53,8 @@ const Home = () => {
         <div className={styles['calculator__wrapper']}>
           <section className={styles['calculator__config']}>
             <article className={`${styles.config}`}>
-              <label>Bill</label>
-              <input
+              <InputField
+                label="Bill"
                 type="number"
                 aria-label="Bill amount"
                 name="bill-amount"
@@ -82,11 +83,10 @@ const Home = () => {
               </div>
             </article>
             <article className={styles.config}>
-              <label htmlFor="people">Number of people</label>
-              <input
+              <InputField
+                label="Number of people"
                 type="number"
                 aria-label="People amount"
-                min="1"
                 name="people"
                 id="totalPeople"
                 value={totalPeople}

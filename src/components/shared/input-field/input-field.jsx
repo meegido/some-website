@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './login-form.module.css';
+import styles from './input-field.module.css';
 
 function InputField({ label, id, type = 'text', ...delegated }) {
   const generatedId = React.useId();
