@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './header.module.css';
 import { useNavigate } from 'react-router-dom';
-import { ThemeContext } from '../../providers/theme-provider';
-import { UserContext } from '../../providers/user-provider';
+import { ThemeContext } from '../../../providers/theme-provider';
+import { UserContext } from '../../../providers/user-provider';
 
 const Header = () => {
   const navigate = useNavigate();

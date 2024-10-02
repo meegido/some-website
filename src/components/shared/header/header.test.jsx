@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { UserContext } from '../../providers/user-provider';
-import { ThemeContext } from '../../providers/theme-provider';
+import { UserContext } from '../../../providers/user-provider';
+import { ThemeContext } from '../../../providers/theme-provider';
 import { MemoryRouter } from 'react-router-dom';
 import Header from './header';
 
