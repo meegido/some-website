@@ -6,6 +6,6 @@ describe('Home page', () => {
   it('should render the home page', () => {
     render(<Home />);
 
-    expect(screen.getByRole('heading', { name: 'Projects' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Exercises' })).toBeInTheDocument();
   });
 });

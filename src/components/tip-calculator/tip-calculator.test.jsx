@@ -1,16 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import Home from '../home';
 import { fireEvent, render, screen } from '@testing-library/react';
+import TipCalculator from './tip-calculator';
 
-describe('Home page', () => {
-  it('should render the home page', () => {
-    render(<Home />);
+describe('Tip Calculator', () => {
+  it('renders the page', () => {
+    render(<TipCalculator />);
 
     expect(screen.getByRole('heading', { name: 'Split your bill 💸' })).toBeInTheDocument();
   });
 
-  it('should update the bill amount', () => {
-    render(<Home />);
+  it('updates the bill amount when user enters the bill amount', () => {
+    render(<TipCalculator />);
 
     const billInput = screen.getByLabelText('Bill amount');
 
@@ -19,22 +19,22 @@ describe('Home page', () => {
     expect(billInput.value).toBe('100');
   });
 
-  it('should update the person amount', () => {
-    render(<Home />);
+  it('updates the person amount when user enters the number of people to share the total amount with', () => {
+    render(<TipCalculator />);
     const peopleInput = screen.getByLabelText('People amount');
     fireEvent.change(peopleInput, { target: { value: 5 } });
 
     expect(peopleInput).toHaveValue(5);
   });
 
-  it('should render the options for the tip', () => {
-    render(<Home />);
+  it('renders the options for the tip', () => {
+    render(<TipCalculator />);
     const tipOptions = screen.getAllByLabelText('Tip button');
     expect(tipOptions.length).toBe(6);
   });
 
-  it('should select the tip amouont', () => {
-    render(<Home />);
+  it('adds a class to the selected option so the user can recognise the tip amount to apply', () => {
+    render(<TipCalculator />);
 
     const tipButtonFive = screen.getByText('5%');
     expect(tipButtonFive).not.toHaveClass('selected');
@@ -52,8 +52,8 @@ describe('Home page', () => {
     expect(tipButtonFive).not.toHaveClass('selected');
   });
 
-  it('should render the amounts per person if the user has filled all the fields', () => {
-    render(<Home />);
+  it('render the amounts per person if the user has filled all the fields', () => {
+    render(<TipCalculator />);
 
     const tipPerPerson = screen.queryByTestId('tip-per-person');
     expect(tipPerPerson).toHaveTextContent('0€');
@@ -74,8 +74,8 @@ describe('Home page', () => {
     expect(billPerPerson).toHaveTextContent('52.5€');
   });
 
-  it('should reset the values', () => {
-    render(<Home />);
+  it('reset all the values when user start a new calculation from scratch', () => {
+    render(<TipCalculator />);
 
     const billInput = screen.getByLabelText('Bill amount');
     fireEvent.change(billInput, { target: { value: 100 } });
