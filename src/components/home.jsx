@@ -1,6 +1,7 @@
 import styles from './home.module.css';
 import { useNavigate } from 'react-router-dom';
 import tipCalculatorPreview from '../assets/images/tip-calculator-preview.jpg'; // Import using the alias
+import Button from './shared/button/button';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -19,7 +20,10 @@ const Home = () => {
               src={tipCalculatorPreview}
               alt="Tip Calculator preview"
             />
-            <button onClick={handlePorjectOnClick}>Play 💶</button>
+            <Button type="button" onClick={handlePorjectOnClick}>
+              <span>Play</span>
+              <span>💶</span>
+            </Button>
           </article>
         </section>
       </section>

@@ -3,6 +3,7 @@ import styles from './login-form.module.css';
 import { useNavigate } from 'react-router-dom';
 import InputField from '../shared/input-field/input-field';
 import { UserContext } from '../../providers/user-provider';
+import Button from '../shared/button/button';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -52,7 +53,9 @@ const LoginForm = () => {
           value={formData.password}
           onChange={handleInputChange}
         />
-        <button>Log in</button>
+        <Button type="submit" className={styles['login__button']}>
+          Log in
+        </Button>
       </form>
     </>
   );

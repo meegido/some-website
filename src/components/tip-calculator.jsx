@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from './shared/input-field/input-field';
 import styles from './tip-calculator.module.css';
+import Button from './shared/button/button';
 
 const TipCalculator = () => {
   const [rawBill, setRawBill] = React.useState('');
@@ -113,14 +114,14 @@ const TipCalculator = () => {
             </div>
           </article>
           <div className={styles.reset}>
-            <button
+            <Button
               type="submit"
               aria-label="reset-button"
               onClick={() => handleReset()}
               className={styles['reset__button']}
             >
               Reset
-            </button>
+            </Button>
           </div>
         </section>
       </div>

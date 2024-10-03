@@ -1,0 +1,26 @@
+.wrapper {
+  padding: 0.6em 1.2em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  line-height: 24px;
+
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  color: rgba(94, 103, 228, 0.979);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.childreWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 8px;
+}
