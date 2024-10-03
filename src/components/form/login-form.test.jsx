@@ -24,7 +24,7 @@ describe('LoginForm Component', () => {
         </MemoryRouter>
       </UserContext.Provider>
     );
-    expect(screen.getByText(/Loved name/i)).toBeInTheDocument();
+    expect(screen.getByText(/Name/i)).toBeInTheDocument();
     expect(screen.getByText(/Email/i)).toBeInTheDocument();
     expect(screen.getByText(/Password/i)).toBeInTheDocument();
     expect(screen.getByText(/Log in/i)).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe('LoginForm Component', () => {
 
     useNavigate.mockReturnValue(mockNavigate);
 
-    const userNameInput = screen.getByLabelText(/Loved name/i);
+    const userNameInput = screen.getByLabelText(/Name/i);
     const emailInput = screen.getByLabelText(/Email/i);
     const passwordInput = screen.getByLabelText(/Password/i);
     const loginButton = screen.getByRole('button', { name: /Log in/i });

@@ -2,3 +2,7 @@
   display: flex;
   flex-direction: column;
 }
+
+.inputError:focus {
+  outline-color: #d84301;
+}

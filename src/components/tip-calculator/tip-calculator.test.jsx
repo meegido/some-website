@@ -27,6 +27,14 @@ describe('Tip Calculator', () => {
     expect(peopleInput).toHaveValue(5);
   });
 
+  it('shows an error if the people amount is zero', () => {
+    render(<TipCalculator />);
+    const peopleInput = screen.getByLabelText('People amount');
+    fireEvent.change(peopleInput, { target: { value: 0 } });
+
+    expect(peopleInput).toHaveClass('inputError');
+  });
+
   it('renders the options for the tip', () => {
     render(<TipCalculator />);
     const tipOptions = screen.getAllByLabelText('Tip button');

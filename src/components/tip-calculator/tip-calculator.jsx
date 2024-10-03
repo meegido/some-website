@@ -7,6 +7,7 @@ const TipCalculator = () => {
   const [rawBill, setRawBill] = React.useState('');
   const [totalPeople, setTotalPeople] = React.useState('');
   const [selectedTipOption, setSelectedTipOption] = React.useState('');
+  const [inputError, setInputError] = React.useState('');
 
   const [billPerPerson, setBillPerPerson] = React.useState(Number(0));
   const [tipPerPerson, setTipPerPerson] = React.useState(Number(0));
@@ -15,6 +16,13 @@ const TipCalculator = () => {
 
   const handleSelectTip = (option) => {
     setSelectedTipOption(option);
+  };
+
+  const handlePeopleOnChange = (event) => {
+    const newValue = event.target.value;
+    setTotalPeople(newValue);
+
+    newValue < 1 ? setInputError("It can't be zero or less") : setInputError('');
   };
 
   const calculateAmounts = React.useCallback(() => {
@@ -89,8 +97,11 @@ const TipCalculator = () => {
               aria-label="People amount"
               name="people"
               id="totalPeople"
+              min="1"
               value={totalPeople}
-              onChange={(event) => setTotalPeople(event.target.value)}
+              onChange={handlePeopleOnChange}
+              className={`${inputError ? styles.inputError : ''}`}
+              error={inputError}
             />
           </article>
         </section>

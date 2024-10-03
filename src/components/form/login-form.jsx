@@ -33,7 +33,7 @@ const LoginForm = () => {
     <>
       <form className={styles['login__form']} onSubmit={handleLogin}>
         <InputField
-          label="Loved name"
+          label="Name"
           type="text"
           name="username"
           value={formData.formDataname}
