@@ -4,6 +4,7 @@ import Layout from './layout';
 import Home from './components/home';
 import ProtectedRoute from './protected-route';
 import ErrorBoundary from './components/shared/error-boundary/error-boundary';
+import TipCalculator from './components/tip-calculator';
 
 const router = createBrowserRouter([
   {
@@ -16,13 +17,13 @@ const router = createBrowserRouter([
         element: <ProtectedRoute element={<Home />} />,
       },
       {
-        path: '/login',
+        path: 'login',
         element: <LoginForm />,
       },
-      // {
-      //   path: 'home', // Path `/home`
-      //   element: <Home />,
-      // },
+      {
+        path: 'tip-calculator',
+        element: <ProtectedRoute element={<TipCalculator />} />,
+      },
     ],
   },
 ]);
