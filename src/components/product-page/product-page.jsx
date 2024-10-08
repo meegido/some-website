@@ -5,6 +5,20 @@ import React from 'react';
 
 const ProductPage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
+  const [isMobile, setIsMobile] = React.useState(() => {
+    return window.innerWidth < 768;
+  });
+
+  React.useEffect(() => {
+    console.log('enters effect');
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleNextImage = () => {
     setSelectedImageIndex((prevIndex) => {
@@ -34,17 +48,20 @@ const ProductPage = () => {
               />
             ))}
           </section>
-          <section className={styles.carousel__controls}>
-            <button onClick={handlePrevImage}>←</button>
-            <button onClick={handleNextImage}>→</button>
-          </section>
-          <section className={styles.thumbnails__wrapper}>
-            {PRODUCT_THUMBNAILS.map((imageUrl) => (
-              <button key={crypto.randomUUID()}>
-                <img key={crypto.randomUUID()} src={imageUrl} alt="Thumbnail image" />
-              </button>
-            ))}
-          </section>
+          {isMobile ? (
+            <section className={styles.carousel__controls}>
+              <button onClick={handlePrevImage}>←</button>
+              <button onClick={handleNextImage}>→</button>
+            </section>
+          ) : (
+            <section className={styles.thumbnails__wrapper}>
+              {PRODUCT_THUMBNAILS.map((imageUrl) => (
+                <button key={crypto.randomUUID()}>
+                  <img key={crypto.randomUUID()} src={imageUrl} alt="Thumbnail image" />
+                </button>
+              ))}
+            </section>
+          )}
         </div>
         <ProductDetail />
       </div>
