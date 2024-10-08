@@ -1,0 +1,22 @@
+.thumbnail__button {
+  background-color: transparent;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  overflow: hidden; /* Trim corners */
+  cursor: pointer;
+}
+
+.thumbnail__button.selected {
+  border: 4px solid var(--orange);
+}
+
+.thumbnail__button img {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  margin: 0 5px;
+  border-radius: 8px;
+}

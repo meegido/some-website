@@ -1,7 +1,8 @@
 import styles from './product-page.module.css';
-import { PRODUCT_IMAGES, PRODUCT_THUMBNAILS } from '../../assets/images/product/product-images';
+import { PRODUCT_IMAGES } from '../../assets/images/product/product-images';
 import ProductDetail from './product-detail';
 import React from 'react';
+import ThumbnailButton from './thumbnail-button';
 
 const ProductPage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
@@ -10,7 +11,6 @@ const ProductPage = () => {
   });
 
   React.useEffect(() => {
-    console.log('enters effect');
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -55,11 +55,18 @@ const ProductPage = () => {
             </section>
           ) : (
             <section className={styles.thumbnails__wrapper}>
-              {PRODUCT_THUMBNAILS.map((imageUrl) => (
-                <button key={crypto.randomUUID()}>
-                  <img key={crypto.randomUUID()} src={imageUrl} alt="Thumbnail image" />
-                </button>
-              ))}
+              {PRODUCT_IMAGES.map((imageUrl, index) => {
+                const isSelected = selectedImageIndex === index;
+                return (
+                  <ThumbnailButton
+                    key={crypto.randomUUID()}
+                    imageUrl={imageUrl}
+                    index={index}
+                    isSelected={isSelected}
+                    setSelectedImageIndex={setSelectedImageIndex}
+                  />
+                );
+              })}
             </section>
           )}
         </div>
