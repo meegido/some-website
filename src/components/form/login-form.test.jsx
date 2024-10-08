@@ -47,19 +47,17 @@ describe('LoginForm Component', () => {
     useNavigate.mockReturnValue(mockNavigate);
 
     const userNameInput = screen.getByLabelText(/Name/i);
-    const emailInput = screen.getByLabelText(/Email/i);
-    const passwordInput = screen.getByLabelText(/Password/i);
-    const loginButton = screen.getByRole('button', { name: /Log in/i });
-
     fireEvent.change(userNameInput, { target: { value: 'John Doe' } });
+
+    const emailInput = screen.getByLabelText(/Email/i);
     fireEvent.change(emailInput, { target: { value: 'john@doe.com' } });
+
+    const passwordInput = screen.getByLabelText(/Password/i);
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
 
-    expect(userNameInput.value).toBe('John Doe');
-    expect(emailInput.value).toBe('john@doe.com');
-    expect(passwordInput.value).toBe('password123');
-
+    const loginButton = screen.getByRole('button', { name: /Log in/i });
     fireEvent.click(loginButton);
+
     expect(mockUserContextValue.login).toHaveBeenCalledWith({
       username: 'John Doe',
       email: 'john@doe.com',

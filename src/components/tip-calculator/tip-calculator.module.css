@@ -156,7 +156,11 @@ input:focus {
     flex-direction: row;
     height: fit-content;
     align-items: normal;
-    padding: 42px var(--container-padding);
+    padding: 42px;
+  }
+
+  .config .tip {
+    justify-content: space-between;
   }
 
   .display > div {

@@ -22,6 +22,10 @@
   --black: #242424;
   --white: rgba(255, 255, 255, 0.87);
   --gray: rgba(192, 190, 190, 0.367);
+  --dark-gray: rgb(45 44 44 / 63%);
+  --orange: hsl(26, 100%, 55%);
+  --pale-orange: hsl(25, 100%, 94%);
+  --light-gray: hsl(220, 14%, 75%);
 }
 
 @media (min-width: 360px) {

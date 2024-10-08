@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   justify-content: center;
-  padding-top: 8rem;
   background-color: var(--color-bg);
   color: var(--color-text);
 }
