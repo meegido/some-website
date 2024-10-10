@@ -1,0 +1,19 @@
+.product__quantity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #f9f9f9;
+  justify-content: space-between;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.product__quantity button {
+  color: var(--orange);
+  font-size: 32px;
+  padding: 8px 16px;
+}
+
+.product__quantity p {
+  font-size: 20px;
+}

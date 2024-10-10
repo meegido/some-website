@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../product-page.module.css';
+import styles from './product-quantity.module.css';
 
 const ProductQuantity = ({ productQuantity, setProductQuantity }) => {
   console.log(productQuantity, 'product quantity');

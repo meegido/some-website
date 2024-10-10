@@ -21,11 +21,13 @@ const ProductPage = () => {
       ...prevCart,
       {
         title: product.title,
+        photo: product.photos[0],
         price: discountPrice,
         quantity: productQuantity,
       },
     ]);
   }, [discountPrice, productQuantity]);
+  console.log(cart);
 
   const handleNextImage = React.useCallback(() => {
     setSelectedImageIndex((prevIndex) => {
