@@ -2,17 +2,30 @@ import styles from './product-page.module.css';
 import React from 'react';
 import ProductGallery from './components/product-gallery';
 import { product } from './product-content';
+import ProductQuantity from './components/product-quantity';
 
 const ProductPage = () => {
-  const [selectedImageIndex, setSelectedImageIndex] = React.useState(product.price);
-  const [discountPrice, setDiscountPrice] = React.useState(0);
+  const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
+  const [discountPrice, setDiscountPrice] = React.useState(product.price);
   const [productQuantity, setProductQuantity] = React.useState(0);
+  const [cart, setCart] = React.useState([]);
 
   React.useEffect(() => {
     product.discount && product.discount !== undefined
       ? setDiscountPrice((product.price * product.discount) / 100)
       : setDiscountPrice(product.price);
   }, []);
+
+  const handleAddToCart = () => {
+    setCart((prevCart) => [
+      ...prevCart,
+      {
+        title: product.title,
+        price: discountPrice,
+        quantity: productQuantity,
+      },
+    ]);
+  };
 
   const handleNextImage = () => {
     setSelectedImageIndex((prevIndex) => {
@@ -26,17 +39,6 @@ const ProductPage = () => {
       return (prevIndex - 1 + product.photos.length) % product.photos.length;
       // return prevIndex === 0 ? PRODUCT.photos.length - 1 : prevIndex - 1;
     });
-  };
-
-  const handleIncreaseQuantity = () => {
-    return setProductQuantity(productQuantity + 1);
-  };
-
-  const handleDecreaseQuantity = () => {
-    if (productQuantity <= 0) {
-      return;
-    }
-    return setProductQuantity(productQuantity - 1);
   };
 
   return (
@@ -63,13 +65,14 @@ const ProductPage = () => {
             <p className={styles.final__price}>${product.price}</p>
           </div>
           <div className={styles.product__cart}>
-            <div className={styles.product__quantity}>
-              <button onClick={handleDecreaseQuantity}>-</button>
-              <p>{productQuantity}</p>
-              <button onClick={handleIncreaseQuantity}>+</button>
-            </div>
+            <ProductQuantity
+              productQuantity={productQuantity}
+              setProductQuantity={setProductQuantity}
+            />
             <div className={styles.button__wrapper}>
-              <button className={styles.add__button}>Add to cart</button>
+              <button className={styles.add__button} onClick={handleAddToCart}>
+                Add to cart
+              </button>
             </div>
           </div>
         </section>
