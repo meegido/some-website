@@ -6,6 +6,7 @@ import { product } from './product-content';
 const ProductPage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(product.price);
   const [discountPrice, setDiscountPrice] = React.useState(0);
+  const [productQuantity, setProductQuantity] = React.useState(0);
 
   React.useEffect(() => {
     product.discount && product.discount !== undefined
@@ -25,6 +26,17 @@ const ProductPage = () => {
       return (prevIndex - 1 + product.photos.length) % product.photos.length;
       // return prevIndex === 0 ? PRODUCT.photos.length - 1 : prevIndex - 1;
     });
+  };
+
+  const handleIncreaseQuantity = () => {
+    return setProductQuantity(productQuantity + 1);
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (productQuantity <= 0) {
+      return;
+    }
+    return setProductQuantity(productQuantity - 1);
   };
 
   return (
@@ -52,9 +64,9 @@ const ProductPage = () => {
           </div>
           <div className={styles.product__cart}>
             <div className={styles.product__quantity}>
-              <button>-</button>
-              <p>0</p>
-              <button>+</button>
+              <button onClick={handleDecreaseQuantity}>-</button>
+              <p>{productQuantity}</p>
+              <button onClick={handleIncreaseQuantity}>+</button>
             </div>
             <div className={styles.button__wrapper}>
               <button className={styles.add__button}>Add to cart</button>
