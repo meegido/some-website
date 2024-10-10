@@ -1,6 +1,8 @@
+import React from 'react';
 import styles from './thumbnail-button.module.css';
 
 const ThumbnailButton = ({ imageUrl, setSelectedImageIndex, index, isSelected }) => {
+  console.log('thumbnail');
   return (
     <button className={styles.thumbnail__button} onClick={() => setSelectedImageIndex(index)}>
       <img
@@ -13,4 +15,4 @@ const ThumbnailButton = ({ imageUrl, setSelectedImageIndex, index, isSelected })
   );
 };
 
-export default ThumbnailButton;
+export default React.memo(ThumbnailButton);

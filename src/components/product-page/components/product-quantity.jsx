@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../product-page.module.css';
 
 const ProductQuantity = ({ productQuantity, setProductQuantity }) => {
+  console.log(productQuantity, 'product quantity');
   const handleIncreaseQuantity = () => {
     return setProductQuantity(productQuantity + 1);
   };

@@ -16,7 +16,7 @@ const ProductPage = () => {
       : setDiscountPrice(product.price);
   }, []);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = React.useCallback(() => {
     setCart((prevCart) => [
       ...prevCart,
       {
@@ -25,21 +25,21 @@ const ProductPage = () => {
         quantity: productQuantity,
       },
     ]);
-  };
+  }, [discountPrice, productQuantity]);
 
-  const handleNextImage = () => {
+  const handleNextImage = React.useCallback(() => {
     setSelectedImageIndex((prevIndex) => {
       return (prevIndex + 1) % product.photos.length;
       // return prevIndex === product.photos.length - 1 ? 0 : prevIndex + 1;
     });
-  };
+  }, []);
 
-  const handlePrevImage = () => {
+  const handlePrevImage = React.useCallback(() => {
     setSelectedImageIndex((prevIndex) => {
       return (prevIndex - 1 + product.photos.length) % product.photos.length;
       // return prevIndex === 0 ? PRODUCT.photos.length - 1 : prevIndex - 1;
     });
-  };
+  }, []);
 
   return (
     <>

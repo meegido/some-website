@@ -1,6 +1,7 @@
 import styles from './product-gallery.module.css';
 import ThumbnailButton from './thumbnail-button';
 import useIsMobile from '../../../hooks/use-window-resize';
+import React from 'react';
 
 const ProductGallery = ({
   images,
@@ -10,6 +11,7 @@ const ProductGallery = ({
   selectedImageIndex,
 }) => {
   const isMobile = useIsMobile();
+  console.log(selectedImageIndex, 'product gallery');
 
   return (
     <div className={styles.carousel}>
@@ -48,4 +50,4 @@ const ProductGallery = ({
   );
 };
 
-export default ProductGallery;
+export default React.memo(ProductGallery);
