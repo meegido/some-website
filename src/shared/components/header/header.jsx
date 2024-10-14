@@ -3,8 +3,8 @@ import styles from './header.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
 import { UserContext } from '../../../providers/user-provider';
-import profileImage from '../../../assets/images/profile.jpg';
 import { ChevronDown, ChevronUp, Moon, ShoppingCart, Sun } from 'lucide-react';
+import Dropdown from './dropdown/dropdown';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -71,30 +71,12 @@ const Header = () => {
               {theme === 'light' ? <Sun /> : <Moon />}
             </button>
             {isLoggedIn && (
-              <div className={styles.dropdown}>
-                <button className={styles.avatar__button} onClick={toggleDropdown}>
-                  <div className={styles.avatar__wrapper}>
-                    <img src={profileImage} alt="User profile image" />
-                  </div>
-                  <div>
-                    {isProfileOpen ? (
-                      <ChevronUp size={20} strokeWidth={3} />
-                    ) : (
-                      <ChevronDown size={20} strokeWidth={3} />
-                    )}
-                  </div>
-                </button>
-                {isProfileOpen && (
-                  <div className={styles.dropdown__content} ref={dropdownRef}>
-                    <button
-                      className={`${styles.header__button} ${styles.logout__button}`}
-                      onClick={handleLogout}
-                    >
-                      Log out
-                    </button>
-                  </div>
-                )}
-              </div>
+              <Dropdown
+                toggleDropdown={toggleDropdown}
+                isProfileOpen={isProfileOpen}
+                handleLogout={handleLogout}
+                dropdownRef={dropdownRef}
+              />
             )}
           </div>
         </div>
