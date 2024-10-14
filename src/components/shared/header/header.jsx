@@ -19,12 +19,20 @@ const Header = () => {
     }
   };
 
+  const handleDismiss = (event) => {
+    if (event.code === 'Escape') {
+      setProfileOpen(false);
+    }
+  };
+
   React.useEffect(() => {
     window.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('keydown', handleDismiss);
     return () => {
       window.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('keydown', handleDismiss);
     };
-  });
+  }, []);
 
   const handleLogout = () => {
     logout();
