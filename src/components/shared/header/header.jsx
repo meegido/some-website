@@ -4,16 +4,36 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
 import { UserContext } from '../../../providers/user-provider';
 import profileImage from '../../../assets/images/profile.jpg';
-import { Moon, Sun } from 'lucide-react';
+import { ChevronDown, ChevronUp, Moon, ShoppingCart, Sun } from 'lucide-react';
 
 const Header = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const { logout, isLoggedIn } = React.useContext(UserContext);
+  const [isProfileOpen, setProfileOpen] = React.useState(false);
+  const dropdownRef = React.useRef();
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setProfileOpen(false);
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside);
+    };
+  });
 
   const handleLogout = () => {
     logout();
     navigate('login');
+    setProfileOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setProfileOpen((prevIsOpen) => !prevIsOpen);
   };
 
   return (
@@ -34,15 +54,40 @@ const Header = () => {
         </nav>
         <div className={styles.actions}>
           <div className={styles.action__items}>
-            <button className={styles.theme__button} onClick={toggleTheme}>
+            {isLoggedIn && (
+              <button className={styles.header__button}>
+                <ShoppingCart />
+              </button>
+            )}
+            <button className={styles.header__button} onClick={toggleTheme}>
               {theme === 'light' ? <Sun /> : <Moon />}
             </button>
-            {isLoggedIn && <button onClick={handleLogout}>Log out</button>}
-            <button className={styles.avatar__button}>
-              <div className={styles.avatar__wrapper}>
-                <img src={profileImage} alt="User profile image" />
+            {isLoggedIn && (
+              <div className={styles.dropdown}>
+                <button className={styles.avatar__button} onClick={toggleDropdown}>
+                  <div className={styles.avatar__wrapper}>
+                    <img src={profileImage} alt="User profile image" />
+                  </div>
+                  <div>
+                    {isProfileOpen ? (
+                      <ChevronUp size={20} strokeWidth={3} />
+                    ) : (
+                      <ChevronDown size={20} strokeWidth={3} />
+                    )}
+                  </div>
+                </button>
+                {isProfileOpen && (
+                  <div className={styles.dropdown__content} ref={dropdownRef}>
+                    <button
+                      className={`${styles.header__button} ${styles.logout__button}`}
+                      onClick={handleLogout}
+                    >
+                      Log out
+                    </button>
+                  </div>
+                )}
               </div>
-            </button>
+            )}
           </div>
         </div>
       </header>

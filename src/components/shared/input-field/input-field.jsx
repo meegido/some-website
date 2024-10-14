@@ -6,7 +6,7 @@ function InputField({ label, error, id, type = 'text', ...delegated }) {
   const appliedId = id || generatedId;
 
   return (
-    <div className={styles['input']}>
+    <div className={styles['input__wrapper']}>
       <label htmlFor={appliedId}>{label}</label>
       <input
         type={type}
