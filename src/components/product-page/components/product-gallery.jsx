@@ -11,16 +11,15 @@ const ProductGallery = ({
   selectedImageIndex,
 }) => {
   const isMobile = useIsMobile();
-  console.log(selectedImageIndex, 'product gallery');
 
   return (
     <div className={styles.carousel}>
       <section className={styles.carousel__wrapper}>
-        {images.map((imageUrl) => (
+        {images.map((imageUrl, index) => (
           <img
             key={crypto.randomUUID()}
             src={imageUrl}
-            alt="Product image"
+            alt={`Product image ${index}`}
             style={{ translate: `${-100 * selectedImageIndex}%` }}
           />
         ))}

@@ -86,6 +86,10 @@
   color: var(--dark-gray);
 }
 
+.add__button:focus {
+  outline: none;
+}
+
 @media (min-width: 1200px) {
   .page__wrapper {
     display: flex;

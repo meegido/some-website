@@ -43,6 +43,17 @@ const ProductPage = () => {
     });
   }, []);
 
+  const handleIncreaseQuantity = () => {
+    return setProductQuantity(productQuantity + 1);
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (productQuantity <= 0) {
+      return;
+    }
+    return setProductQuantity(productQuantity - 1);
+  };
+
   return (
     <>
       <div className={styles.page__wrapper}>
@@ -69,7 +80,8 @@ const ProductPage = () => {
           <div className={styles.product__cart}>
             <ProductQuantity
               productQuantity={productQuantity}
-              setProductQuantity={setProductQuantity}
+              handleIncreaseQuantity={handleIncreaseQuantity}
+              handleDecreaseQuantity={handleDecreaseQuantity}
             />
             <div className={styles.button__wrapper}>
               <button className={styles.add__button} onClick={handleAddToCart}>
