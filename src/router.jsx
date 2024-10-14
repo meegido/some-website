@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import LoginForm from './components/form/login-form';
 import Layout from './layout';
-import Home from './components/home';
-import ProtectedRoute from './protected-route';
+import Home from './pages/home/home';
 import ErrorBoundary from './components/shared/error-boundary/error-boundary';
-import TipCalculator from './components/tip-calculator/tip-calculator';
-import ProductPage from './components/product-page/product-page';
+import TipCalculator from './pages/tip-calculator/tip-calculator';
+import ProductPage from './pages/product-page/product-page';
+import LoginForm from './pages/form/login-form';
+import ProtectedRoute from './protected-route';
 
 const router = createBrowserRouter([
   {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import Home from './home';
 import { render, screen } from '@testing-library/react';
-import { UserContext } from '../providers/user-provider';
+import { UserContext } from '../../providers/user-provider';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Home page', () => {
