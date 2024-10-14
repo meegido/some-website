@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './header.module.css';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
 import { UserContext } from '../../../providers/user-provider';
+import profileImage from '../../../assets/images/profile.jpg';
+import { Moon, Sun } from 'lucide-react';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,17 +17,34 @@ const Header = () => {
   };
 
   return (
-    <header className={styles.wrapper} data-theme={theme}>
-      <h1>Some website</h1>
-      <div className="actions">
-        <div className="actions-item">
-          <button onClick={toggleTheme}>
-            {theme === 'light' ? 'Activate dark mode' : 'Deactivate dark mode'}
-          </button>
-          {isLoggedIn && <button onClick={handleLogout}>Log out</button>}
+    <div className={styles.header__wrapper} data-theme={theme}>
+      <header className={styles.header}>
+        <h1 className={styles.logotype}>
+          <NavLink to="/">Some website</NavLink>
+        </h1>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/">Exercises</NavLink>
+            </li>
+            <li>
+              <NavLink to="/about">About</NavLink>
+            </li>
+          </ul>
+        </nav>
+        <div className={styles.actions}>
+          <div className={styles.action__items}>
+            <button onClick={toggleTheme}>{theme === 'light' ? <Sun /> : <Moon />}</button>
+            {isLoggedIn && <button onClick={handleLogout}>Log out</button>}
+            <button className={styles.avatar__button}>
+              <div className={styles.avatar__wrapper}>
+                <img src={profileImage} alt="User profile image" />
+              </div>
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 };
 

@@ -23,7 +23,7 @@
   padding-top: 48px;
 }
 
-h1 {
+.page__title {
   padding: 0 var(--container-padding);
   width: 100%;
   display: flex;
