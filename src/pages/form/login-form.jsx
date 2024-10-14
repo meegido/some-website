@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './login-form.module.css';
 import { useNavigate } from 'react-router-dom';
-import InputField from '../../components/shared/input-field/input-field';
+import InputField from '../../shared/components/input-field/input-field';
 import { UserContext } from '../../providers/user-provider';
-import Button from '../../components/shared/button/button';
+import Button from '../../shared/components/button/button';
 
 const LoginForm = () => {
   const navigate = useNavigate();

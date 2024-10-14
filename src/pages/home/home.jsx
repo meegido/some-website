@@ -2,7 +2,7 @@ import styles from './home.module.css';
 import { useNavigate } from 'react-router-dom';
 import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
 import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
-import Button from '../../components/shared/button/button';
+import Button from '../../shared/components/button/button';
 
 const Home = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './tip-calculator.module.css';
-import Button from '../../components/shared/button/button';
-import InputField from '../../components/shared/input-field/input-field';
+import Button from '../../shared/components/button/button';
+import InputField from '../../shared/components/input-field/input-field';
 
 const TipCalculator = () => {
   const [rawBill, setRawBill] = React.useState('');
