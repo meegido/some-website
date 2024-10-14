@@ -23,4 +23,5 @@ button:focus-visible {
   justify-content: center;
   align-items: baseline;
   gap: 8px;
+  color: var(--color-text);
 }

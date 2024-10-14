@@ -53,6 +53,16 @@ nav ul {
   gap: 24px;
 }
 
+.theme__button {
+  background-color: transparent;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.theme__button:focus {
+  outline: none;
+}
+
 .avatar__button {
   background-color: transparent;
   display: flex;

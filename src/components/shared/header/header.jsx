@@ -34,7 +34,9 @@ const Header = () => {
         </nav>
         <div className={styles.actions}>
           <div className={styles.action__items}>
-            <button onClick={toggleTheme}>{theme === 'light' ? <Sun /> : <Moon />}</button>
+            <button className={styles.theme__button} onClick={toggleTheme}>
+              {theme === 'light' ? <Sun /> : <Moon />}
+            </button>
             {isLoggedIn && <button onClick={handleLogout}>Log out</button>}
             <button className={styles.avatar__button}>
               <div className={styles.avatar__wrapper}>
