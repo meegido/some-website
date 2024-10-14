@@ -73,3 +73,56 @@ nav li a:hover {
   outline: none;
 }
 
+.cart__popover {
+  position: relative;
+}
+
+.cart__wrapper {
+  min-width: 356px;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  position: absolute;
+  transform: translate(-176px, 14px);
+}
+
+.popover__title {
+  border-bottom: 1px solid var(--gray);
+  padding-bottom: 16px;
+}
+
+.cart__content,
+.product__details,
+.cart__price {
+  display: flex;
+  gap: 8px;
+}
+
+.cart__content {
+  padding: 24px 0;
+  align-items: center;
+}
+
+.product__details {
+  flex-direction: column;
+}
+
+.remove {
+  justify-content: flex-end;
+}
+
+.cart__thumbnail {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+}
+
+.cart__button button,
+.cart__button {
+  width: 100%;
+}
+
+.cart__button button {
+  background-color: var(--orange);
+}
