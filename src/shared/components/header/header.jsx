@@ -14,10 +14,22 @@ const Header = () => {
   const [isProfileOpen, setProfileOpen] = React.useState(false);
   const [isCartOpen, setIsCartOpen] = React.useState(false);
   const dropdownRef = React.useRef();
+  const cartTriggerRef = React.useRef();
+  const cartContentRef = React.useRef();
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setProfileOpen(false);
+    }
+  };
+
+  const handleCartClickOutside = (event) => {
+    if (
+      cartContentRef.current &&
+      !cartTriggerRef.current.contains(event.target) &&
+      !cartContentRef.current.contains(event.target)
+    ) {
+      setIsCartOpen(false);
     }
   };
 
@@ -29,9 +41,11 @@ const Header = () => {
 
   React.useEffect(() => {
     window.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('mousedown', handleCartClickOutside);
     window.addEventListener('keydown', handleDismiss);
     return () => {
       window.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('mousedown', handleCartClickOutside);
       window.removeEventListener('keydown', handleDismiss);
     };
   }, []);
@@ -70,11 +84,11 @@ const Header = () => {
           <div className={styles.action__items}>
             {isLoggedIn && (
               <div className={styles.cart__popover}>
-                <button onClick={toggleCart} className={styles.header__button}>
+                <button onClick={toggleCart} className={styles.header__button} ref={cartTriggerRef}>
                   <ShoppingCart />
                 </button>
                 {isCartOpen && (
-                  <div className={styles.cart__wrapper}>
+                  <div className={styles.cart__wrapper} ref={cartContentRef}>
                     <div className={styles.popover__title}>
                       <h3>Cart</h3>
                     </div>
@@ -96,7 +110,9 @@ const Header = () => {
                         </div>
                       </div>
                       <div className={styles.remove}>
-                        <Trash />
+                        <button>
+                          <Trash />
+                        </button>
                       </div>
                     </section>
                     <div className={styles.cart__button}>
