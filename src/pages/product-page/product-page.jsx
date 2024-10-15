@@ -82,7 +82,10 @@ const ProductPage = () => {
               productQuantity={productQuantity}
               handleIncreaseQuantity={handleIncreaseQuantity}
               handleDecreaseQuantity={handleDecreaseQuantity}
-            />
+            >
+              <p data-testid="product-quantity">{productQuantity}</p>
+            </ProductQuantity>
+
             <div className={styles.button__wrapper}>
               <button className={styles.add__button} onClick={handleAddToCart}>
                 Add to cart

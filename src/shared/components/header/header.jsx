@@ -3,23 +3,24 @@ import styles from './header.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
 import { UserContext } from '../../../providers/user-provider';
-import { Moon, ShoppingCart, Sun, Trash } from 'lucide-react';
+import { Minus, Moon, Plus, ShoppingCart, Sun, Trash } from 'lucide-react';
 import Dropdown from './dropdown/dropdown';
 import productThumbnail from '../../../assets/images/product/image-product-1.jpg';
+import useToggle from '../../../hooks/use-toggle';
 
 const Header = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const { logout, isLoggedIn } = React.useContext(UserContext);
-  const [isProfileOpen, setProfileOpen] = React.useState(false);
-  const [isCartOpen, setIsCartOpen] = React.useState(false);
+  const [isProfileOpen, toggleProfile] = useToggle(false);
+  const [isCartOpen, toggleCart] = useToggle(false);
   const dropdownRef = React.useRef();
   const cartTriggerRef = React.useRef();
   const cartContentRef = React.useRef();
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setProfileOpen(false);
+      toggleProfile(false);
     }
   };
 
@@ -29,13 +30,13 @@ const Header = () => {
       !cartTriggerRef.current.contains(event.target) &&
       !cartContentRef.current.contains(event.target)
     ) {
-      setIsCartOpen(false);
+      toggleCart(false);
     }
   };
 
   const handleDismiss = (event) => {
     if (event.code === 'Escape') {
-      setProfileOpen(false);
+      toggleProfile(false);
     }
   };
 
@@ -53,15 +54,7 @@ const Header = () => {
   const handleLogout = () => {
     logout();
     navigate('login');
-    setProfileOpen(false);
-  };
-
-  const toggleDropdown = () => {
-    setProfileOpen((prevIsOpen) => !prevIsOpen);
-  };
-
-  const toggleCart = () => {
-    setIsCartOpen((prevIsOpen) => !prevIsOpen);
+    toggleProfile(false);
   };
 
   return (
@@ -84,7 +77,11 @@ const Header = () => {
           <div className={styles.action__items}>
             {isLoggedIn && (
               <div className={styles.cart__popover}>
-                <button onClick={toggleCart} className={styles.header__button} ref={cartTriggerRef}>
+                <button
+                  onClick={() => toggleCart()}
+                  className={styles.header__button}
+                  ref={cartTriggerRef}
+                >
                   <ShoppingCart />
                 </button>
                 {isCartOpen && (
@@ -111,6 +108,12 @@ const Header = () => {
                       </div>
                       <div className={styles.remove}>
                         <button>
+                          <Plus />
+                        </button>
+                        <button>
+                          <Minus />
+                        </button>
+                        <button>
                           <Trash />
                         </button>
                       </div>
@@ -127,7 +130,7 @@ const Header = () => {
             </button>
             {isLoggedIn && (
               <Dropdown
-                toggleDropdown={toggleDropdown}
+                toggleDropdown={() => toggleProfile()}
                 isProfileOpen={isProfileOpen}
                 handleLogout={handleLogout}
                 dropdownRef={dropdownRef}

@@ -78,13 +78,15 @@ nav li a:hover {
 }
 
 .cart__wrapper {
-  min-width: 356px;
+  min-width: 392px;
   width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   padding: 16px;
   position: absolute;
   transform: translate(-176px, 14px);
+  z-index: 1;
+  background-color: #fff;
 }
 
 .popover__title {
@@ -108,8 +110,22 @@ nav li a:hover {
   flex-direction: column;
 }
 
+.cart__price p:last-of-type {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
 .remove {
   justify-content: flex-end;
+}
+
+.remove button {
+  background-color: transparent;
+}
+
+.remove button:focus {
+  outline: none;
 }
 
 .cart__thumbnail {
