@@ -1,0 +1,87 @@
+
+
+.cart__wrapper {
+  min-width: 392px;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  position: absolute;
+  transform: translate(-176px, 14px);
+  z-index: 1;
+  background-color: #fff;
+}
+
+.popover__title {
+  border-bottom: 1px solid var(--gray);
+  padding-bottom: 16px;
+}
+
+.cart__content,
+.product__details,
+.cart__price {
+  display: flex;
+  gap: 8px;
+}
+
+.content__wrapper {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  padding-top: 24px;
+}
+
+.cart__content {
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.cart__content .with__buttons {
+  display: flex;
+}
+
+.product__details {
+  flex-direction: column;
+}
+
+.cart__price p:last-of-type {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.remove {
+  justify-content: flex-end;
+}
+
+.remove button {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  padding: 0 26px 8px 26px;
+}
+
+.remove button:focus {
+  outline: none;
+}
+
+.cart__thumbnail {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+}
+
+.cart__button button,
+.cart__button {
+  width: 100%;
+}
+
+.cart__button button {
+  background-color: var(--orange);
+}
+
+.cart__button .disable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

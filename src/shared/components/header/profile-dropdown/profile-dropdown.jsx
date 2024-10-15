@@ -1,4 +1,4 @@
-import styles from './dropdown.module.css';
+import styles from './profile-dropdown.module.css';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import profileImage from '../../../../assets/images/profile.jpg';
 

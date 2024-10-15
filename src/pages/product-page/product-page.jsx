@@ -23,7 +23,7 @@ const ProductPage = () => {
       return;
     }
 
-    addToCart(discountPrice, productQuantity);
+    addToCart(product.id, discountPrice, productQuantity);
   }, [discountPrice, productQuantity, addToCart]);
 
   const handleNextImage = React.useCallback(() => {

@@ -3,7 +3,7 @@ import styles from './header.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
 import { AuthContext } from '../../../providers/auth-provider';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, ShoppingCart, Sun } from 'lucide-react';
 import ProfileDropdown from './profile-dropdown/profile-dropdown';
 import useToggle from '../../../hooks/use-toggle';
 import { CartContext } from '../../../providers/cart-provider';
@@ -14,14 +14,27 @@ const Header = () => {
   const { cart } = React.useContext(CartContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const { logout, isLoggedIn } = React.useContext(AuthContext);
-  const [isProfileOpen, toggleProfile] = useToggle(false);
+  const cartTriggerRef = React.useRef();
+  const cartContentRef = React.useRef();
   const dropdownRef = React.useRef();
+  const [isCartOpen, toggleCart] = useToggle(false);
+  const [isProfileOpen, toggleProfile] = useToggle(false);
 
   const cartItem = cart.find((item) => {
     return item.id === item.id;
   });
 
   React.useEffect(() => {
+    const handleCartClickOutside = (event) => {
+      if (
+        cartContentRef.current &&
+        !cartTriggerRef.current.contains(event.target) &&
+        !cartContentRef.current.contains(event.target)
+      ) {
+        toggleCart(false);
+      }
+    };
+
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         toggleProfile(false);
@@ -34,13 +47,16 @@ const Header = () => {
       }
     };
 
+    window.addEventListener('mousedown', handleCartClickOutside);
     window.addEventListener('mousedown', handleClickOutside);
     window.addEventListener('keydown', handleDismiss);
+
     return () => {
+      window.removeEventListener('mousedown', handleCartClickOutside);
       window.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('keydown', handleDismiss);
     };
-  }, [toggleProfile]);
+  }, [toggleCart, toggleProfile]);
 
   const handleLogout = () => {
     logout();
@@ -66,7 +82,18 @@ const Header = () => {
         </nav>
         <div className={styles.actions}>
           <div className={styles.action__items}>
-            {isLoggedIn && <CartPopover cartItem={cartItem} />}
+            {isLoggedIn && (
+              <div className={styles.cart__popover}>
+                <button
+                  onClick={() => toggleCart()}
+                  className={styles.header__button}
+                  ref={cartTriggerRef}
+                >
+                  <ShoppingCart />
+                </button>
+                {isCartOpen && <CartPopover cartItem={cartItem} cartContentRef={cartContentRef} />}
+              </div>
+            )}
             <button className={styles.header__button} onClick={toggleTheme}>
               {theme === 'light' ? <Sun /> : <Moon />}
             </button>
@@ -74,7 +101,6 @@ const Header = () => {
               <ProfileDropdown
                 toggleDropdown={() => toggleProfile()}
                 isProfileOpen={isProfileOpen}
-                handleLogout={handleLogout}
                 dropdownRef={dropdownRef}
               />
             )}
