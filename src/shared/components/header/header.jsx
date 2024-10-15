@@ -11,10 +11,10 @@ import { CartContext } from '../../../providers/cart-provider';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { cart, removeCart } = React.useContext(CartContext);
+  const { cart, removeCart, updateCart } = React.useContext(CartContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const { logout, isLoggedIn } = React.useContext(AuthContext);
-  const [checkoutQuantity, setChekoutQuantity] = React.useState(0);
+  const [checkoutQuantity, setCheckoutQuantity] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
   const [isProfileOpen, toggleProfile] = useToggle(false);
   const [isCartOpen, toggleCart] = useToggle(false);
@@ -63,7 +63,7 @@ const Header = () => {
     if (!cartItem) {
       return;
     }
-    setChekoutQuantity(cartItem.quantity);
+    setCheckoutQuantity(cartItem.quantity);
   }, [cartItem]);
 
   React.useEffect(() => {
@@ -74,12 +74,12 @@ const Header = () => {
   }, [cartItem, checkoutQuantity]);
 
   const handleIncreaseQuantity = () => {
-    setChekoutQuantity((current) => current + 1);
+    setCheckoutQuantity((current) => current + 1);
   };
 
   const handleDecreaseQuantity = () => {
     if (checkoutQuantity > 1) {
-      setChekoutQuantity((current) => current - 1);
+      setCheckoutQuantity((current) => current - 1);
     }
   };
 
@@ -87,9 +87,10 @@ const Header = () => {
     if (!cartItem) {
       return;
     }
+    updateCart(cartItem.id, checkoutQuantity, totalPrice);
     window.alert(`Cart updated with quantity ${checkoutQuantity}`);
   };
-  console.log(cart, 'new cart');
+
   const handleRemoveFromCart = () => {
     removeCart(cartItem.id);
   };

@@ -18,6 +18,22 @@ const CartProvider = ({ children }) => {
     ]);
   };
 
+  const updateCart = (itemId, quantity, price) => {
+    if (itemId !== '123') {
+      return;
+    }
+
+    setCart(
+      cart.map((item) => {
+        return {
+          ...item,
+          quantity,
+          price,
+        };
+      })
+    );
+  };
+
   const removeCart = (itemId) => {
     if (itemId === '123') {
       setCart([]);
@@ -28,6 +44,7 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         addToCart,
+        updateCart,
         removeCart,
         cart,
       }}
