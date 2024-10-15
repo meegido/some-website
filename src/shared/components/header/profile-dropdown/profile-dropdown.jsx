@@ -2,7 +2,7 @@ import styles from './dropdown.module.css';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import profileImage from '../../../../assets/images/profile.jpg';
 
-const Dropdown = ({ toggleDropdown, isProfileOpen, handleLogout, dropdownRef }) => {
+const ProfileDropdown = ({ toggleDropdown, isProfileOpen, handleLogout, dropdownRef }) => {
   return (
     <div className={styles.dropdown}>
       <button className={styles.avatar__button} onClick={toggleDropdown}>
@@ -31,4 +31,4 @@ const Dropdown = ({ toggleDropdown, isProfileOpen, handleLogout, dropdownRef }) 
   );
 };
 
-export default Dropdown;
+export default ProfileDropdown;
