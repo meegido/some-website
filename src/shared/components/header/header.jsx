@@ -7,17 +7,24 @@ import { Minus, Moon, Plus, ShoppingCart, Sun, Trash } from 'lucide-react';
 import Dropdown from './dropdown/dropdown';
 import productThumbnail from '../../../assets/images/product/image-product-1.jpg';
 import useToggle from '../../../hooks/use-toggle';
+import { CartContext } from '../../../providers/cart-provider';
 
 const Header = () => {
   const navigate = useNavigate();
+  const { cart } = React.useContext(CartContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const { logout, isLoggedIn } = React.useContext(AuthContext);
+  const [checkoutQuantity, setChekoutQuantity] = React.useState(0);
   const [isProfileOpen, toggleProfile] = useToggle(false);
   const [isCartOpen, toggleCart] = useToggle(false);
-  const [quantity, setQuantity] = React.useState(0);
   const dropdownRef = React.useRef();
   const cartTriggerRef = React.useRef();
   const cartContentRef = React.useRef();
+
+  const cartItem = cart.find((item) => {
+    console.log(item, 'otem');
+    return item.id === item.id;
+  });
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
@@ -51,6 +58,23 @@ const Header = () => {
       window.removeEventListener('keydown', handleDismiss);
     };
   }, [toggleProfile, toggleCart]);
+
+  React.useEffect(() => {
+    if (!cartItem) {
+      return;
+    }
+    setChekoutQuantity(cartItem.quantity);
+  }, [cartItem]);
+
+  const handleIncreaseQuantity = () => {
+    setChekoutQuantity((current) => current + 1);
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (checkoutQuantity > 1) {
+      setChekoutQuantity((current) => current - 1);
+    }
+  };
 
   const handleLogout = () => {
     logout();
@@ -90,38 +114,44 @@ const Header = () => {
                     <div className={styles.popover__title}>
                       <h3>Cart</h3>
                     </div>
-                    <section className={styles.cart__content}>
-                      <img
-                        className={styles.cart__thumbnail}
-                        src={productThumbnail}
-                        alt="Image product cart"
-                      />
-                      <div className={styles.product__details}>
-                        <p>Fall Limited Edition Sneakers</p>
-                        <div className={styles.cart__price}>
-                          <p>$125.00</p>
-                          <p>x</p>
-                          <p>{quantity}</p>
-                          <p>
-                            <b>$375.00</b>
-                          </p>
+                    {cartItem && cartItem !== Array.isArray([]) ? (
+                      <section className={styles.cart__content}>
+                        <img
+                          className={styles.cart__thumbnail}
+                          src={productThumbnail}
+                          alt="Image product cart"
+                        />
+                        <div>
+                          <div className={styles.product__details}>
+                            <p>{cartItem.title}</p>
+                            <div className={styles.cart__price}>
+                              <p>{`$${cartItem.price}`}</p>
+                              <p>x</p>
+                              <p>{checkoutQuantity}</p>
+                              <p>
+                                <b>$375.00</b>
+                              </p>
+                            </div>
+                          </div>
+                          <div className={styles.remove}>
+                            <button onClick={handleIncreaseQuantity}>
+                              <Plus />
+                            </button>
+                            {checkoutQuantity > 1 ? (
+                              <button onClick={handleDecreaseQuantity}>
+                                <Minus />
+                              </button>
+                            ) : (
+                              <button>
+                                <Trash />
+                              </button>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                      <div className={styles.remove}>
-                        <button>
-                          <Plus />
-                        </button>
-                        {quantity && quantity > 0 ? (
-                          <button>
-                            <Minus />
-                          </button>
-                        ) : (
-                          <button>
-                            <Trash />
-                          </button>
-                        )}
-                      </div>
-                    </section>
+                      </section>
+                    ) : (
+                      <p>No products yet</p>
+                    )}
                     <div className={styles.cart__button}>
                       <button>Checkout</button>
                     </div>

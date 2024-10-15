@@ -3,12 +3,14 @@ import React from 'react';
 import ProductGallery from './components/product-gallery';
 import { product } from './product-content';
 import ProductQuantity from './components/product-quantity';
+import { CartContext } from '../../providers/cart-provider';
 
 const ProductPage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
   const [discountPrice, setDiscountPrice] = React.useState(product.price);
   const [productQuantity, setProductQuantity] = React.useState(0);
-  const [cart, setCart] = React.useState([]);
+
+  const { addToCart } = React.useContext(CartContext);
 
   React.useEffect(() => {
     product.discount && product.discount !== undefined
@@ -17,17 +19,8 @@ const ProductPage = () => {
   }, []);
 
   const handleAddToCart = React.useCallback(() => {
-    setCart((prevCart) => [
-      ...prevCart,
-      {
-        title: product.title,
-        photo: product.photos[0],
-        price: discountPrice,
-        quantity: productQuantity,
-      },
-    ]);
-  }, [discountPrice, productQuantity]);
-  console.log(cart);
+    addToCart(discountPrice, productQuantity);
+  }, [discountPrice, productQuantity, addToCart]);
 
   const handleNextImage = React.useCallback(() => {
     setSelectedImageIndex((prevIndex) => {
@@ -44,14 +37,11 @@ const ProductPage = () => {
   }, []);
 
   const handleIncreaseQuantity = () => {
-    return setProductQuantity(productQuantity + 1);
+    setProductQuantity((currentQuantity) => currentQuantity + 1);
   };
 
   const handleDecreaseQuantity = () => {
-    if (productQuantity <= 0) {
-      return;
-    }
-    return setProductQuantity(productQuantity - 1);
+    setProductQuantity((currentQuantity) => currentQuantity - 1);
   };
 
   return (
@@ -85,7 +75,6 @@ const ProductPage = () => {
             >
               <p data-testid="product-quantity">{productQuantity}</p>
             </ProductQuantity>
-
             <div className={styles.button__wrapper}>
               <button className={styles.add__button} onClick={handleAddToCart}>
                 Add to cart
