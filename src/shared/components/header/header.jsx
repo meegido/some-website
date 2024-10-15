@@ -11,10 +11,11 @@ import { CartContext } from '../../../providers/cart-provider';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { cart } = React.useContext(CartContext);
+  const { cart, removeCart } = React.useContext(CartContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const { logout, isLoggedIn } = React.useContext(AuthContext);
   const [checkoutQuantity, setChekoutQuantity] = React.useState(0);
+  const [totalPrice, setTotalPrice] = React.useState(0);
   const [isProfileOpen, toggleProfile] = useToggle(false);
   const [isCartOpen, toggleCart] = useToggle(false);
   const dropdownRef = React.useRef();
@@ -22,7 +23,6 @@ const Header = () => {
   const cartContentRef = React.useRef();
 
   const cartItem = cart.find((item) => {
-    console.log(item, 'otem');
     return item.id === item.id;
   });
 
@@ -66,6 +66,13 @@ const Header = () => {
     setChekoutQuantity(cartItem.quantity);
   }, [cartItem]);
 
+  React.useEffect(() => {
+    if (!cartItem) {
+      return;
+    }
+    setTotalPrice(cartItem.price * checkoutQuantity);
+  }, [cartItem, checkoutQuantity]);
+
   const handleIncreaseQuantity = () => {
     setChekoutQuantity((current) => current + 1);
   };
@@ -74,6 +81,17 @@ const Header = () => {
     if (checkoutQuantity > 1) {
       setChekoutQuantity((current) => current - 1);
     }
+  };
+
+  const handleCheckout = () => {
+    if (!cartItem) {
+      return;
+    }
+    window.alert(`Cart updated with quantity ${checkoutQuantity}`);
+  };
+  console.log(cart, 'new cart');
+  const handleRemoveFromCart = () => {
+    removeCart(cartItem.id);
   };
 
   const handleLogout = () => {
@@ -116,45 +134,52 @@ const Header = () => {
                     </div>
                     {cartItem && cartItem !== Array.isArray([]) ? (
                       <section className={styles.cart__content}>
-                        <img
-                          className={styles.cart__thumbnail}
-                          src={productThumbnail}
-                          alt="Image product cart"
-                        />
-                        <div>
-                          <div className={styles.product__details}>
-                            <p>{cartItem.title}</p>
-                            <div className={styles.cart__price}>
-                              <p>{`$${cartItem.price}`}</p>
-                              <p>x</p>
-                              <p>{checkoutQuantity}</p>
-                              <p>
-                                <b>$375.00</b>
-                              </p>
+                        <div className={styles.content__wrapper}>
+                          <img
+                            className={styles.cart__thumbnail}
+                            src={productThumbnail}
+                            alt="Image product cart"
+                          />
+                          <div className={styles.with__buttons}>
+                            <div className={styles.product__details}>
+                              <p>{cartItem.title}</p>
+                              <div className={styles.cart__price}>
+                                <p>{`$${cartItem.price}`}</p>
+                                <p>x</p>
+                                <p>{checkoutQuantity}</p>
+                                <p>
+                                  <b>{`$${totalPrice}`}</b>
+                                </p>
+                              </div>
+                            </div>
+                            <div className={styles.remove}>
+                              <button onClick={handleIncreaseQuantity}>
+                                <Plus size={20} />
+                              </button>
+                              {checkoutQuantity > 1 ? (
+                                <button onClick={handleDecreaseQuantity}>
+                                  <Minus size={20} />
+                                </button>
+                              ) : (
+                                <button onClick={handleRemoveFromCart}>
+                                  <Trash size={20} />
+                                </button>
+                              )}
                             </div>
                           </div>
-                          <div className={styles.remove}>
-                            <button onClick={handleIncreaseQuantity}>
-                              <Plus />
-                            </button>
-                            {checkoutQuantity > 1 ? (
-                              <button onClick={handleDecreaseQuantity}>
-                                <Minus />
-                              </button>
-                            ) : (
-                              <button>
-                                <Trash />
-                              </button>
-                            )}
-                          </div>
+                        </div>
+                        <div className={styles.cart__button}>
+                          <button
+                            className={!cartItem ? `${styles.disable}` : ''}
+                            onClick={handleCheckout}
+                          >
+                            Checkout
+                          </button>
                         </div>
                       </section>
                     ) : (
-                      <p>No products yet</p>
+                      <p>No products</p>
                     )}
-                    <div className={styles.cart__button}>
-                      <button>Checkout</button>
-                    </div>
                   </div>
                 )}
               </div>

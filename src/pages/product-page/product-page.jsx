@@ -19,6 +19,10 @@ const ProductPage = () => {
   }, []);
 
   const handleAddToCart = React.useCallback(() => {
+    if (productQuantity === 0) {
+      return;
+    }
+
     addToCart(discountPrice, productQuantity);
   }, [discountPrice, productQuantity, addToCart]);
 

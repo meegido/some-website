@@ -101,9 +101,21 @@ nav li a:hover {
   gap: 8px;
 }
 
+.content__wrapper {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  padding-top: 24px;
+}
+
 .cart__content {
-  padding: 24px 0;
+  flex-direction: column;
+  gap: 24px;
   align-items: center;
+}
+
+.cart__content .with__buttons {
+  display: flex;
 }
 
 .product__details {
@@ -121,7 +133,10 @@ nav li a:hover {
 }
 
 .remove button {
+  display: flex;
+  flex-direction: column;
   background-color: transparent;
+  padding: 0 26px 8px 26px;
 }
 
 .remove button:focus {
@@ -141,4 +156,9 @@ nav li a:hover {
 
 .cart__button button {
   background-color: var(--orange);
+}
+
+.cart__button .disable {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

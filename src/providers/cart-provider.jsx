@@ -5,25 +5,30 @@ export const CartContext = React.createContext();
 const CartProvider = ({ children }) => {
   const [cart, setCart] = React.useState([]);
 
-  const addToCart = (discountPrice, productQuantity) => {
+  const addToCart = (price, quantity) => {
     setCart((prevCart) => [
       ...prevCart,
       {
         id: '123',
         title: 'Fall Limited Edition Sneakers',
         photo: '../../../assets/images/product/image-product-1.jpg',
-        price: discountPrice,
-        quantity: productQuantity,
+        price: price,
+        quantity: quantity,
       },
     ]);
   };
 
-  console.log(cart);
+  const removeCart = (itemId) => {
+    if (itemId === '123') {
+      setCart([]);
+    }
+  };
 
   return (
     <CartContext.Provider
       value={{
         addToCart,
+        removeCart,
         cart,
       }}
     >
