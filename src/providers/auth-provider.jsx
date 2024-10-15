@@ -1,8 +1,8 @@
 import React from 'react';
 
-export const UserContext = React.createContext();
+export const AuthContext = React.createContext();
 
-const UserProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = React.useState(() => {
     const storedUser = window.localStorage.getItem('user');
     return storedUser
@@ -44,10 +44,10 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, updateUser, logout, login, isLoggedIn }}>
+    <AuthContext.Provider value={{ user, updateUser, logout, login, isLoggedIn }}>
       {children}
-    </UserContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export default UserProvider;
+export default AuthProvider;

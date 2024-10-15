@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './header.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
-import { UserContext } from '../../../providers/user-provider';
+import { AuthContext } from '../../../providers/auth-provider';
 import { Minus, Moon, Plus, ShoppingCart, Sun, Trash } from 'lucide-react';
 import Dropdown from './dropdown/dropdown';
 import productThumbnail from '../../../assets/images/product/image-product-1.jpg';
@@ -11,9 +11,10 @@ import useToggle from '../../../hooks/use-toggle';
 const Header = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = React.useContext(ThemeContext);
-  const { logout, isLoggedIn } = React.useContext(UserContext);
+  const { logout, isLoggedIn } = React.useContext(AuthContext);
   const [isProfileOpen, toggleProfile] = useToggle(false);
   const [isCartOpen, toggleCart] = useToggle(false);
+  const [quantity, setQuantity] = React.useState(0);
   const dropdownRef = React.useRef();
   const cartTriggerRef = React.useRef();
   const cartContentRef = React.useRef();
@@ -100,7 +101,7 @@ const Header = () => {
                         <div className={styles.cart__price}>
                           <p>$125.00</p>
                           <p>x</p>
-                          <p>3</p>
+                          <p>{quantity}</p>
                           <p>
                             <b>$375.00</b>
                           </p>
@@ -110,12 +111,15 @@ const Header = () => {
                         <button>
                           <Plus />
                         </button>
-                        <button>
-                          <Minus />
-                        </button>
-                        <button>
-                          <Trash />
-                        </button>
+                        {quantity && quantity > 0 ? (
+                          <button>
+                            <Minus />
+                          </button>
+                        ) : (
+                          <button>
+                            <Trash />
+                          </button>
+                        )}
                       </div>
                     </section>
                     <div className={styles.cart__button}>

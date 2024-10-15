@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './login-form.module.css';
 import { useNavigate } from 'react-router-dom';
 import InputField from '../../shared/components/input-field/input-field';
-import { UserContext } from '../../providers/user-provider';
+import { AuthContext } from '../../providers/auth-provider';
 import Button from '../../shared/components/button/button';
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { login } = React.useContext(UserContext);
+  const { login } = React.useContext(AuthContext);
   const [formData, setFormData] = React.useState({
     email: '',
     username: '',
