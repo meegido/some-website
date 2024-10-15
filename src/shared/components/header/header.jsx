@@ -18,29 +18,29 @@ const Header = () => {
   const cartTriggerRef = React.useRef();
   const cartContentRef = React.useRef();
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      toggleProfile(false);
-    }
-  };
-
-  const handleCartClickOutside = (event) => {
-    if (
-      cartContentRef.current &&
-      !cartTriggerRef.current.contains(event.target) &&
-      !cartContentRef.current.contains(event.target)
-    ) {
-      toggleCart(false);
-    }
-  };
-
-  const handleDismiss = (event) => {
-    if (event.code === 'Escape') {
-      toggleProfile(false);
-    }
-  };
-
   React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        toggleProfile(false);
+      }
+    };
+
+    const handleCartClickOutside = (event) => {
+      if (
+        cartContentRef.current &&
+        !cartTriggerRef.current.contains(event.target) &&
+        !cartContentRef.current.contains(event.target)
+      ) {
+        toggleCart(false);
+      }
+    };
+
+    const handleDismiss = (event) => {
+      if (event.code === 'Escape') {
+        toggleProfile(false);
+      }
+    };
+
     window.addEventListener('mousedown', handleClickOutside);
     window.addEventListener('mousedown', handleCartClickOutside);
     window.addEventListener('keydown', handleDismiss);
@@ -49,7 +49,7 @@ const Header = () => {
       window.removeEventListener('mousedown', handleCartClickOutside);
       window.removeEventListener('keydown', handleDismiss);
     };
-  }, []);
+  }, [toggleProfile, toggleCart]);
 
   const handleLogout = () => {
     logout();
