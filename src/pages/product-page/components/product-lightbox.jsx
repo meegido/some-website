@@ -11,18 +11,18 @@ const ProductLightbox = ({
 }) => {
   const lightboxRef = React.useRef();
   React.useEffect(() => {
-    const dismissLightbox = (event) => {
-      if (lightboxRef.current && lightboxRef.current.contains(event.target)) {
+    const handleClickOutside = (event) => {
+      if (lightboxRef.current && !lightboxRef.current.contains(event.target)) {
         toggleLightBox(false);
       }
     };
-    window.addEventListener('mousedown', dismissLightbox);
+    window.addEventListener('mousedown', handleClickOutside);
 
-    return () => window.addEventListener('mousedown', dismissLightbox);
+    return () => window.removeEventListener('mousedown', handleClickOutside);
   });
   return (
-    <section className={styles.lightbox} ref={lightboxRef}>
-      <div className={styles.lightbox__wrapper}>
+    <section className={styles.lightbox}>
+      <div className={styles.lightbox__wrapper} ref={lightboxRef}>
         <div className={styles.ligthbox__close}>
           <button onClick={() => toggleLightBox(false)}>
             <X />
