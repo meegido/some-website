@@ -91,9 +91,11 @@ const Header = () => {
                 toggleCart={toggleCart}
               />
             )}
-            <button className={styles.header__button} onClick={toggleTheme}>
-              {theme === 'light' ? <Sun size={32} /> : <Moon size={32} />}
-            </button>
+            <div className={styles.theme__button}>
+              <button className={styles.header__button} onClick={toggleTheme}>
+                {theme === 'light' ? <Sun /> : <Moon />}
+              </button>
+            </div>
             {isLoggedIn && (
               <ProfileDropdown
                 toggleDropdown={() => toggleProfile()}

@@ -4,8 +4,8 @@ import Home from './pages/home/home';
 import ErrorBoundary from './shared/components/error-boundary/error-boundary';
 import TipCalculator from './pages/tip-calculator/tip-calculator';
 import ProductPage from './pages/product-page/product-page';
-import LoginForm from './pages/form/login-form';
 import ProtectedRoute from './protected-route';
+import Landing from './pages/landing/landing';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <LoginForm />,
+        element: <Landing />,
       },
       {
         path: 'tip-calculator',

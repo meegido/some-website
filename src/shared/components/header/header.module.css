@@ -58,3 +58,18 @@ nav li a:hover {
   gap: 24px;
   width: 100%;
 }
+
+.header__button {
+  background-color: transparent;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.header__button:focus {
+  outline: none;
+}
+
+.theme__button {
+  width: 32px;
+  height: 32px;
+}
