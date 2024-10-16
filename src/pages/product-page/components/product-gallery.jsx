@@ -14,6 +14,7 @@ const ProductGallery = ({
 
   return (
     <div className={styles.carousel}>
+      <div></div>
       <section className={styles.carousel__wrapper}>
         {images.map((imageUrl, index) => (
           <img
