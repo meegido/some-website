@@ -9,6 +9,7 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
   const { removeCart, updateCart } = React.useContext(CartContext);
   const [checkoutQuantity, setCheckoutQuantity] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
+  const [isNotification, setIsNotification] = React.useState(false);
 
   React.useEffect(() => {
     if (!cartItem) {
@@ -24,13 +25,23 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
     setTotalPrice(cartItem.price * checkoutQuantity);
   }, [cartItem, checkoutQuantity]);
 
+  React.useEffect(() => {
+    if (!cartItem) {
+      return;
+    }
+
+    setIsNotification(true);
+  }, [cartItem, isCartOpen]);
+
   const handleIncreaseQuantity = () => {
     setCheckoutQuantity((current) => current + 1);
+    setIsNotification(false);
   };
 
   const handleDecreaseQuantity = () => {
     if (checkoutQuantity > 1) {
       setCheckoutQuantity((current) => current - 1);
+      setIsNotification(false);
     }
   };
 
@@ -51,6 +62,11 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
   return (
     <div className={styles.cart__popover}>
       <button onClick={() => toggleCart()} className={styles.header__button} ref={cartTriggerRef}>
+        {isNotification && !isCartOpen ? (
+          <p className={styles.notification}>{cartItem.quantity}</p>
+        ) : (
+          ''
+        )}
         <ShoppingCart size={32} />
       </button>
       {isCartOpen && (
