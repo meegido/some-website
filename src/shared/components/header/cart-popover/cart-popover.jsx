@@ -3,6 +3,7 @@ import { Minus, Plus, ShoppingCart, Trash } from 'lucide-react';
 import styles from './cart-popover.module.css';
 import productThumbnail from '../../../../assets/images/product/image-product-1.jpg';
 import { CartContext } from '../../../../providers/cart-provider';
+import { Link } from 'react-router-dom';
 
 const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTriggerRef }) => {
   const { removeCart, updateCart } = React.useContext(CartContext);
@@ -41,8 +42,10 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
     if (!cartItem) {
       return;
     }
-    updateCart(cartItem.id, checkoutQuantity, totalPrice);
+    updateCart(checkoutQuantity, totalPrice);
+    window.alert('cart updated! ');
     removeCart(cartItem.id);
+    toggleCart(false);
   };
 
   return (
@@ -98,7 +101,12 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
               </div>
             </section>
           ) : (
-            <p>No products</p>
+            <div className={styles.empty__cart}>
+              <p>No products in the cart yet.</p>
+              <p>
+                <Link to="product-page">Go to the Product page</Link> to add some.
+              </p>
+            </div>
           )}
         </div>
       )}

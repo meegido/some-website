@@ -3,7 +3,7 @@ import styles from './header.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
 import { AuthContext } from '../../../providers/auth-provider';
-import { Moon, ShoppingCart, Sun } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import ProfileDropdown from './profile-dropdown/profile-dropdown';
 import useToggle from '../../../hooks/use-toggle';
 import { CartContext } from '../../../providers/cart-provider';
