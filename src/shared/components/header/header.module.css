@@ -51,16 +51,12 @@ nav li a:hover {
   color: rgba(94, 103, 228, 0.979);
 }
 
-.actions {
-  display: flex;
-  width: 100%;
-}
-
 .action__items {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 24px;
+  width: 100%;
 }
 
 .header__button {
@@ -71,8 +67,4 @@ nav li a:hover {
 
 .header__button:focus {
   outline: none;
-}
-
-.cart__popover {
-  position: relative;
 }

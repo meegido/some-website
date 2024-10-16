@@ -83,25 +83,23 @@ const Header = () => {
         <div className={styles.actions}>
           <div className={styles.action__items}>
             {isLoggedIn && (
-              <div className={styles.cart__popover}>
-                <button
-                  onClick={() => toggleCart()}
-                  className={styles.header__button}
-                  ref={cartTriggerRef}
-                >
-                  <ShoppingCart />
-                </button>
-                {isCartOpen && <CartPopover cartItem={cartItem} cartContentRef={cartContentRef} />}
-              </div>
+              <CartPopover
+                cartItem={cartItem}
+                isCartOpen={isCartOpen}
+                cartContentRef={cartContentRef}
+                cartTriggerRef={cartTriggerRef}
+                toggleCart={toggleCart}
+              />
             )}
             <button className={styles.header__button} onClick={toggleTheme}>
-              {theme === 'light' ? <Sun /> : <Moon />}
+              {theme === 'light' ? <Sun size={32} /> : <Moon size={32} />}
             </button>
             {isLoggedIn && (
               <ProfileDropdown
                 toggleDropdown={() => toggleProfile()}
                 isProfileOpen={isProfileOpen}
                 dropdownRef={dropdownRef}
+                handleLogout={handleLogout}
               />
             )}
           </div>

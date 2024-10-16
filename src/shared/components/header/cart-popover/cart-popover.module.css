@@ -1,4 +1,6 @@
-
+.cart__popover {
+  position: relative;
+}
 
 .cart__wrapper {
   min-width: 392px;
@@ -63,6 +65,16 @@
 }
 
 .remove button:focus {
+  outline: none;
+}
+
+.header__button {
+  background-color: transparent;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.header__button:focus {
   outline: none;
 }
 
