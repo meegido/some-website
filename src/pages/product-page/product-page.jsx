@@ -4,19 +4,29 @@ import ProductGallery from './components/product-gallery';
 import { product } from './product-content';
 import ProductQuantity from './components/product-quantity';
 import { CartContext } from '../../providers/cart-provider';
+import useToggle from '../../hooks/use-toggle';
 
 const ProductPage = () => {
+  const { addToCart } = React.useContext(CartContext);
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
   const [discountPrice, setDiscountPrice] = React.useState(product.price);
   const [productQuantity, setProductQuantity] = React.useState(0);
-
-  const { addToCart } = React.useContext(CartContext);
+  const [lightboxImageIndex, setLightboxImageIndex] = React.useState(0);
+  const [isLightboxOpen, toggleLightBox] = useToggle(false);
 
   React.useEffect(() => {
     product.discount && product.discount !== undefined
       ? setDiscountPrice((product.price * product.discount) / 100)
       : setDiscountPrice(product.price);
   }, []);
+
+  const handleIncreaseQuantity = () => {
+    setProductQuantity((currentQuantity) => currentQuantity + 1);
+  };
+
+  const handleDecreaseQuantity = () => {
+    setProductQuantity((currentQuantity) => currentQuantity - 1);
+  };
 
   const handleAddToCart = React.useCallback(() => {
     if (productQuantity === 0) {
@@ -40,13 +50,22 @@ const ProductPage = () => {
     });
   }, []);
 
-  const handleIncreaseQuantity = () => {
-    setProductQuantity((currentQuantity) => currentQuantity + 1);
+  const showLightboxImage = (index) => {
+    setLightboxImageIndex(index);
+    toggleLightBox(true);
   };
 
-  const handleDecreaseQuantity = () => {
-    setProductQuantity((currentQuantity) => currentQuantity - 1);
-  };
+  const handleLightboxPrevImage = React.useCallback(() => {
+    setLightboxImageIndex((prevIndex) => {
+      return (prevIndex + 1) % product.photos.length;
+    });
+  }, []);
+
+  const handleLightboxNextImage = React.useCallback(() => {
+    setLightboxImageIndex((prevIndex) => {
+      return (prevIndex - 1 + product.photos.length) % product.photos.length;
+    });
+  }, []);
 
   return (
     <>
@@ -57,6 +76,12 @@ const ProductPage = () => {
           setSelectedImageIndex={setSelectedImageIndex}
           handleNextImage={handleNextImage}
           handlePrevImage={handlePrevImage}
+          handleLightboxNextImage={handleLightboxNextImage}
+          handleLightboxPrevImage={handleLightboxPrevImage}
+          showLightboxImage={showLightboxImage}
+          lightboxImageIndex={lightboxImageIndex}
+          isLightboxOpen={isLightboxOpen}
+          toggleLightBox={toggleLightBox}
         />
         <section className={styles.product__wrapper}>
           <div className={styles.product__description}>
