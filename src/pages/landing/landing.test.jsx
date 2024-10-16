@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
-import LoginForm from './login-form';
+import Landing from './landing';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../providers/user-provider';
+import { AuthContext } from '../../providers/auth-provider';
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
@@ -12,17 +12,17 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-describe('LoginForm Component', () => {
+describe('Landing Component', () => {
   it('should render the login form', () => {
-    const mockUserContextValue = {
+    const mockAuthContextValue = {
       login: () => {},
     };
     render(
-      <UserContext.Provider value={mockUserContextValue}>
+      <AuthContext.Provider value={mockAuthContextValue}>
         <MemoryRouter>
-          <LoginForm />
+          <Landing />
         </MemoryRouter>
-      </UserContext.Provider>
+      </AuthContext.Provider>
     );
     expect(screen.getByText(/Name/i)).toBeInTheDocument();
     expect(screen.getByText(/Email/i)).toBeInTheDocument();
@@ -33,15 +33,15 @@ describe('LoginForm Component', () => {
   it('should handle user input and navigate on login', () => {
     const mockNavigate = vi.fn();
     const mockLogin = vi.fn();
-    const mockUserContextValue = {
+    const mockAuthContextValue = {
       login: mockLogin,
     };
     render(
-      <UserContext.Provider value={mockUserContextValue}>
+      <AuthContext.Provider value={mockAuthContextValue}>
         <MemoryRouter>
-          <LoginForm />
+          <Landing />
         </MemoryRouter>
-      </UserContext.Provider>
+      </AuthContext.Provider>
     );
 
     useNavigate.mockReturnValue(mockNavigate);
@@ -58,13 +58,13 @@ describe('LoginForm Component', () => {
     const loginButton = screen.getByRole('button', { name: /Log in/i });
     fireEvent.click(loginButton);
 
-    expect(mockUserContextValue.login).toHaveBeenCalledWith({
+    expect(mockAuthContextValue.login).toHaveBeenCalledWith({
       username: 'John Doe',
       email: 'john@doe.com',
       password: 'password123',
     });
 
-    expect(mockUserContextValue.login).toHaveBeenCalledTimes(1);
+    expect(mockAuthContextValue.login).toHaveBeenCalledTimes(1);
     expect(mockNavigate).toHaveBeenLastCalledWith('/');
   });
 });

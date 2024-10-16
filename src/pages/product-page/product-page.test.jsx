@@ -1,17 +1,31 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import ProductPage from './product-page';
+import { CartContext } from '../../providers/cart-provider';
+import { MemoryRouter } from 'react-router-dom';
 
-describe('Product page', () => {
+describe('Product page', ({ cart = [] } = {}) => {
   it('renders a product gallery', () => {
-    render(<ProductPage />);
+    render(
+      <CartContext.Provider value={{ cart }}>
+        <MemoryRouter>
+          <ProductPage />
+        </MemoryRouter>
+      </CartContext.Provider>
+    );
 
     const altImage = screen.getByAltText('Product image 0');
     expect(altImage).toBeInTheDocument();
   });
 
   it('renders the product price based on a variable discount amount', () => {
-    render(<ProductPage />);
+    render(
+      <CartContext.Provider value={{ cart }}>
+        <MemoryRouter>
+          <ProductPage />
+        </MemoryRouter>
+      </CartContext.Provider>
+    );
 
     const price = screen.getByText('$250.00');
     expect(price).toBeInTheDocument();
@@ -21,16 +35,22 @@ describe('Product page', () => {
   });
 
   it('handles the amount of products to add to the cart', () => {
-    render(<ProductPage />);
+    render(
+      <CartContext.Provider value={{ cart }}>
+        <MemoryRouter>
+          <ProductPage />
+        </MemoryRouter>
+      </CartContext.Provider>
+    );
 
-    const increaseButton = screen.getByRole('button', { name: '+' });
+    const increaseButton = screen.getByLabelText('Incrase product quantity');
     fireEvent.click(increaseButton);
     expect(increaseButton).toBeInTheDocument();
 
     const quantityElement = screen.getByTestId('product-quantity');
     expect(quantityElement).toHaveTextContent('1');
 
-    const decreaseButton = screen.getByRole('button', { name: '-' });
+    const decreaseButton = screen.getByLabelText('Decrease product quantity');
     fireEvent.click(decreaseButton);
     expect(decreaseButton).toBeInTheDocument();
     expect(quantityElement).toHaveTextContent('0');

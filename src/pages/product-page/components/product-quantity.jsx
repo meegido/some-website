@@ -5,12 +5,11 @@ import { Minus, Plus } from 'lucide-react';
 const ProductQuantity = ({ children, handleIncreaseQuantity, handleDecreaseQuantity }) => {
   return (
     <div className={styles.product__quantity}>
-      <button onClick={handleDecreaseQuantity}>
+      <button onClick={handleDecreaseQuantity} aria-label="Incrase product quantity">
         <Minus />
       </button>
       {children}
-      <button onClick={handleIncreaseQuantity}>
-        {' '}
+      <button onClick={handleIncreaseQuantity} aria-label="Decrease product quantity">
         <Plus />
       </button>
     </div>
