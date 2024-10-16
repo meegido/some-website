@@ -90,7 +90,7 @@
   position: absolute;
   color: var(--orange);
   border-radius: 50%;
-  padding: 8px 12px;
+  padding: 10px;
 }
 
 .lightbox__controls button:first-of-type {

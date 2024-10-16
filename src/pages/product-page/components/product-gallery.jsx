@@ -2,7 +2,7 @@ import styles from './product-gallery.module.css';
 import ThumbnailButton from './thumbnail-button';
 import useIsMobile from '../../../hooks/use-window-resize';
 import React from 'react';
-import { X } from 'lucide-react';
+import { MoveLeft, MoveRight, X } from 'lucide-react';
 
 const ProductGallery = ({
   images,
@@ -46,13 +46,17 @@ const ProductGallery = ({
                 </button>
               </div>
               <div className={styles.lightbox__controls}>
-                <button onClick={handlePrevImage}>←</button>
+                <button onClick={handlePrevImage}>
+                  <MoveLeft size={18} />
+                </button>
                 <img
                   className={styles.ligthbox__image}
                   src={imageToShow}
                   alt={`Product image lightbox`}
                 />
-                <button onClick={handleNextImage}>→</button>
+                <button onClick={handleNextImage}>
+                  <MoveRight size={18} />
+                </button>
               </div>
             </div>
           </section>
@@ -62,8 +66,12 @@ const ProductGallery = ({
       </section>
       {isMobile ? (
         <section className={styles.carousel__controls}>
-          <button onClick={handlePrevImage}>←</button>
-          <button onClick={handleNextImage}>→</button>
+          <button onClick={handlePrevImage}>
+            <MoveLeft />
+          </button>
+          <button onClick={handleNextImage}>
+            <MoveRight />
+          </button>
         </section>
       ) : (
         <section className={styles.thumbnails__wrapper}>
