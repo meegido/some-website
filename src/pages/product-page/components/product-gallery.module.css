@@ -46,6 +46,61 @@
   display: none;
 }
 
+.lightbox {
+  z-index: 1;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background-color: rgba(14, 14, 14, 0.65);
+  width: 100vw;
+  height: 100vh;
+}
+
+.lightbox__wrapper {
+  position: absolute;
+  top: 12%;
+  left: 30%;
+}
+
+.carousel__wrapper .ligthbox__image {
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+}
+
+.ligthbox__close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ligthbox__close button {
+  color: var(--orange);
+  background-color: transparent;
+}
+
+.lightbox__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 8%;
+  position: relative;
+}
+
+.lightbox__controls button {
+  position: absolute;
+  color: var(--orange);
+  border-radius: 50%;
+  padding: 8px 12px;
+}
+
+.lightbox__controls button:first-of-type {
+  left: -26px;
+}
+
+.lightbox__controls button:last-of-type {
+  right: -26px;
+}
+
 @media (min-width: 768px) {
   .carousel__controls {
     display: none;
