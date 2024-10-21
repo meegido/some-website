@@ -75,6 +75,9 @@ const Landing = () => {
                   <p>Frontend Architecture</p>
                 </li>
                 <li>
+                  <p>Performance</p>
+                </li>
+                <li>
                   <p>TDD</p>
                 </li>
               </ul>

@@ -46,7 +46,6 @@
   display: none;
 }
 
-
 @media (min-width: 768px) {
   .carousel__controls {
     display: none;
@@ -75,5 +74,17 @@
   .thumbnails__wrapper button {
     width: 102px;
     height: 102px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .carousel__wrapper {
+    width: 640px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .carousel__wrapper {
+    width: 800px;
   }
 }
