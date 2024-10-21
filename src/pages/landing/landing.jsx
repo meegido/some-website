@@ -1,5 +1,7 @@
 import LoginForm from './form/login-form';
 import styles from './landing.module.css';
+import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
+import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
 
 const Landing = () => {
   return (
@@ -49,7 +51,23 @@ const Landing = () => {
           <article className={styles.roadmap__card}>
             <header>
               <h3>Next</h3>
-              <p>Advanced React</p>
+              <p>Typescript</p>
+            </header>
+            <section className={styles.skills}>
+              <ul>
+                <li>
+                  <p>Advanced React</p>
+                </li>
+                <li>
+                  <p>TDD</p>
+                </li>
+              </ul>
+            </section>
+          </article>
+          <article className={styles.roadmap__card}>
+            <header>
+              <h3>Later</h3>
+              <p>Advanced</p>
             </header>
             <section className={styles.skills}>
               <ul>
@@ -62,21 +80,26 @@ const Landing = () => {
               </ul>
             </section>
           </article>
-          <article className={styles.roadmap__card}>
-            <header>
-              <h3>Later</h3>
-              <p>Advanced TS</p>
-            </header>
-            <section className={styles.skills}>
-              <ul>
-                <li>
-                  <p>Typescript</p>
-                </li>
-                <li>
-                  <p>TDD</p>
-                </li>
-              </ul>
-            </section>
+        </section>
+      </section>
+      <section className={styles.projects__wrapper}>
+        <h2 className={styles.roadmap__title}>Exercises</h2>
+        <section className={styles.cards__wrapper}>
+          <article className={styles.exercises__card}>
+            <h3>Tip calculator</h3>
+            <img
+              className={styles.thumbnail}
+              src={tipCalculatorPreview}
+              alt="Tip Calculator preview"
+            />
+          </article>
+          <article className={styles.exercises__card}>
+            <h3>E-commerce product page</h3>
+            <img
+              className={styles.thumbnail}
+              src={ecommercePagePreview}
+              alt="E-commerce product page"
+            />
           </article>
         </section>
       </section>
