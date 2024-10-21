@@ -181,12 +181,27 @@
     gap: 56px;
   }
 
+  .roadmap__card {
+    padding: 54px 0;
+  }
+
   .roadmap__card header {
     gap: 32px;
+    height: 116px;
   }
 
   .roadmap__card header p {
-    font-size: 38px;
+    font-size: 48px;
+  }
+
+  .roadmap__card section ul li {
+    padding: 16px 0;
+  }
+}
+
+@media (min-width: 1680px) {
+  .cards__wrapper {
+    gap: 74px;
   }
 }
 
