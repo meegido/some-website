@@ -13,6 +13,7 @@
   background-color: var(--color-bg);
   color: var(--color-text);
   justify-content: space-between;
+  align-items: center;
 }
 
 .logotype {
@@ -20,6 +21,7 @@
   justify-content: flex-start;
   padding: 0;
   width: 100%;
+  font-size: 32px;
 }
 
 .logotype a {
@@ -72,4 +74,10 @@ nav li a:hover {
 .theme__button {
   width: 32px;
   height: 32px;
+}
+
+@media (min-width: 1200px) {
+  .logotype {
+    font-size: 44px;
+  }
 }
