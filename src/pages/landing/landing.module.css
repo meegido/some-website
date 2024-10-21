@@ -1,11 +1,15 @@
 .landing__wrapper {
+  width: 100%;
+}
+
+.hero__wrapper {
   background-color: aliceblue;
   display: flex;
-  padding: 80px var(--container-padding);
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
   gap: 56px;
+  padding: 80px var(--container-padding);
 }
 
 .landing__title {
@@ -48,7 +52,7 @@
 }
 
 @media (min-width: 768px) {
-  .landing__wrapper {
+  .hero__wrapper {
     flex-direction: row;
     align-items: center;
   }
@@ -60,7 +64,7 @@
 }
 
 @media (min-width: 1440px) {
-  .landing__wrapper {
+  .hero__wrapper {
     gap: 132px;
   }
 
