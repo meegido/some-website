@@ -8,22 +8,13 @@ import { Link } from 'react-router-dom';
 const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTriggerRef }) => {
   const { removeCart, updateCart } = React.useContext(CartContext);
   const [checkoutQuantity, setCheckoutQuantity] = React.useState(0);
-  const [totalPrice, setTotalPrice] = React.useState(0);
   const [isNotification, setIsNotification] = React.useState(false);
 
-  React.useEffect(() => {
-    if (!cartItem) {
-      return;
-    }
-    setCheckoutQuantity(cartItem.quantity);
-  }, [cartItem]);
+  const totalPrice = cartItem?.price * checkoutQuantity;
 
   React.useEffect(() => {
-    if (!cartItem) {
-      return;
-    }
-    setTotalPrice(cartItem.price * checkoutQuantity);
-  }, [cartItem, checkoutQuantity]);
+    setCheckoutQuantity(cartItem?.quantity);
+  }, [cartItem]);
 
   React.useEffect(() => {
     if (!cartItem) {
