@@ -45,7 +45,6 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
       return;
     }
     updateCart(checkoutQuantity, totalPrice);
-    window.alert('cart updated! ');
     removeCart(cartItem.id);
     toggleCart(false);
   };
@@ -54,7 +53,7 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
     <div className={styles.cart__popover}>
       <button onClick={() => toggleCart()} className={styles.header__button} ref={cartTriggerRef}>
         {isNotification && !isCartOpen ? (
-          <p className={styles.notification}>{cartItem.quantity}</p>
+          <p className={styles.notification}>{cartItem?.quantity}</p>
         ) : (
           ''
         )}
