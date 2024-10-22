@@ -9,16 +9,14 @@ import useToggle from '../../hooks/use-toggle';
 const ProductPage = () => {
   const { addToCart } = React.useContext(CartContext);
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
-  const [discountPrice, setDiscountPrice] = React.useState(product.price);
   const [productQuantity, setProductQuantity] = React.useState(0);
   const [lightboxImageIndex, setLightboxImageIndex] = React.useState(0);
   const [isLightboxOpen, toggleLightBox] = useToggle(false);
 
-  React.useEffect(() => {
+  const price =
     product.discount && product.discount !== undefined
-      ? setDiscountPrice((product.price * product.discount) / 100)
-      : setDiscountPrice(product.price);
-  }, []);
+      ? (product.price * product.discount) / 100
+      : product.price;
 
   const handleIncreaseQuantity = () => {
     setProductQuantity((currentQuantity) => currentQuantity + 1);
@@ -33,8 +31,8 @@ const ProductPage = () => {
       return;
     }
 
-    addToCart(product.id, discountPrice, productQuantity);
-  }, [discountPrice, productQuantity, addToCart]);
+    addToCart(product.id, price, productQuantity);
+  }, [price, productQuantity, addToCart]);
 
   const handleNextImage = React.useCallback(() => {
     setSelectedImageIndex((prevIndex) => {
@@ -92,7 +90,7 @@ const ProductPage = () => {
             </div>
             <div className={styles.product__price}>
               <div>
-                <p>${discountPrice}</p>
+                <p>${price}</p>
                 <p>{product.discount}%</p>
               </div>
               <p className={styles.final__price}>${product.price}</p>
