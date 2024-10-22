@@ -9,7 +9,7 @@ import useToggle from '../../hooks/use-toggle';
 const ProductPage = () => {
   const { addToCart } = React.useContext(CartContext);
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
-  const [productQuantity, setProductQuantity] = React.useState(0);
+  const [quantity, setQuantity] = React.useState(0);
   const [lightboxImageIndex, setLightboxImageIndex] = React.useState(0);
   const [isLightboxOpen, toggleLightBox] = useToggle(false);
 
@@ -19,20 +19,25 @@ const ProductPage = () => {
       : product.price;
 
   const handleIncreaseQuantity = () => {
-    setProductQuantity((currentQuantity) => currentQuantity + 1);
+    setQuantity((currentQuantity) => currentQuantity + 1);
   };
 
   const handleDecreaseQuantity = () => {
-    setProductQuantity((currentQuantity) => currentQuantity - 1);
+    setQuantity((currentQuantity) => {
+      if (currentQuantity <= 0) {
+        return 0;
+      }
+      return currentQuantity - 1;
+    });
   };
 
   const handleAddToCart = React.useCallback(() => {
-    if (productQuantity === 0) {
+    if (quantity === 0) {
       return;
     }
 
-    addToCart(product.id, price, productQuantity);
-  }, [price, productQuantity, addToCart]);
+    addToCart(product.id, price, quantity);
+  }, [price, quantity, addToCart]);
 
   const handleNextImage = React.useCallback(() => {
     setSelectedImageIndex((prevIndex) => {
@@ -97,11 +102,10 @@ const ProductPage = () => {
             </div>
             <div className={styles.product__cart}>
               <ProductQuantity
-                productQuantity={productQuantity}
                 handleIncreaseQuantity={handleIncreaseQuantity}
                 handleDecreaseQuantity={handleDecreaseQuantity}
               >
-                <p data-testid="product-quantity">{productQuantity}</p>
+                <p data-testid="product-quantity">{quantity}</p>
               </ProductQuantity>
               <div className={styles.button__wrapper}>
                 <button className={styles.add__button} onClick={handleAddToCart}>
@@ -113,7 +117,7 @@ const ProductPage = () => {
         </section>
         <section className={styles.project__content}>
           <article className={styles.about}>
-            <h2>About the project</h2>
+            <h2>Te project</h2>
             <div className={styles.description}>
               <p>
                 The project is to build a e-commerce product page fully functional and get it

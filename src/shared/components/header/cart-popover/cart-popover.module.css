@@ -112,7 +112,7 @@
   left: 10px;
   font-size: 12px;
   background: var(--orange);
-  color: white;
+  color: var(--white);
   border-radius: 50%;
-  padding: 0px 4px;
+  padding: 0px 6px;
 }
