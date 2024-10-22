@@ -7,32 +7,21 @@ import { Link } from 'react-router-dom';
 
 const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTriggerRef }) => {
   const { removeCart, updateCart } = React.useContext(CartContext);
-  const [checkoutQuantity, setCheckoutQuantity] = React.useState(0);
-  const [isNotification, setIsNotification] = React.useState(false);
+  const [quantity, setQuantity] = React.useState(0);
 
-  const totalPrice = cartItem?.price * checkoutQuantity;
+  const totalPrice = cartItem?.price * quantity;
 
   React.useEffect(() => {
-    setCheckoutQuantity(cartItem?.quantity);
+    setQuantity(cartItem?.quantity);
   }, [cartItem]);
 
-  React.useEffect(() => {
-    if (!cartItem) {
-      return;
-    }
-
-    setIsNotification(true);
-  }, [cartItem, isCartOpen]);
-
   const handleIncreaseQuantity = () => {
-    setCheckoutQuantity((current) => current + 1);
-    setIsNotification(false);
+    setQuantity((current) => current + 1);
   };
 
   const handleDecreaseQuantity = () => {
-    if (checkoutQuantity > 1) {
-      setCheckoutQuantity((current) => current - 1);
-      setIsNotification(false);
+    if (quantity > 1) {
+      setQuantity((current) => current - 1);
     }
   };
 
@@ -44,7 +33,7 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
     if (!cartItem) {
       return;
     }
-    updateCart(checkoutQuantity, totalPrice);
+    updateCart(quantity, totalPrice);
     removeCart(cartItem.id);
     toggleCart(false);
   };
@@ -52,7 +41,7 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
   return (
     <div className={styles.cart__popover}>
       <button onClick={() => toggleCart()} className={styles.header__button} ref={cartTriggerRef}>
-        {isNotification && !isCartOpen ? (
+        {quantity > 0 && !isCartOpen ? (
           <p className={styles.notification}>{cartItem?.quantity}</p>
         ) : (
           ''
@@ -78,7 +67,7 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
                     <div className={styles.cart__price}>
                       <p>{`$${cartItem.price}`}</p>
                       <p>x</p>
-                      <p>{checkoutQuantity}</p>
+                      <p>{quantity}</p>
                       <p>
                         <b>{`$${totalPrice}`}</b>
                       </p>
@@ -88,7 +77,7 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
                     <button onClick={handleIncreaseQuantity}>
                       <Plus size={20} />
                     </button>
-                    {checkoutQuantity > 1 ? (
+                    {quantity > 1 ? (
                       <button onClick={handleDecreaseQuantity}>
                         <Minus size={20} />
                       </button>
