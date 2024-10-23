@@ -20,9 +20,7 @@ const Header = () => {
   const [isCartOpen, toggleCart] = useToggle(false);
   const [isProfileOpen, toggleProfile] = useToggle(false);
 
-  const cartItem = cart.find((item) => {
-    return item.id === item.id;
-  });
+  const cartItem = cart.length > 0 ? cart[0] : [];
 
   React.useEffect(() => {
     const handleCartClickOutside = (event) => {
@@ -86,9 +84,9 @@ const Header = () => {
               <CartPopover
                 cartItem={cartItem}
                 isCartOpen={isCartOpen}
+                toggleCart={toggleCart}
                 cartContentRef={cartContentRef}
                 cartTriggerRef={cartTriggerRef}
-                toggleCart={toggleCart}
               />
             )}
             <div className={styles.theme__button}>
