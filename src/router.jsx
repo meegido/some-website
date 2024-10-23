@@ -23,11 +23,11 @@ const router = createBrowserRouter([
         element: <Exercises />,
       },
       {
-        path: 'tip-calculator',
+        path: 'exercises/tip-calculator',
         element: <TipCalculator />,
       },
       {
-        path: 'product-page',
+        path: 'exercises/product-page',
         element: <ProductPage />,
       },
       {

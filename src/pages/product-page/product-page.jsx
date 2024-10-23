@@ -4,14 +4,10 @@ import ProductGallery from './components/product-gallery';
 import { product } from './product-content';
 import ProductQuantity from './components/product-quantity';
 import { CartContext } from '../../providers/cart-provider';
-import useToggle from '../../hooks/use-toggle';
 
 const ProductPage = () => {
   const { addToCart } = React.useContext(CartContext);
-  const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
   const [quantity, setQuantity] = React.useState(0);
-  const [lightboxImageIndex, setLightboxImageIndex] = React.useState(0);
-  const [isLightboxOpen, toggleLightBox] = useToggle(false);
 
   const price =
     product.discount && product.discount !== undefined
@@ -39,54 +35,11 @@ const ProductPage = () => {
     addToCart(product.id, price, quantity);
   }, [price, quantity, addToCart]);
 
-  const handleNextImage = React.useCallback(() => {
-    setSelectedImageIndex((prevIndex) => {
-      return (prevIndex + 1) % product.photos.length;
-      // return prevIndex === product.photos.length - 1 ? 0 : prevIndex + 1;
-    });
-  }, []);
-
-  const handlePrevImage = React.useCallback(() => {
-    setSelectedImageIndex((prevIndex) => {
-      return (prevIndex - 1 + product.photos.length) % product.photos.length;
-      // return prevIndex === 0 ? PRODUCT.photos.length - 1 : prevIndex - 1;
-    });
-  }, []);
-
-  const showLightboxImage = (index) => {
-    setLightboxImageIndex(index);
-    toggleLightBox(true);
-  };
-
-  const handleLightboxPrevImage = React.useCallback(() => {
-    setLightboxImageIndex((prevIndex) => {
-      return (prevIndex + 1) % product.photos.length;
-    });
-  }, []);
-
-  const handleLightboxNextImage = React.useCallback(() => {
-    setLightboxImageIndex((prevIndex) => {
-      return (prevIndex - 1 + product.photos.length) % product.photos.length;
-    });
-  }, []);
-
   return (
     <>
       <div className={styles.page__wrapper}>
         <section className={styles.project}>
-          <ProductGallery
-            images={product.photos}
-            selectedImageIndex={selectedImageIndex}
-            setSelectedImageIndex={setSelectedImageIndex}
-            handleNextImage={handleNextImage}
-            handlePrevImage={handlePrevImage}
-            handleLightboxNextImage={handleLightboxNextImage}
-            handleLightboxPrevImage={handleLightboxPrevImage}
-            showLightboxImage={showLightboxImage}
-            lightboxImageIndex={lightboxImageIndex}
-            isLightboxOpen={isLightboxOpen}
-            toggleLightBox={toggleLightBox}
-          />
+          <ProductGallery images={product.photos} />
           <section className={styles.product__wrapper}>
             <div className={styles.product__description}>
               <h3>{product.brand}</h3>

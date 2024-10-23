@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './header.module.css';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
-import { AuthContext } from '../../../providers/auth-provider';
 import { Moon, Sun } from 'lucide-react';
 import ProfileDropdown from './profile-dropdown/profile-dropdown';
 
