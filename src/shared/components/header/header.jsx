@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './header.module.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
 import { AuthContext } from '../../../providers/auth-provider';
 import { Moon, Sun } from 'lucide-react';
@@ -10,17 +10,10 @@ import { CartContext } from '../../../providers/cart-provider';
 import CartPopover from './cart-popover/cart-popover';
 
 const Header = () => {
-  const navigate = useNavigate();
   const { cart } = React.useContext(CartContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
-  const { logout, isLoggedIn } = React.useContext(AuthContext);
 
   const cartItem = cart.length > 0 ? cart[0] : [];
-
-  const handleLogout = () => {
-    logout();
-    navigate('login');
-  };
 
   return (
     <div className={styles.header__wrapper} data-theme={theme}>
@@ -31,7 +24,7 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="/">Exercises</NavLink>
+              <NavLink to="/exercises">Exercises</NavLink>
             </li>
             <li>
               <NavLink to="/about">About</NavLink>
@@ -40,13 +33,13 @@ const Header = () => {
         </nav>
         <div className={styles.actions}>
           <div className={styles.action__items}>
-            {isLoggedIn && <CartPopover cartItem={cartItem} />}
+            <CartPopover cartItem={cartItem} />
             <div className={styles.theme__button}>
               <button className={styles.header__button} onClick={toggleTheme}>
                 {theme === 'light' ? <Sun /> : <Moon />}
               </button>
             </div>
-            {isLoggedIn && <ProfileDropdown handleLogout={handleLogout} />}
+            <ProfileDropdown />
           </div>
         </div>
       </header>

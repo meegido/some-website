@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import Home from './home';
+import Exercises from './exercises';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { AuthContext } from '../../providers/auth-provider';
 
-describe('Home page', () => {
+describe('Exercises page', () => {
   it('should render the home page', () => {
     const mockAuthContextValue = {
       login: () => {},
@@ -12,7 +12,7 @@ describe('Home page', () => {
     render(
       <AuthContext.Provider value={mockAuthContextValue}>
         <MemoryRouter>
-          <Home />
+          <Exercises />
         </MemoryRouter>
       </AuthContext.Provider>
     );

@@ -43,22 +43,9 @@
 }
 
 .form {
-  background-color: var(--white);
+  background-color: var(--orange);
   padding: 24px;
   border-radius: 8px;
-}
-
-.disclaimer {
-  display: flex;
-  justify-content: center;
-  background-color: var(--orange);
-  padding: 8px;
-  border-radius: 8px;
-}
-
-.disclaimer p {
-  color: var(--white);
-  font-weight: 600;
 }
 
 @media (min-width: 768px) {

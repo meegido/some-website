@@ -3,10 +3,12 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import profileImage from '../../../../assets/images/profile.jpg';
 import useToggle from '../../../../hooks/use-toggle';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ProfileDropdown = ({ handleLogout }) => {
-  const dropdownRef = React.useRef();
+const ProfileDropdown = () => {
   const [isProfileOpen, toggleProfile] = useToggle(false);
+  const navigate = useNavigate();
+  const dropdownRef = React.useRef();
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
@@ -30,6 +32,10 @@ const ProfileDropdown = ({ handleLogout }) => {
     };
   }, [toggleProfile]);
 
+  const handleNavigate = () => {
+    navigate('/settings');
+  };
+
   return (
     <div className={styles.dropdown}>
       <button className={styles.avatar__button} onClick={() => toggleProfile()}>
@@ -48,9 +54,9 @@ const ProfileDropdown = ({ handleLogout }) => {
         <div className={styles.dropdown__content} ref={dropdownRef}>
           <button
             className={`${styles.header__button} ${styles.logout__button}`}
-            onClick={handleLogout}
+            onClick={handleNavigate}
           >
-            Log out
+            Settings
           </button>
         </div>
       )}

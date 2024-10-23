@@ -1,10 +1,10 @@
-import styles from './home.module.css';
+import styles from './exercises.module.css';
 import { useNavigate } from 'react-router-dom';
 import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
 import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
 import Button from '../../shared/components/button/button';
 
-const Home = () => {
+const Exercises = () => {
   const navigate = useNavigate();
   const handlePorjectOnClick = (path) => {
     navigate(path);
@@ -45,4 +45,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Exercises;

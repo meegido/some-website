@@ -14,7 +14,7 @@ const CartPopover = ({ cartItem }) => {
 
   console.log(cartItem);
 
-  React.useEffect(() => {
+  React.useEffect(()    => {
     const handleCartClickOutside = (event) => {
       if (
         cartContentRef.current &&

@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './layout';
-import Home from './pages/home/home';
 import ErrorBoundary from './shared/components/error-boundary/error-boundary';
 import TipCalculator from './pages/tip-calculator/tip-calculator';
 import ProductPage from './pages/product-page/product-page';
-import ProtectedRoute from './protected-route';
 import Landing from './pages/landing/landing';
+import Exercises from './pages/home/exercises';
+import Settings from './pages/settings/settings';
 
 const router = createBrowserRouter([
   {
@@ -15,19 +15,24 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ProtectedRoute element={<Home />} />,
-      },
-      {
-        path: 'login',
+        path: '/',
         element: <Landing />,
       },
       {
+        path: 'exercises',
+        element: <Exercises />,
+      },
+      {
         path: 'tip-calculator',
-        element: <ProtectedRoute element={<TipCalculator />} />,
+        element: <TipCalculator />,
       },
       {
         path: 'product-page',
-        element: <ProtectedRoute element={<ProductPage />} />,
+        element: <ProductPage />,
+      },
+      {
+        path: 'settings',
+        element: <Settings />,
       },
     ],
   },

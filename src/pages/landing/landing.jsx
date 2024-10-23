@@ -1,4 +1,3 @@
-import LoginForm from './form/login-form';
 import styles from './landing.module.css';
 import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
 import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
@@ -15,11 +14,8 @@ const Landing = () => {
           </p>
         </div>
         <div className={styles.form__wrapper}>
-          <aside className={styles.disclaimer}>
-            <p>Login (local storage) to explore.</p>
-          </aside>
           <article className={styles.form}>
-            <LoginForm />
+            <p>something here</p>
           </article>
         </div>
       </section>
