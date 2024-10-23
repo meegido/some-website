@@ -14,25 +14,12 @@ const Header = () => {
   const { cart } = React.useContext(CartContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const { logout, isLoggedIn } = React.useContext(AuthContext);
-  const cartTriggerRef = React.useRef();
-  const cartContentRef = React.useRef();
   const dropdownRef = React.useRef();
-  const [isCartOpen, toggleCart] = useToggle(false);
   const [isProfileOpen, toggleProfile] = useToggle(false);
 
   const cartItem = cart.length > 0 ? cart[0] : [];
 
   React.useEffect(() => {
-    const handleCartClickOutside = (event) => {
-      if (
-        cartContentRef.current &&
-        !cartTriggerRef.current.contains(event.target) &&
-        !cartContentRef.current.contains(event.target)
-      ) {
-        toggleCart(false);
-      }
-    };
-
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         toggleProfile(false);
@@ -45,16 +32,14 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('mousedown', handleCartClickOutside);
     window.addEventListener('mousedown', handleClickOutside);
     window.addEventListener('keydown', handleDismiss);
 
     return () => {
-      window.removeEventListener('mousedown', handleCartClickOutside);
       window.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('keydown', handleDismiss);
     };
-  }, [toggleCart, toggleProfile]);
+  }, [toggleProfile]);
 
   const handleLogout = () => {
     logout();
@@ -80,15 +65,7 @@ const Header = () => {
         </nav>
         <div className={styles.actions}>
           <div className={styles.action__items}>
-            {isLoggedIn && (
-              <CartPopover
-                cartItem={cartItem}
-                isCartOpen={isCartOpen}
-                toggleCart={toggleCart}
-                cartContentRef={cartContentRef}
-                cartTriggerRef={cartTriggerRef}
-              />
-            )}
+            {isLoggedIn && <CartPopover cartItem={cartItem} />}
             <div className={styles.theme__button}>
               <button className={styles.header__button} onClick={toggleTheme}>
                 {theme === 'light' ? <Sun /> : <Moon />}

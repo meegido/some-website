@@ -4,13 +4,35 @@ import styles from './cart-popover.module.css';
 import productThumbnail from '../../../../assets/images/product/image-product-1.jpg';
 import { CartContext } from '../../../../providers/cart-provider';
 import { Link } from 'react-router-dom';
+import useToggle from '../../../../hooks/use-toggle';
 
-const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTriggerRef }) => {
+const CartPopover = ({ cartItem }) => {
   const { removeCart, updateQuantity } = React.useContext(CartContext);
+  const [isCartOpen, toggleCart] = useToggle(false);
+  const cartTriggerRef = React.useRef();
+  const cartContentRef = React.useRef();
+
+  console.log(cartItem);
+
+  React.useEffect(() => {
+    const handleCartClickOutside = (event) => {
+      if (
+        cartContentRef.current &&
+        !cartTriggerRef.current.contains(event.target) &&
+        !cartContentRef.current.contains(event.target)
+      ) {
+        toggleCart(false);
+      }
+    };
+
+    window.addEventListener('mousedown', handleCartClickOutside);
+
+    return () => window.removeEventListener('mousedown', handleCartClickOutside);
+  }, [toggleCart]);
 
   const item = cartItem;
-  if (!item) return null;
-
+  if (!item) return [];
+  console.log(item);
   const totalPrice = item.price * item.quantity;
 
   const handleIncreaseQuantity = () => {
@@ -33,7 +55,6 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
     if (!item) {
       return;
     }
-
     removeCart(item.id);
     toggleCart(false);
   };
@@ -51,7 +72,7 @@ const CartPopover = ({ cartItem, cartContentRef, isCartOpen, toggleCart, cartTri
           <div className={styles.popover__title}>
             <h3>Cart</h3>
           </div>
-          {item && item !== Array.isArray([]) ? (
+          {item && item.length !== 0 ? (
             <section className={styles.cart__content}>
               <div className={styles.content__wrapper}>
                 <img
