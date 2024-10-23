@@ -1,6 +1,7 @@
 import styles from './landing.module.css';
 import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
 import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
+import landingPicture from '../../assets/images/landing.png';
 
 const Landing = () => {
   return (
@@ -13,9 +14,9 @@ const Landing = () => {
             to learn React, testing and architecture matters.
           </p>
         </div>
-        <div className={styles.form__wrapper}>
+        <div className={styles.img__wrapper}>
           <article className={styles.form}>
-            <p>something here</p>
+            <img src={landingPicture} alt="landing image" />
           </article>
         </div>
       </section>

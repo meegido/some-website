@@ -34,7 +34,7 @@
   flex: 1 1 0;
 }
 
-.form__wrapper {
+.img__wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,10 +42,9 @@
   flex: 1 1 0;
 }
 
-.form {
-  background-color: var(--orange);
-  padding: 24px;
-  border-radius: 8px;
+.img__wrapper img {
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 @media (min-width: 768px) {
@@ -63,10 +62,6 @@
 @media (min-width: 1440px) {
   .hero__wrapper {
     gap: 132px;
-  }
-
-  .form {
-    padding: 68px 54px;
   }
 }
 
