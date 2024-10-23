@@ -32,7 +32,7 @@ const CartPopover = ({ cartItem }) => {
 
   const item = cartItem;
   if (!item) return [];
-  console.log(item);
+
   const totalPrice = item.price * item.quantity;
 
   const handleIncreaseQuantity = () => {
