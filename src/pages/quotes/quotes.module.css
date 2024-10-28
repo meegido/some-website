@@ -2,7 +2,8 @@
 .wrapper article,
 .quote__wrapper,
 .concepts,
-.sides {
+.sides,
+.title {
   display: flex;
   flex-direction: column;
 }
@@ -12,6 +13,15 @@
   gap: 68px;
   background-color: #8ec5fc;
   background-image: linear-gradient(360deg, #8ec5fc 0%, #e0c3fc 100%);
+}
+
+.title {
+  padding-bottom: 16px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
 }
 
 .concepts,
@@ -25,7 +35,6 @@
 
 .quote__wrapper {
   gap: 32px;
-
   background-color: #f9f9f9;
   background-image: linear-gradient(19deg, #f9f9f9 0%, #f9f9f9 100%);
   padding: 24px;
