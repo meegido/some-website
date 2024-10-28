@@ -4,8 +4,9 @@ import ErrorBoundary from './shared/components/error-boundary/error-boundary';
 import TipCalculator from './pages/tip-calculator/tip-calculator';
 import ProductPage from './pages/product-page/product-page';
 import Landing from './pages/landing/landing';
-import Exercises from './pages/home/exercises';
 import Settings from './pages/settings/settings';
+import Exercises from './pages/exercises/exercises';
+import Quotes from './pages/quotes/quotes';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: 'exercises/product-page',
         element: <ProductPage />,
+      },
+      {
+        path: 'exercises/quotes',
+        element: <Quotes />,
       },
       {
         path: 'settings',

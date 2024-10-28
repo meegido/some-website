@@ -39,6 +39,13 @@ const Exercises = () => {
               <span>🛒</span>
             </Button>
           </article>
+          <article>
+            <h2>Quotes</h2>
+            <Button type="button" onClick={() => handlePorjectOnClick('quotes')}>
+              <span>Play</span>
+              <span>🛒</span>
+            </Button>
+          </article>
         </section>
       </section>
     </>
