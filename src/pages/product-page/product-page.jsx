@@ -58,7 +58,7 @@ const ProductPage = () => {
                 handleIncreaseQuantity={handleIncreaseQuantity}
                 handleDecreaseQuantity={handleDecreaseQuantity}
               >
-                <p data-testid="product-quantity">{quantity}</p>
+                <p aria-label="product-quantity">{quantity}</p>
               </ProductQuantity>
               <div className={styles.button__wrapper}>
                 <button className={styles.add__button} onClick={handleAddToCart}>

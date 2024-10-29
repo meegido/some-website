@@ -43,16 +43,17 @@ describe('Product page', ({ cart = [] } = {}) => {
       </CartContext.Provider>
     );
 
-    const increaseButton = screen.getByLabelText('Incrase product quantity');
+    const quantityElement = screen.getByLabelText('product-quantity');
+    expect(quantityElement).toHaveTextContent(0);
+
+    const increaseButton = screen.getByLabelText('Increase product quantity');
     fireEvent.click(increaseButton);
     expect(increaseButton).toBeInTheDocument();
-
-    const quantityElement = screen.getByTestId('product-quantity');
-    expect(quantityElement).toHaveTextContent('1');
+    expect(quantityElement).toHaveTextContent(1);
 
     const decreaseButton = screen.getByLabelText('Decrease product quantity');
     fireEvent.click(decreaseButton);
     expect(decreaseButton).toBeInTheDocument();
-    expect(quantityElement).toHaveTextContent('0');
+    expect(quantityElement).toHaveTextContent(0);
   });
 });
