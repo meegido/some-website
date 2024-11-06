@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Quotes from './quotes';
 import userEvent from '@testing-library/user-event';
 
@@ -54,19 +54,19 @@ describe('Quotes page', () => {
     expect(screen.getByText(emptyQuotesMessage)).toBeInTheDocument();
   });
 
-  it('displays a modal when click on add button', async () => {
+  it('displays a modal after click on add button', async () => {
     const user = userEvent.setup();
+    const modalRoot = document.createElement('div');
+    modalRoot.setAttribute('id', 'quote-modal-root');
+    document.body.appendChild(modalRoot);
+
     render(<Quotes />);
 
-    const openButton = screen.getByRole('button', { name: 'add quote' });
-    expect(openButton).toBeInTheDocument();
+    const openModalButton = screen.getByRole('button', { name: 'add quote' });
+    await user.click(openModalButton);
 
-    await user.click(openButton);
+    const modal = screen.getByRole('dialog', { name: /add quote/i });
 
-    const portal = screen.queryByText(/quote/i);
-    expect(portal).toBeInTheDocument();
-
-    const authorInput = screen.getByLabelText('Autor');
-    expect(authorInput).toBeInTheDocument();
+    expect(modal).toBeInTheDocument();
   });
 });

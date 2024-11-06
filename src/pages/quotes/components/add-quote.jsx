@@ -50,6 +50,7 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
               event.preventDefault();
               handleAddQuote(newQuote);
               setNewQuote({
+                id: '',
                 author: '',
                 text: '',
                 link: '',
