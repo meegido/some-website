@@ -1,12 +1,12 @@
 .input__wrapper {
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--color-text);
 }
 
 .input__wrapper input {
   border-radius: 8px;
   height: 32px;
+  border: none;
 }
 
 .inputError:focus {

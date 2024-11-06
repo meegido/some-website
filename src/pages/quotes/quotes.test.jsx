@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Quotes from './quotes';
 
@@ -51,5 +51,17 @@ describe('Quotes page', () => {
     }
 
     expect(screen.getByText(emptyQuotesMessage)).toBeInTheDocument();
+  });
+
+  it('displays a form when click on add button', async () => {
+    render(<Quotes />);
+
+    const addButton = screen.getByRole('button', { name: 'add quote' });
+    expect(addButton).toBeInTheDocument();
+
+    fireEvent.click(addButton);
+
+    const authorInput = screen.getByLabelText('Autor');
+    expect(authorInput).toBeInTheDocument();
   });
 });
