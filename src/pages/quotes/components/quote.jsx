@@ -9,9 +9,9 @@ const Quote = ({ quote }) => {
             <div className={styles.title}>
               <h2>{quote.author}</h2>
               <span className={styles.tags}>
-                {quote.tags.length > 1
-                  ? quote.tags.map((tag) => <p key={tag}>{`#${tag}`}</p>)
-                  : quote.tags}
+                {quote.tags.length < 2
+                  ? quote.tags
+                  : quote.tags.map((tag) => <p key={tag}>{`#${tag}`}</p>)}
               </span>
             </div>
             <p>{quote.text}</p>
@@ -23,15 +23,15 @@ const Quote = ({ quote }) => {
             <article>
               {quote.references.length !== 0 ? <h3>References</h3> : ''}
               <span className={styles.side__items}>
-                {quote.references.length > 1
-                  ? quote.references.map((reference) => <p key={reference}>{reference}</p>)
-                  : quote.references}
+                {quote.references.length < 2
+                  ? quote.references
+                  : quote.references.map((reference) => <p key={reference}>{reference}</p>)}
               </span>
             </article>
             <article>
               {quote.concepts.length !== 0 ? <h3>Concepts</h3> : ''}
               <span className={styles.side__items}>
-                {quote.concepts.length > 1
+                {quote.concepts.length >= 2
                   ? quote.concepts.map((concept) => {
                       return <p key={concept}>{concept}</p>;
                     })

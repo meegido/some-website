@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Quotes from './quotes';
+import userEvent from '@testing-library/user-event';
 
 describe('Quotes page', () => {
   it('shows a list of quotes when quotes are provided', () => {
@@ -53,13 +54,17 @@ describe('Quotes page', () => {
     expect(screen.getByText(emptyQuotesMessage)).toBeInTheDocument();
   });
 
-  it('displays a form when click on add button', async () => {
+  it('displays a modal when click on add button', async () => {
+    const user = userEvent.setup();
     render(<Quotes />);
 
-    const addButton = screen.getByRole('button', { name: 'add quote' });
-    expect(addButton).toBeInTheDocument();
+    const openButton = screen.getByRole('button', { name: 'add quote' });
+    expect(openButton).toBeInTheDocument();
 
-    fireEvent.click(addButton);
+    await user.click(openButton);
+
+    const portal = screen.queryByText(/quote/i);
+    expect(portal).toBeInTheDocument();
 
     const authorInput = screen.getByLabelText('Autor');
     expect(authorInput).toBeInTheDocument();

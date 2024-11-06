@@ -18,10 +18,10 @@ button:focus-visible {
   outline: none;
 }
 
-.childreWrapper {
+.childrenWrapper {
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
   color: var(--color-text);
 }
