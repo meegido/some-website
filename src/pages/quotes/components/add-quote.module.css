@@ -1,19 +1,18 @@
-.input__wrapper {
+.add__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.text {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.input__wrapper input {
+.text textarea {
   border-radius: 8px;
   border: none;
   padding: 8px;
-}
-
-.input__wrapper input::placeholder {
   font-size: 14px;
-}
-
-.inputError:focus {
-  outline-color: #d84301;
 }

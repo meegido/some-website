@@ -19,10 +19,6 @@
   box-shadow: 2px 7px 26px 4px rgba(0, 0, 0, 0.21);
 }
 
-.title {
-  padding-bottom: 16px;
-}
-
 .tags {
   display: flex;
   gap: 8px;
@@ -35,6 +31,17 @@
 
 .sides {
   gap: 24px;
+}
+
+.side__items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.info {
+  gap: 16px;
 }
 
 @media (min-width: 1024px) {
@@ -52,22 +59,11 @@
   .sides article {
     align-items: flex-end;
   }
-
-  .side__items {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: flex-end;
-  }
 }
 
 @media (min-width: 1200px) {
   .quote {
     gap: 120px;
     padding: 56px;
-  }
-
-  .info > article {
-    gap: 16px;
   }
 }

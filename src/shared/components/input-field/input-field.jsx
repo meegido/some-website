@@ -1,17 +1,14 @@
-import React from 'react';
 import styles from './input-field.module.css';
 
 function InputField({ label, error, id, type = 'text', ...delegated }) {
-  const generatedId = React.useId();
-  const appliedId = id || generatedId;
-
   return (
     <div className={styles['input__wrapper']}>
-      <label htmlFor={appliedId}>{label}</label>
+      <label htmlFor={id}>{label}</label>
       <input
         type={type}
-        id={appliedId}
+        id={id}
         className={`${error ? styles.inputError : ''}`}
+        placeholder={label}
         {...delegated}
       />
       {error && <p style={{ color: '#d84301' }}>{error}</p>}

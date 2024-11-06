@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../../../shared/components/button/button';
 import InputField from '../../../shared/components/input-field/input-field';
+import styles from './add-quote.module.css';
 
 const AddQuoteModal = ({ handleAddQuote }) => {
   const [newQuote, setNewQuote] = React.useState({
@@ -23,6 +24,7 @@ const AddQuoteModal = ({ handleAddQuote }) => {
 
   return (
     <form
+      className={styles.add__form}
       onSubmit={(event) => {
         event.preventDefault();
         handleAddQuote(newQuote);
@@ -44,14 +46,16 @@ const AddQuoteModal = ({ handleAddQuote }) => {
         value={newQuote.author}
         onChange={handleNewQuoteChange}
       />
-      <InputField
-        label="Quote"
-        id="fullText"
-        type="text"
-        name="text"
-        value={newQuote.text}
-        onChange={handleNewQuoteChange}
-      />
+      <div className={styles.text}>
+        <label htmlFor="quote">Quote</label>
+        <textarea
+          placeholder="Write the quote's text"
+          name="quote"
+          id="quote"
+          value={newQuote.text}
+          onChange={handleNewQuoteChange}
+        />
+      </div>
       <InputField
         label="Source link"
         id="link"
