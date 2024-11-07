@@ -69,4 +69,28 @@ describe('Quotes page', () => {
 
     expect(modal).toBeInTheDocument();
   });
+
+  it('disable submit button if the required fields are empty', async () => {
+    //render the modal
+    const user = userEvent.setup();
+    const modalRoot = document.createElement('div');
+    modalRoot.setAttribute('id', 'quote-modal-root');
+    document.body.appendChild(modalRoot);
+
+    render(<Quotes />);
+
+    const openModalButton = screen.getByRole('button', { name: /add quote/i });
+    await user.click(openModalButton);
+
+    const modal = screen.getByRole('dialog', { name: /add quote/i });
+    expect(modal).toBeInTheDocument();
+
+    // click modal submit button
+    const submitButton = screen.getByRole('button', { name: /submit/i });
+    await user.click(submitButton);
+
+    // get error message of required empty inputs
+    const author = screen.getByLabelText('Author');
+    await user.change()
+  });
 });

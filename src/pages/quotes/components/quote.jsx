@@ -21,7 +21,7 @@ const Quote = ({ quote }) => {
           </article>
           <section className={styles.sides}>
             <article>
-              {quote.references.length !== 0 ? <h3>References</h3> : ''}
+              {quote.references.length !== 0 ? <h3>People referenced</h3> : ''}
               <span className={styles.side__items}>
                 {quote.references.length < 2
                   ? quote.references
@@ -29,7 +29,7 @@ const Quote = ({ quote }) => {
               </span>
             </article>
             <article>
-              {quote.concepts.length !== 0 ? <h3>Concepts</h3> : ''}
+              {quote.concepts.length !== 0 ? <h3>Related concepts</h3> : ''}
               <span className={styles.side__items}>
                 {quote.concepts.length >= 2
                   ? quote.concepts.map((concept) => {
