@@ -15,6 +15,7 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
     references: [],
     tags: [],
   });
+  const [formStatus, setFormStatus] = React.useState('empty');
 
   const handleNewQuoteChange = (event) => {
     const { name, value } = event.target;
@@ -61,7 +62,8 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
             }}
           >
             <InputField
-              label="Autor"
+              className={`${formStatus === 'empty' ? styles.error : ''}`}
+              label="Author"
               placeholder="Nelson Mandela"
               id="author"
               type="text"
@@ -100,6 +102,7 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
               onChange={handleNewQuoteChange}
               required
             />
+
             <InputField
               label="Quote's related concepts (separated by commas)"
               placeholder="peace, no-violent fight"

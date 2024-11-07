@@ -1,9 +1,21 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
-import Quotes from './quotes';
+import { afterEach, describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
+import Quotes from './quotes';
 
 describe('Quotes page', () => {
+  beforeEach(() => {
+    const modalRoot = document.createElement('div');
+    modalRoot.setAttribute('id', 'quote-modal-root');
+    document.body.appendChild(modalRoot);
+  });
+
+  afterEach(() => {
+    const modalRoot = document.getElementById('quote-modal-root');
+    if (modalRoot) {
+      document.body.removeChild(modalRoot);
+    }
+  });
   it('shows a list of quotes when quotes are provided', () => {
     const quotes = [
       {
@@ -56,10 +68,6 @@ describe('Quotes page', () => {
 
   it('displays a modal after click on add button', async () => {
     const user = userEvent.setup();
-    const modalRoot = document.createElement('div');
-    modalRoot.setAttribute('id', 'quote-modal-root');
-    document.body.appendChild(modalRoot);
-
     render(<Quotes />);
 
     const openModalButton = screen.getByRole('button', { name: 'add quote' });
@@ -73,9 +81,6 @@ describe('Quotes page', () => {
   it('disable submit button if the required fields are empty', async () => {
     //render the modal
     const user = userEvent.setup();
-    const modalRoot = document.createElement('div');
-    modalRoot.setAttribute('id', 'quote-modal-root');
-    document.body.appendChild(modalRoot);
 
     render(<Quotes />);
 
@@ -85,12 +90,55 @@ describe('Quotes page', () => {
     const modal = screen.getByRole('dialog', { name: /add quote/i });
     expect(modal).toBeInTheDocument();
 
+    // fill all required inputs
+    const authorInput = screen.getByLabelText('Author');
+    await userEvent.type(authorInput, 'Test author');
+    expect(authorInput).toHaveValue('Test author');
+
+    const quoteInput = screen.getByLabelText('Quote');
+    await userEvent.type(quoteInput, 'Test quote');
+    expect(quoteInput).toHaveValue('Test quote');
+
+    const tagsInput = screen.getByLabelText('Tags inside the quote (separated by commas)');
+    await userEvent.type(tagsInput, 'tag 1 test, tag 2 test');
+    expect(tagsInput).toHaveValue('tag 1 test, tag 2 test');
+
     // click modal submit button
     const submitButton = screen.getByRole('button', { name: /submit/i });
+    expect(submitButton).toBeInTheDocument();
     await user.click(submitButton);
 
-    // get error message of required empty inputs
-    const author = screen.getByDisplayValue()
-    await user.change()
+    // new quote in the quotes list
+    const authorQuote = screen.getByText(/Test author/i);
+    expect(authorQuote).toBeInTheDocument();
+  });
+
+  it("when required fileds are empty, shows error and doesn't add quotes list", async () => {
+    const user = userEvent.setup();
+    render(<Quotes />);
+
+    const openModalButton = screen.getByRole('button', { name: /add quote/i });
+    await user.click(openModalButton);
+
+    const modal = screen.getByRole('dialog', { name: /add quote/i });
+    expect(modal).toBeInTheDocument();
+
+    const authorInput = screen.getByLabelText('Author');
+    expect(authorInput).toBeRequired();
+
+    const quoteInput = screen.getByLabelText('Quote');
+    expect(quoteInput).toBeRequired();
+
+    const tagsInput = screen.getByLabelText('Tags inside the quote (separated by commas)');
+    expect(tagsInput).toBeRequired();
+
+    const submitButton = screen.getByRole('button', { name: 'Submit' });
+    await user.click(submitButton);
+
+    const errorMessage = getByText('This field is required');
+    expect(errorMessage).toBeInTheDocument();
+
+    const authorQuote = screen.queryByText('Test author');
+    expect(authorQuote).not.toBeInTheDocument();
   });
 });
