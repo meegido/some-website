@@ -90,7 +90,7 @@ describe('Quotes page', () => {
     await user.click(submitButton);
 
     // get error message of required empty inputs
-    const author = screen.getByLabelText('Author');
+    const author = screen.getByDisplayValue()
     await user.change()
   });
 });
