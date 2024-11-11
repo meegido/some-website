@@ -12,7 +12,7 @@ const Quotes = () => {
   const [isModalOpen, toggleIsModalOpen] = useToggle(false);
 
   const handleAddQuote = (newQuote) => {
-    setQuotes([...quotes, newQuote]);
+    setQuotes([newQuote, ...quotes]);
     toggleIsModalOpen(false);
   };
 
