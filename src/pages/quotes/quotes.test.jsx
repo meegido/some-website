@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Quotes from './quotes';
@@ -113,7 +113,7 @@ describe('Quotes page', () => {
     expect(authorQuote).toBeInTheDocument();
   });
 
-  it("when required fileds are empty, shows error and doesn't add quotes list", async () => {
+  it("when required fileds are empty, shows error and doesn't add quote to the list", async () => {
     const user = userEvent.setup();
     render(<Quotes />);
 
@@ -135,8 +135,10 @@ describe('Quotes page', () => {
     const submitButton = screen.getByRole('button', { name: 'Submit' });
     await user.click(submitButton);
 
-    const errorMessage = getByText('This field is required');
-    expect(errorMessage).toBeInTheDocument();
+    const errorMessages = screen.queryAllByText('This field is required');
+    errorMessages.forEach((error) => {
+      expect(error).toBeInTheDocument();
+    });
 
     const authorQuote = screen.queryByText('Test author');
     expect(authorQuote).not.toBeInTheDocument();

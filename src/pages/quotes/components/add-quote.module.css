@@ -42,6 +42,7 @@
   gap: 24px;
 }
 
+.input__group,
 .text {
   display: flex;
   flex-direction: column;
@@ -60,7 +61,14 @@
 }
 
 .error {
-  border-color: red;
+  color: rgba(244, 81, 81, 0.706);
+}
+
+.input__group .input__error,
+.text .input__error,
+.add__form input:invalid,
+.add__form input:required {
+  border: 1px solid rgba(244, 81, 81, 0.706);
 }
 
 @media (min-width: 768px) {

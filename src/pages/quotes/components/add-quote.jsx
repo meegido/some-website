@@ -15,7 +15,7 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
     references: [],
     tags: [],
   });
-  const [formStatus, setFormStatus] = React.useState('empty');
+  const [formError, setFormError] = React.useState('');
 
   const handleNewQuoteChange = (event) => {
     const { name, value } = event.target;
@@ -49,6 +49,19 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
             className={styles.add__form}
             onSubmit={(event) => {
               event.preventDefault();
+
+              if (
+                newQuote.author === undefined ||
+                newQuote.author.length === 0 ||
+                newQuote.text === undefined ||
+                newQuote.text.length === 0 ||
+                newQuote.tags === undefined ||
+                newQuote.tags.length === 0
+              ) {
+                setFormError(`This field is required`);
+                return;
+              }
+
               handleAddQuote(newQuote);
               setNewQuote({
                 id: '',
@@ -61,27 +74,46 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
               });
             }}
           >
-            <InputField
-              className={`${formStatus === 'empty' ? styles.error : ''}`}
-              label="Author"
-              placeholder="Nelson Mandela"
-              id="author"
-              type="text"
-              name="author"
-              value={newQuote.author}
-              onChange={handleNewQuoteChange}
-              required
-            />
+            <div className={`${formError ? styles.input__group : ''}`}>
+              <InputField
+                className={styles.input__error}
+                label="Author"
+                placeholder="Nelson Mandela"
+                id="author"
+                type="text"
+                name="author"
+                value={newQuote.author}
+                onChange={handleNewQuoteChange}
+                aria-required="true"
+              />
+              {formError ? <p className={styles.error}>{formError}</p> : ''}
+            </div>
             <div className={styles.text}>
               <label htmlFor="text">Quote</label>
               <textarea
+                className={`${formError ? styles.input__error : ''}`}
                 placeholder="Nelson Mandela said or wrote..."
                 name="text"
                 id="text"
                 value={newQuote.text}
                 onChange={handleNewQuoteChange}
-                required
+                aria-required="true"
               />
+              {formError ? <p className={styles.error}>{formError}</p> : ''}
+            </div>
+            <div className={`${formError ? styles.input__group : ''}`}>
+              <InputField
+                className={styles.input__error}
+                label="Tags inside the quote (separated by commas)"
+                placeholder="Tags list"
+                id="tags"
+                type="text"
+                name="tags"
+                value={newQuote.tags}
+                onChange={handleNewQuoteChange}
+                aria-required="true"
+              />
+              {formError ? <p className={styles.error}>{formError}</p> : ''}
             </div>
             <InputField
               label="Source link"
@@ -92,17 +124,6 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
               value={newQuote.link}
               onChange={handleNewQuoteChange}
             />
-            <InputField
-              label="Tags inside the quote (separated by commas)"
-              placeholder="Tags list"
-              id="tags"
-              type="text"
-              name="tags"
-              value={newQuote.tags}
-              onChange={handleNewQuoteChange}
-              required
-            />
-
             <InputField
               label="Quote's related concepts (separated by commas)"
               placeholder="peace, no-violent fight"
