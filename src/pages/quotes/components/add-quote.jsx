@@ -21,11 +21,10 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
     const { name, value } = event.target;
 
     setNewQuote(() => {
-      const arrayValue = [];
       if (name === 'tags' || name === 'concepts' || name === 'references') {
         return {
           ...newQuote,
-          [name]: [...arrayValue, value],
+          [name]: [value],
         };
       }
 
@@ -62,7 +61,26 @@ const AddQuoteModal = ({ handleAddQuote, handleDismiss }) => {
                 return;
               }
 
-              handleAddQuote(newQuote);
+              const transformedQuote = {
+                ...newQuote,
+                tags: newQuote.tags
+                  ? newQuote.tags
+                      .flatMap((item) => item.split(','))
+                      .map((subItem) => subItem.trim())
+                  : [],
+                concepts: newQuote.concepts
+                  ? newQuote.concepts
+                      .flatMap((item) => item.split(','))
+                      .map((subItem) => subItem.trim())
+                  : [],
+                references: newQuote.references
+                  ? newQuote.references
+                      .flatMap((item) => item.split(','))
+                      .map((subItem) => subItem.trim())
+                  : [],
+              };
+
+              handleAddQuote(transformedQuote);
               setNewQuote({
                 id: '',
                 author: '',

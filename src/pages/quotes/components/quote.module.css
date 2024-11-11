@@ -10,6 +10,7 @@
 .quote__wrapper {
   gap: 68px;
 }
+
 .quote {
   gap: 32px;
   background-color: #f9f9f9;
@@ -44,6 +45,11 @@
   gap: 16px;
 }
 
+.info,
+.sides {
+  flex: 1 0 0;
+}
+
 @media (min-width: 1024px) {
   .quote {
     gap: 80px;
@@ -65,5 +71,13 @@
   .quote {
     gap: 120px;
     padding: 56px;
+  }
+
+  .quote h2 {
+    font-size: 32px;
+  }
+
+  .info {
+    gap: 24px;
   }
 }

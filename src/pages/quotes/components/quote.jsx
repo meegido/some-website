@@ -11,17 +11,12 @@ const Quote = ({ quote }) => {
               <span className={styles.tags}>
                 {quote.tags.length < 2
                   ? quote.tags
-                  : quote.tags.map((tag) => <p key={tag}>{`#${tag}`}</p>)}
+                  : quote.tags.map((tag) => {
+                      return <p key={tag}>{`#${tag}`}</p>;
+                    })}
               </span>
             </div>
             <p>{quote.text}</p>
-            {quote.link.length !== 0 ? (
-              <a href={quote.link} target="_blank" rel="noopener noreferrer">
-                Source link
-              </a>
-            ) : (
-              ''
-            )}
           </article>
           <section className={styles.sides}>
             <article>
@@ -41,6 +36,15 @@ const Quote = ({ quote }) => {
                     })
                   : quote.concepts}
               </span>
+            </article>
+            <article>
+              {quote.link.length !== 0 ? (
+                <a href={quote.link} target="_blank" rel="noopener noreferrer">
+                  Source link
+                </a>
+              ) : (
+                ''
+              )}
             </article>
           </section>
         </section>

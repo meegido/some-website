@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Quotes from './quotes';
@@ -78,7 +78,7 @@ describe('Quotes page', () => {
     expect(modal).toBeInTheDocument();
   });
 
-  it('disable submit button if the required fields are empty', async () => {
+  it('submit form if required fields have text', async () => {
     //render the modal
     const user = userEvent.setup();
 
