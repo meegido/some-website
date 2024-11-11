@@ -7,6 +7,7 @@ import Landing from './pages/landing/landing';
 import Settings from './pages/settings/settings';
 import Exercises from './pages/exercises/exercises';
 import Quotes from './pages/quotes/quotes';
+import AiGallery from './pages/ai-gallery/ai-gallery';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: 'exercises/quotes',
         element: <Quotes />,
+      },
+      {
+        path: 'exercises/ai-gallery',
+        element: <AiGallery />,
       },
       {
         path: 'settings',

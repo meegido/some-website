@@ -2,6 +2,7 @@ import styles from './exercises.module.css';
 import { useNavigate } from 'react-router-dom';
 import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
 import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
+import quotesPreview from '../../assets/images/quotes-preview.png';
 import Button from '../../shared/components/button/button';
 
 const Exercises = () => {
@@ -39,11 +40,20 @@ const Exercises = () => {
               <span>🛒</span>
             </Button>
           </article>
-          <article>
+          <article className={styles.card}>
             <h2>Quotes</h2>
+            <img className={styles.thumbnail} src={quotesPreview} alt="Quotes page" />
             <Button type="button" onClick={() => handlePorjectOnClick('quotes')}>
-              <span>Play</span>
-              <span>🛒</span>
+              <span>Write</span>
+              <span>🙊</span>
+            </Button>
+          </article>
+          <article className={styles.card}>
+            <h2>AI Gallery</h2>
+            <img className={styles.thumbnail} src={quotesPreview} alt="AI Gallery" />
+            <Button type="button" onClick={() => handlePorjectOnClick('ai-gallery')}>
+              <span>Watch</span>
+              <span>🦾</span>
             </Button>
           </article>
         </section>

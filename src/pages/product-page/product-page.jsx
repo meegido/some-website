@@ -38,39 +38,9 @@ const ProductPage = () => {
   return (
     <>
       <div className={styles.page__wrapper}>
-        <section className={styles.project}>
-          <ProductGallery images={product.photos} />
-          <section className={styles.product__wrapper}>
-            <div className={styles.product__description}>
-              <h3>{product.brand}</h3>
-              <h1>{product.title}</h1>
-              <p>{product.description}</p>
-            </div>
-            <div className={styles.product__price}>
-              <div>
-                <p>${price}</p>
-                <p>{product.discount}%</p>
-              </div>
-              <p className={styles.final__price}>${product.price}</p>
-            </div>
-            <div className={styles.product__cart}>
-              <ProductQuantity
-                handleIncreaseQuantity={handleIncreaseQuantity}
-                handleDecreaseQuantity={handleDecreaseQuantity}
-              >
-                <p aria-label="product-quantity">{quantity}</p>
-              </ProductQuantity>
-              <div className={styles.button__wrapper}>
-                <button className={styles.add__button} onClick={handleAddToCart}>
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </section>
-        </section>
         <section className={styles.project__content}>
           <article className={styles.about}>
-            <h2>Te project</h2>
+            <h2>The project</h2>
             <div className={styles.description}>
               <p>
                 The project is to build a e-commerce product page fully functional and get it
@@ -124,6 +94,36 @@ const ProductPage = () => {
               </article>
             </div>
           </article>
+        </section>
+        <section className={styles.project}>
+          <ProductGallery images={product.photos} />
+          <section className={styles.product__wrapper}>
+            <div className={styles.product__description}>
+              <h3>{product.brand}</h3>
+              <h1>{product.title}</h1>
+              <p>{product.description}</p>
+            </div>
+            <div className={styles.product__price}>
+              <div>
+                <p>${price}</p>
+                <p>{product.discount}%</p>
+              </div>
+              <p className={styles.final__price}>${product.price}</p>
+            </div>
+            <div className={styles.product__cart}>
+              <ProductQuantity
+                handleIncreaseQuantity={handleIncreaseQuantity}
+                handleDecreaseQuantity={handleDecreaseQuantity}
+              >
+                <p aria-label="product-quantity">{quantity}</p>
+              </ProductQuantity>
+              <div className={styles.button__wrapper}>
+                <button className={styles.add__button} onClick={handleAddToCart}>
+                  Add to cart
+                </button>
+              </div>
+            </div>
+          </section>
         </section>
       </div>
     </>
