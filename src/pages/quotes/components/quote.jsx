@@ -15,9 +15,13 @@ const Quote = ({ quote }) => {
               </span>
             </div>
             <p>{quote.text}</p>
-            <a href={quote.link} target="_blank" rel="noopener noreferrer">
-              Source link
-            </a>
+            {quote.link.length !== 0 ? (
+              <a href={quote.link} target="_blank" rel="noopener noreferrer">
+                Source link
+              </a>
+            ) : (
+              ''
+            )}
           </article>
           <section className={styles.sides}>
             <article>
