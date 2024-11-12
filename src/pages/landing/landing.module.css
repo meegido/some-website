@@ -249,7 +249,7 @@
   }
 }
 
-@media (min-width: 1680px) {
+@media (min-width: 1920px) {
   .cards__wrapper {
     gap: 180px;
   }
