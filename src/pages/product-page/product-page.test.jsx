@@ -1,13 +1,20 @@
 import { screen, render, fireEvent } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import ProductPage from './product-page';
 import { CartContext } from '../../providers/cart-provider';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('Product page', ({ cart = [] } = {}) => {
+const mockCart = {
+  items: [],
+  addItem: vi.fn(),
+  removeItem: vi.fn(),
+  clearCart: vi.fn(),
+};
+
+describe('Product page', () => {
   it('renders a product gallery', () => {
     render(
-      <CartContext.Provider value={{ cart }}>
+      <CartContext.Provider value={{ mockCart }}>
         <MemoryRouter>
           <ProductPage />
         </MemoryRouter>
@@ -20,7 +27,7 @@ describe('Product page', ({ cart = [] } = {}) => {
 
   it('renders the product price based on a variable discount amount', () => {
     render(
-      <CartContext.Provider value={{ cart }}>
+      <CartContext.Provider value={{ mockCart }}>
         <MemoryRouter>
           <ProductPage />
         </MemoryRouter>
@@ -36,7 +43,7 @@ describe('Product page', ({ cart = [] } = {}) => {
 
   it('handles the amount of products to add to the cart', () => {
     render(
-      <CartContext.Provider value={{ cart }}>
+      <CartContext.Provider value={{ mockCart }}>
         <MemoryRouter>
           <ProductPage />
         </MemoryRouter>
