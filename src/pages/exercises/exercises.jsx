@@ -49,14 +49,6 @@ const Exercises = () => {
               <span>🙊</span>
             </Button>
           </article>
-          <article className={styles.card}>
-            <h2>AI Gallery</h2>
-            <img className={styles.thumbnail} src={aiGalleryPreview} alt="AI Gallery" />
-            <Button type="button" onClick={() => handlePorjectOnClick('ai-gallery')}>
-              <span>Watch</span>
-              <span>🦾</span>
-            </Button>
-          </article>
         </section>
       </section>
     </>

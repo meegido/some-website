@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         element: <Quotes />,
       },
       {
-        path: 'exercises/ai-gallery',
+        path: 'ai-gallery',
         element: <AiGallery />,
       },
       {

@@ -1,0 +1,39 @@
+.wrapper {
+  padding: 0 var(--container-padding);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 016px;
+  background: white;
+  border-radius: 0px;
+  max-width: 100vw;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.cell {
+  flex: 1;
+}
+
+.cell img {
+  aspect-ratio: 9 / 6;
+  border-radius: 4px;
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    padding-top: 48px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrapper {
+    padding-top: 72px;
+  }
+}
