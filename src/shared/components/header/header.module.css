@@ -4,13 +4,11 @@
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: var(--color-bg);
 }
 
 .header {
   display: flex;
   width: 100%;
-  background-color: var(--color-bg);
   color: var(--color-text);
   justify-content: space-between;
   align-items: center;
@@ -47,10 +45,11 @@ nav ul {
 nav li a {
   color: var(--color-text);
   text-decoration: none;
+  font-weight: 600;
 }
 
 nav li a:hover {
-  color: rgba(94, 103, 228, 0.979);
+  color: rgb(69 86 198);
 }
 
 .action__items {
@@ -78,6 +77,6 @@ nav li a:hover {
 
 @media (min-width: 1200px) {
   .logotype {
-    font-size: 44px;
+    font-size: 34px;
   }
 }

@@ -1,18 +1,23 @@
 import styles from './landing.module.css';
 import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
 import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
-import landingPicture from '../../assets/images/landing.png';
+import landingPicture from '../../assets/images/ai-images/girl.png';
 
 const Landing = () => {
   return (
     <div className={styles.landing__wrapper}>
       <section className={styles.hero__wrapper}>
         <div className={styles.hero}>
-          <h1 className={styles.landing__title}>A place where to hone my skills.</h1>
-          <p>
-            See how I approach and solve Frontend coding problems. This site is a working progress
-            to learn React, testing and architecture matters.
-          </p>
+          <h1 className={styles.landing__title}>A place to play & hone my skills.</h1>
+          <div className={styles.presentation}>
+            <p>
+              Here I face Frontend coding problems mixed with some personal playful interests. I
+              face them by practicing React, TDD and a bit of CSS.
+            </p>
+            <p>
+              <em>*This site is a working progress.</em>
+            </p>
+          </div>
         </div>
         <div className={styles.img__wrapper}>
           <article className={styles.form}>
@@ -21,17 +26,16 @@ const Landing = () => {
         </div>
       </section>
       <section className={styles.roadmap__wrapper}>
-        <h2 className={styles.roadmap__title}>Roadmap</h2>
         <section className={styles.cards__wrapper}>
           <article className={styles.roadmap__card}>
             <header>
-              <h3>Now</h3>
+              <h3>Present</h3>
               <p>React</p>
             </header>
             <section className={styles.skills}>
               <ul>
                 <li>
-                  <p>Custom hooks</p>
+                  <p>Hooks && Custom hooks</p>
                 </li>
                 <li>
                   <p>State management</p>
@@ -40,14 +44,14 @@ const Landing = () => {
                   <p>DOM interaction</p>
                 </li>
                 <li>
-                  <p>Testing</p>
+                  <p>Hello world TDD</p>
                 </li>
               </ul>
             </section>
           </article>
           <article className={styles.roadmap__card}>
             <header>
-              <h3>Next</h3>
+              <h3>Short term</h3>
               <p>Typescript</p>
             </header>
             <section className={styles.skills}>
@@ -63,7 +67,7 @@ const Landing = () => {
           </article>
           <article className={styles.roadmap__card}>
             <header>
-              <h3>Later</h3>
+              <h3>Future</h3>
               <p>Advanced</p>
             </header>
             <section className={styles.skills}>
