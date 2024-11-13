@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
 import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
 import quotesPreview from '../../assets/images/quotes-preview.png';
-import aiGalleryPreview from '../../assets/images/ai-images/estatues-2.png';
 import Button from '../../shared/components/button/button';
 
 const Exercises = () => {

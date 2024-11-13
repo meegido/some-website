@@ -17,10 +17,11 @@
   --header-height: 8rem;
 
   --color-bg: rgb(255 237 224 / 43%);
-  --color-text: 'white';
+  --color-text: var(--black);
 
-  --black: #242424;
-  --white: rgba(255, 255, 255, 0.87);
+  --black: #2d1a1afa;
+  --pure-white: rgba(255, 255, 255, 0.87);
+  --white: var(--pale-orange);
   --gray: rgba(192, 190, 190, 0.367);
   --dark-gray: rgb(45 44 44 / 63%);
   --orange: hsl(26, 100%, 55%);
@@ -104,7 +105,7 @@
 }
 
 [data-theme='dark'] {
-  --color-text: #cccccc;
+  --color-text: var(--pale-orange);
   --color-bg: hsl(0deg 0% 8%);
 }
 
