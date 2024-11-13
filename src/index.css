@@ -20,6 +20,7 @@
   --color-text: var(--black);
 
   --black: #2d1a1afa;
+  /* --white: rgba(255, 255, 255, 0.87); */
   --pure-white: rgba(255, 255, 255, 0.87);
   --white: var(--pale-orange);
   --gray: rgba(192, 190, 190, 0.367);

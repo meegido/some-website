@@ -22,22 +22,6 @@
   gap: 24px;
 }
 
-.description {
-  display: flex;
-  width: 100%;
-  gap: 45px;
-}
-
-.close__wrapper {
-  display: none;
-}
-
-.product__description {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .product__price {
   display: flex;
   justify-content: space-between;
@@ -130,93 +114,6 @@
     padding: 0;
   }
 
-  .close__wrapper {
-    display: flex;
-    justify-content: flex-end;
-  }
 }
 
-.project__content {
-  background-color: hsl(26.09deg 89.37% 52.27%);
-  padding: 24px var(--container-padding);
-  gap: 40px;
-}
 
-.learnings,
-.about,
-.project__content {
-  display: flex;
-  flex-direction: column;
-}
-
-.about {
-  gap: 40px;
-}
-
-.project__content {
-  gap: 16px;
-}
-
-.project__content > h2 {
-  font-size: 40px;
-}
-
-.learnings > h2,
-.project__content h3 {
-  font-size: 14px;
-  text-transform: uppercase;
-  padding-bottom: 8px;
-}
-
-.tags__container {
-  container-type: inline-size;
-  container-name: cloud;
-}
-
-.learning__tags p {
-  display: inline-flex;
-  background-color: var(--black);
-  color: var(--pale-orange);
-  padding: 4px 8px;
-  border-radius: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  font-size: 12px;
-}
-
-.requirements__wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-  background: var(--pale-orange);
-  padding: 40px;
-  border-radius: 8px;
-}
-
-@container (min-width: 400px) {
-  .learning__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .project__content {
-    padding: 80px var(--container-padding);
-  }
-
-  .project__content > h2 {
-    font-size: 74px;
-  }
-
-  .learnings__wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 46px;
-  }
-
-  .requirements__wrapper {
-    flex-direction: row;
-  }
-}
