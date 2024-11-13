@@ -38,6 +38,7 @@ const ProductPage = () => {
 
   return (
     <>
+      <header>hello</header>
       <div className={styles.page__wrapper}>
         <ProjectDetails />
         <section className={styles.project}>

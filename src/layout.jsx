@@ -1,4 +1,3 @@
-import styles from './layout.module.css';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { ThemeContext } from './providers/theme-provider';
@@ -10,7 +9,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main className={styles.wrapper} data-theme={theme}>
+      <main data-theme={theme}>
         <Outlet />
       </main>
     </>
