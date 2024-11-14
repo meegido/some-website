@@ -4,14 +4,14 @@ import ProductGallery from './components/product-gallery';
 import { product } from './product-content';
 import ProductQuantity from './components/product-quantity';
 import { CartContext } from '../../providers/cart-provider';
-import ProjectDetails from './components/project-details';
 import CartPopover from '../../shared/components/header/cart-popover/cart-popover';
+import ProjectDetails from '../../shared/components/project-details/project-details';
 
 const ProductPage = () => {
   const { addToCart, cart } = React.useContext(CartContext);
   const [quantity, setQuantity] = React.useState(0);
 
-  const cartItem = cart.length > 0 ? cart[0] : [];
+  const cartItem = cart?.length > 0 ? cart[0] : [];
   const price =
     product.discount && product.discount !== undefined
       ? (product.price * product.discount) / 100

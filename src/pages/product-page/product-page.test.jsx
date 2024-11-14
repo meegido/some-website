@@ -5,7 +5,7 @@ import { CartContext } from '../../providers/cart-provider';
 import { MemoryRouter } from 'react-router-dom';
 
 const mockCart = {
-  items: [],
+  cart: [],
   addItem: vi.fn(),
   removeItem: vi.fn(),
   clearCart: vi.fn(),
