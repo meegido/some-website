@@ -22,7 +22,7 @@ const ProjectDetails = () => {
               .
             </p>
             <Accordion.Trigger className={styles.close__wrapper}>
-              <ChevronDown size={48} />
+              <ChevronDown size={32} />
             </Accordion.Trigger>
           </Accordion.Header>
           <Accordion.Content>
@@ -59,15 +59,6 @@ const ProjectDetails = () => {
                 </ul>
               </section>
               <section className={styles.learnings__wrapper}>
-                <div className={styles.learnings}>
-                  <h2>Skills Used</h2>
-                  <article className={styles.learning__tags}>
-                    <p>HTML</p>
-                    <p>CSS</p>
-                    <p>JS</p>
-                    <p>React</p>
-                  </article>
-                </div>
                 <article className={styles.learnings}>
                   <h2>Learnings</h2>
                   <div className={styles.learning__tags}>
@@ -76,6 +67,15 @@ const ProjectDetails = () => {
                     <p>Conditional rendering</p>
                     <p>Custom hooks</p>
                   </div>
+                </article>
+                <article className={styles.learnings}>
+                  <h2>Skills Used</h2>
+                  <article className={styles.learning__tags}>
+                    <p>HTML</p>
+                    <p>CSS</p>
+                    <p>JS</p>
+                    <p>React</p>
+                  </article>
                 </article>
               </section>
             </div>

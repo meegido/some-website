@@ -14,7 +14,6 @@
   display: none;
   padding: 0;
   border: none;
-  margin-top: -6px;
 }
 
 .product__description {
@@ -31,6 +30,7 @@
 .learnings,
 .learnings__wrapper,
 .requirements__wrapper,
+.requirements__wrapper > ul,
 .content__wrapper,
 .about,
 .project__content {
@@ -52,6 +52,7 @@
   display: flex;
 }
 
+.requirements__wrapper > ul,
 .learning__tags,
 .learnings,
 .requirements__wrapper {
@@ -100,10 +101,21 @@
 }
 
 @media (min-width: 1200px) {
+  .description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .description > p {
+    width: 80%;
+  }
   .close__wrapper {
     display: flex;
-    justify-content: flex-end;
-    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    background: var(--pale-orange);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
   }
 
   .project__content {
