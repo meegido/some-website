@@ -10,6 +10,12 @@
   background-color: var(--pure-white);
 }
 
+.header {
+  display: flex;
+  justify-content: flex-end;
+  height: 100px;
+}
+
 .page__wrapper ul {
   margin-inline-start: 16px;
   padding: 0;
@@ -93,7 +99,7 @@
 }
 
 @media (min-width: 768px) {
-  .project {
+  .project__wrapper {
     padding: 36px var(--container-padding);
   }
 }

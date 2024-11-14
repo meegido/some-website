@@ -42,37 +42,39 @@ const ProductPage = () => {
     <>
       <div className={styles.page__wrapper}>
         <ProjectDetails />
-        <section className={styles.project}>
-          <header>
+        <section className={styles.project__wrapper}>
+          <header className={styles.header}>
             <CartPopover cartItem={cartItem} />
           </header>
-          <ProductGallery images={product.photos} />
-          <section className={styles.product__wrapper}>
-            <div className={styles.product__description}>
-              <h3>{product.brand}</h3>
-              <h1>{product.title}</h1>
-              <p>{product.description}</p>
-            </div>
-            <div className={styles.product__price}>
-              <div>
-                <p>${price}</p>
-                <p>{product.discount}%</p>
+          <section className={styles.project}>
+            <ProductGallery images={product.photos} />
+            <section className={styles.product__wrapper}>
+              <div className={styles.product__description}>
+                <h3>{product.brand}</h3>
+                <h1>{product.title}</h1>
+                <p>{product.description}</p>
               </div>
-              <p className={styles.final__price}>${product.price}</p>
-            </div>
-            <div className={styles.product__cart}>
-              <ProductQuantity
-                handleIncreaseQuantity={handleIncreaseQuantity}
-                handleDecreaseQuantity={handleDecreaseQuantity}
-              >
-                <p aria-label="product-quantity">{quantity}</p>
-              </ProductQuantity>
-              <div className={styles.button__wrapper}>
-                <button className={styles.add__button} onClick={handleAddToCart}>
-                  Add to cart
-                </button>
+              <div className={styles.product__price}>
+                <div>
+                  <p>${price}</p>
+                  <p>{product.discount}%</p>
+                </div>
+                <p className={styles.final__price}>${product.price}</p>
               </div>
-            </div>
+              <div className={styles.product__cart}>
+                <ProductQuantity
+                  handleIncreaseQuantity={handleIncreaseQuantity}
+                  handleDecreaseQuantity={handleDecreaseQuantity}
+                >
+                  <p aria-label="product-quantity">{quantity}</p>
+                </ProductQuantity>
+                <div className={styles.button__wrapper}>
+                  <button className={styles.add__button} onClick={handleAddToCart}>
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+            </section>
           </section>
         </section>
       </div>
