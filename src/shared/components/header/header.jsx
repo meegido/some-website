@@ -5,14 +5,8 @@ import { ThemeContext } from '../../../providers/theme-provider';
 import { Moon, Sun } from 'lucide-react';
 import ProfileDropdown from './profile-dropdown/profile-dropdown';
 
-import { CartContext } from '../../../providers/cart-provider';
-import CartPopover from './cart-popover/cart-popover';
-
 const Header = () => {
-  const { cart } = React.useContext(CartContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
-
-  const cartItem = cart.length > 0 ? cart[0] : [];
 
   return (
     <div className={styles.header__wrapper} data-theme={theme}>
@@ -35,7 +29,6 @@ const Header = () => {
         </nav>
         <div className={styles.actions}>
           <div className={styles.action__items}>
-            <CartPopover cartItem={cartItem} />
             <div className={styles.theme__button}>
               <button className={styles.header__button} onClick={toggleTheme}>
                 {theme === 'light' ? <Sun /> : <Moon />}

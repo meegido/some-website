@@ -5,11 +5,13 @@ import { product } from './product-content';
 import ProductQuantity from './components/product-quantity';
 import { CartContext } from '../../providers/cart-provider';
 import ProjectDetails from './components/project-details';
+import CartPopover from '../../shared/components/header/cart-popover/cart-popover';
 
 const ProductPage = () => {
-  const { addToCart } = React.useContext(CartContext);
+  const { addToCart, cart } = React.useContext(CartContext);
   const [quantity, setQuantity] = React.useState(0);
 
+  const cartItem = cart.length > 0 ? cart[0] : [];
   const price =
     product.discount && product.discount !== undefined
       ? (product.price * product.discount) / 100
@@ -38,10 +40,12 @@ const ProductPage = () => {
 
   return (
     <>
-      <header>hello</header>
       <div className={styles.page__wrapper}>
         <ProjectDetails />
         <section className={styles.project}>
+          <header>
+            <CartPopover cartItem={cartItem} />
+          </header>
           <ProductGallery images={product.photos} />
           <section className={styles.product__wrapper}>
             <div className={styles.product__description}>
