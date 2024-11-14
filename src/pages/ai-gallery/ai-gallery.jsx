@@ -13,7 +13,6 @@ const AiGallery = () => {
             <div key={rowIndex} className={styles.row}>
               {range(numCols).map((colIndex) => {
                 const imageIndex = rowIndex * numCols + colIndex;
-                console.log(imageIndex);
                 if (imageIndex >= totalImages) return;
                 const imageSrc = AI_IMAGES[imageIndex];
 

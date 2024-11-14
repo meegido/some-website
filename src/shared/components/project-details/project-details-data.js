@@ -1,0 +1,51 @@
+const projects = [
+  {
+    id: 'product-page',
+    title: 'E-commerce product page',
+    description: `A learning exercise about building a e-commerce product page fully functional and get it looking as close to the design possible, from`,
+    challengeLink: 'https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6',
+    challengeSiteName: 'Frontend Mentor',
+    learnings: ['React Lifecycle', 'State management', 'Conditional rendering', 'Custom hooks'],
+    skills: ['HTML', 'CSS', 'JS', 'React', 'Testing'],
+    requirements: [
+      'Open a lightbox gallery by clicking on the large product image.',
+      'Switch the large product image by clicking on the small thumbnail images.',
+      'Add items to the cart.',
+      'View the cart and remove items from it',
+      `View the optimal layout for the site depending on their device's screen size`,
+      'See hover states for all interactive elements on the page',
+      'Change minus icon in cart to trash icon when items quantity is one (added by me).',
+    ],
+    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/pages/product-page',
+  },
+  {
+    id: 'tip-calculator',
+    title: 'Split your bill 💸',
+    description: `A learning exercise , from`,
+    challengeLink: 'https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6',
+    challengeSiteName: 'Frontend Mentor',
+    learnings: [
+      'Memoization',
+      'State management',
+      'Conditional rendering',
+      'Custom hooks',
+      'Componetization',
+    ],
+    skills: ['HTML', 'CSS', 'JS', 'React', 'Testing'],
+    requirements: [],
+    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/pages/tip-calculator',
+  },
+  {
+    id: 'quotes',
+    title: 'Quotes',
+    description: `A learning exercise about building a e-commerce product page fully functional and get it looking as close to the design possible, from`,
+    challengeLink: '',
+    challengeSiteName: '',
+    learnings: ['Forms', 'Memoization', 'Componetization', 'Custom hooks'],
+    skills: ['HTML', 'CSS', 'JS', 'React', 'TDD'],
+    requirements: [],
+    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/pages/quotes',
+  },
+];
+
+export default projects;

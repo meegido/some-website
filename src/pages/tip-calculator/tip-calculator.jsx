@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './tip-calculator.module.css';
 import Button from '../../shared/components/button/button';
 import InputField from '../../shared/components/input-field/input-field';
+import PROJECT__DATA from '../../shared/components/project-details/project-details-data.js';
+import ProjectDetails from '../../shared/components/project-details/project-details.jsx';
 
 const TipCalculator = () => {
   const [rawBill, setRawBill] = React.useState('');
@@ -13,6 +15,8 @@ const TipCalculator = () => {
   const [tipPerPerson, setTipPerPerson] = React.useState(Number(0));
 
   const tipOptions = [5, 10, 15, 20, 50, 'Custom'];
+
+  const projectData = PROJECT__DATA.find((project) => project.id === 'tip-calculator');
 
   const handleSelectTip = (option) => {
     setSelectedTipOption(option);
@@ -56,9 +60,10 @@ const TipCalculator = () => {
   };
 
   return (
-    <section className={styles['page__wrapper']}>
-      <h1 className={styles['page__title']}>Split your bill 💸</h1>
-      <div className={styles['calculator__wrapper']}>
+    <div className={styles['page__wrapper']}>
+      <ProjectDetails project={projectData} />
+
+      <section className={styles['calculator__wrapper']}>
         <section className={styles['calculator__config']}>
           <article className={`${styles.config}`}>
             <InputField
@@ -135,8 +140,8 @@ const TipCalculator = () => {
             </Button>
           </div>
         </section>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

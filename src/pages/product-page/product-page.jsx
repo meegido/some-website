@@ -6,10 +6,13 @@ import ProductQuantity from './components/product-quantity';
 import { CartContext } from '../../providers/cart-provider';
 import CartPopover from '../../shared/components/header/cart-popover/cart-popover';
 import ProjectDetails from '../../shared/components/project-details/project-details';
+import PROJECT__DATA from '../../shared/components/project-details/project-details-data.js';
 
 const ProductPage = () => {
   const { addToCart, cart } = React.useContext(CartContext);
   const [quantity, setQuantity] = React.useState(0);
+
+  const projectData = PROJECT__DATA.find((project) => project.id === 'product-page');
 
   const cartItem = cart?.length > 0 ? cart[0] : [];
   const price =
@@ -41,7 +44,7 @@ const ProductPage = () => {
   return (
     <>
       <div className={styles.page__wrapper}>
-        <ProjectDetails />
+        <ProjectDetails project={projectData} />
         <section className={styles.project__wrapper}>
           <header className={styles.header}>
             <CartPopover cartItem={cartItem} />
