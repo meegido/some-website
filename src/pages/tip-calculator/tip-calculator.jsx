@@ -61,85 +61,86 @@ const TipCalculator = () => {
 
   return (
     <div className={styles['page__wrapper']}>
-      <ProjectDetails project={projectData} />
-
-      <section className={styles['calculator__wrapper']}>
-        <section className={styles['calculator__config']}>
-          <article className={`${styles.config}`}>
-            <InputField
-              label="Bill"
-              type="number"
-              aria-label="Bill amount"
-              name="bill-amount"
-              id="rawBill"
-              value={rawBill}
-              onChange={(event) => setRawBill(event.target.value)}
-            />
-          </article>
-          <article className={styles.config}>
-            <p>Select a tip</p>
-            <div className={styles.tip}>
-              {tipOptions.map((option) => (
-                <button
-                  aria-label="Tip button"
-                  type="button"
-                  key={option}
-                  className={`${styles['config__button']} ${selectedTipOption === option ? styles.selected : ''}`}
-                  onClick={() => handleSelectTip(option)}
-                >
-                  {option === 'Custom' ? 'Custom' : `${option}%`}
-                </button>
-              ))}
-              {selectedTipOption === 'Custom' && (
-                <p>⚠️ Watch your wealth before choosing to tip more than 50%</p>
-              )}
+      <ProjectDetails project={projectData} className={styles.green} />
+      <section className={`${styles.calculator__wrapper}`}>
+        <div className={styles.calculator}>
+          <section className={styles['calculator__config']}>
+            <article className={`${styles.config}`}>
+              <InputField
+                label="Bill"
+                type="number"
+                aria-label="Bill amount"
+                name="bill-amount"
+                id="rawBill"
+                value={rawBill}
+                onChange={(event) => setRawBill(event.target.value)}
+              />
+            </article>
+            <article className={styles.config}>
+              <p>Select a tip</p>
+              <div className={styles.tip}>
+                {tipOptions.map((option) => (
+                  <button
+                    aria-label="Tip button"
+                    type="button"
+                    key={option}
+                    className={`${styles['config__button']} ${selectedTipOption === option ? styles.selected : ''}`}
+                    onClick={() => handleSelectTip(option)}
+                  >
+                    {option === 'Custom' ? 'Custom' : `${option}%`}
+                  </button>
+                ))}
+                {selectedTipOption === 'Custom' && (
+                  <p>⚠️ Watch your wealth before choosing to tip more than 50%</p>
+                )}
+              </div>
+            </article>
+            <article className={styles.config}>
+              <InputField
+                label="Number of people"
+                type="number"
+                aria-label="People amount"
+                name="people"
+                id="totalPeople"
+                min="1"
+                value={totalPeople}
+                onChange={handlePeopleOnChange}
+                className={`${inputError ? styles.inputError : ''}`}
+                error={inputError}
+              />
+            </article>
+          </section>
+          <section className={styles.display}>
+            <article className={styles['display__result']}>
+              <div className={styles.legend}>
+                <h3>Tip Amount</h3>
+                <p>/person</p>
+              </div>
+              <div className={styles.amount}>
+                {<p data-testid="tip-per-person">{tipPerPerson}€</p>}
+              </div>
+            </article>
+            <article className={styles['display__result']}>
+              <div className={styles.legend}>
+                <h3>Total</h3>
+                <p>/person</p>
+              </div>
+              <div className={styles.amount}>
+                {<p data-testid="bill-per-person">{billPerPerson}€</p>}
+              </div>
+            </article>
+            <div className={styles.reset}>
+              <Button
+                type="submit"
+                aria-label="reset-button"
+                onClick={() => handleReset()}
+                className={styles['reset__button']}
+              >
+                Reset
+              </Button>
             </div>
-          </article>
-          <article className={styles.config}>
-            <InputField
-              label="Number of people"
-              type="number"
-              aria-label="People amount"
-              name="people"
-              id="totalPeople"
-              min="1"
-              value={totalPeople}
-              onChange={handlePeopleOnChange}
-              className={`${inputError ? styles.inputError : ''}`}
-              error={inputError}
-            />
-          </article>
-        </section>
-        <section className={styles.display}>
-          <article className={styles['display__result']}>
-            <div className={styles.legend}>
-              <h3>Tip Amount</h3>
-              <p>/person</p>
-            </div>
-            <div className={styles.amount}>
-              {<p data-testid="tip-per-person">{tipPerPerson}€</p>}
-            </div>
-          </article>
-          <article className={styles['display__result']}>
-            <div className={styles.legend}>
-              <h3>Total</h3>
-              <p>/person</p>
-            </div>
-            <div className={styles.amount}>
-              {<p data-testid="bill-per-person">{billPerPerson}€</p>}
-            </div>
-          </article>
-          <div className={styles.reset}>
-            <Button
-              type="submit"
-              aria-label="reset-button"
-              onClick={() => handleReset()}
-              className={styles['reset__button']}
-            >
-              Reset
-            </Button>
-          </div>
-        </section>
+          </section>
+        </div>
       </section>
     </div>
   );

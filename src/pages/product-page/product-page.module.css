@@ -1,3 +1,7 @@
+.orange {
+  background-color: hsl(26.09deg 89.37% 52.27%);
+}
+
 .title {
   color: var(--gray);
 }

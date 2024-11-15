@@ -1,8 +1,9 @@
 import styles from './project-details.module.css';
 import { ChevronDown } from 'lucide-react';
 import * as Accordion from '@radix-ui/react-accordion';
+import GithubLogo from '../../../assets/images/github-logo.png';
 
-const ProjectDetails = ({ project }) => {
+const ProjectDetails = ({ project, className = '' }) => {
   const {
     title,
     description,
@@ -13,8 +14,11 @@ const ProjectDetails = ({ project }) => {
     requirements,
     repositoryLink,
   } = project;
+
+  const backgroundClassName = `${className}`;
+
   return (
-    <section className={styles.project__content}>
+    <section className={`${styles.project__content} ${backgroundClassName}`}>
       <h2>{title}</h2>
       <Accordion.Root type="single" defaultValue="item-1" collapsible>
         <Accordion.Item className={styles.about} value="item-1">
@@ -24,7 +28,6 @@ const ProjectDetails = ({ project }) => {
               <a href={challengeLink} target="_blank" rel="noopener noreferrer">
                 {challengeSiteName}
               </a>
-              .
             </p>
             <Accordion.Trigger className={styles.close__wrapper}>
               <ChevronDown size={32} />
@@ -52,17 +55,22 @@ const ProjectDetails = ({ project }) => {
                   </div>
                 </article>
                 <article className={styles.learnings}>
-                  <h2>Skills Used</h2>
-                  <article className={styles.learning__tags}>
+                  <section className={styles.skills}>
+                    <a
+                      className={styles.github}
+                      href={repositoryLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={GithubLogo} alt="Github project link" />
+                    </a>
+                    <h2>Skills Used</h2>
+                  </section>
+                  <section className={styles.learning__tags}>
                     {skills.map((skill) => (
                       <p key={skill}>{skill}</p>
                     ))}
-                  </article>
-                </article>
-                <article>
-                  <a href={repositoryLink} target="_blank" rel="noopener noreferrer">
-                    <img src="" alt="Github project link" />
-                  </a>
+                  </section>
                 </article>
               </section>
             </div>

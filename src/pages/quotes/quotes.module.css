@@ -1,3 +1,9 @@
+.transparent {
+  background-color: transparent;
+  border-bottom: 1px solid white;
+}
+
+.project__wrapper,
 .wrapper,
 .wrapper article,
 .title {
@@ -5,14 +11,26 @@
   flex-direction: column;
 }
 
+.project__wrapper {
+  height: 100%;
+  width: 100%;
+  gap: 32px;
+}
+
 .add {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 16px;
+}
+
+.add span {
+  font-size: 26px;
 }
 
 .wrapper {
   padding: 54px var(--container-padding);
-  gap: 32px;
+
   background-color: #8ec5fc;
   background-image: linear-gradient(360deg, #8ec5fc 0%, #e0c3fc 100%);
 }

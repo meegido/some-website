@@ -21,13 +21,13 @@ const Quotes = () => {
   };
 
   return (
-    <section>
-      <ProjectDetails project={projectData} />
-      <div className={styles.wrapper}>
+    <section className={styles.wrapper}>
+      <ProjectDetails project={projectData} className={`${styles.transparent} `} />
+      <section className={styles.project__wrapper}>
         <section className={styles.add}>
           <Button onClick={toggleIsModalOpen} aria-label="add quote">
-            <BadgePlus size={40} strokeWidth={1} />
-            <span>Add quote</span>
+            <BadgePlus size={48} strokeWidth={1.5} />
+            <span>New quote</span>
           </Button>
         </section>
         {isModalOpen && (
@@ -39,7 +39,7 @@ const Quotes = () => {
         {quotes.map((quote) => (
           <Quote key={quote.author} quote={quote} />
         ))}
-      </div>
+      </section>
     </section>
   );
 };

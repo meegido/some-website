@@ -16,17 +16,11 @@
   border: none;
 }
 
-.product__description {
-  display: flex;
-  flex-direction: column;
-}
-
 .project__content {
-  background-color: hsl(26.09deg 89.37% 52.27%);
   padding: 24px var(--container-padding);
-  gap: 40px;
 }
 
+.product__description,
 .learnings,
 .learnings__wrapper,
 .requirements__wrapper,
@@ -38,20 +32,41 @@
   flex-direction: column;
 }
 
+.learning__tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .content__wrapper {
   background: var(--pale-orange);
   padding: 40px;
   border-radius: 8px;
+  justify-content: space-between;
 }
 
 .learnings__wrapper {
-  max-width: 400px;
+  max-width: 360px;
 }
 
+.skills,
 .learning__tags {
   display: flex;
 }
 
+.skills {
+  align-items: center;
+}
+
+.learnings__wrapper {
+  gap: 32px;
+}
+
+.project__content,
+.about {
+  gap: 40px;
+}
+
+.skills,
 .requirements__wrapper > ul,
 .learning__tags,
 .learnings,
@@ -60,13 +75,11 @@
 }
 
 .product__description,
-.learnings__wrapper,
 .project__content {
   gap: 16px;
 }
 
-.content__wrapper,
-.about {
+.content__wrapper {
   gap: 24px;
 }
 
@@ -74,7 +87,7 @@
   font-size: 40px;
 }
 
-.learnings > h2 {
+.learnings h2 {
   font-size: 16px;
   line-height: 24px;
 }
@@ -96,8 +109,9 @@
   font-size: 12px;
 }
 
-.learning__tags {
-  display: flex;
+.github img {
+  display: block;
+  height: 20px;
 }
 
 @media (min-width: 1200px) {
@@ -108,6 +122,7 @@
   .description > p {
     width: 80%;
   }
+
   .close__wrapper {
     display: flex;
     justify-content: center;
@@ -116,6 +131,10 @@
     border-radius: 50%;
     height: 40px;
     width: 40px;
+  }
+
+  .close__wrapper[data-state='open'] svg {
+    transform: rotate(180deg);
   }
 
   .project__content {
@@ -135,6 +154,7 @@
     display: flex;
     flex-direction: column;
     gap: 46px;
+    max-width: 450px;
   }
 
   .learning__tags {

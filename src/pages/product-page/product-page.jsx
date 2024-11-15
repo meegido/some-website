@@ -44,7 +44,7 @@ const ProductPage = () => {
   return (
     <>
       <div className={styles.page__wrapper}>
-        <ProjectDetails project={projectData} />
+        <ProjectDetails project={projectData} className={styles.orange} />
         <section className={styles.project__wrapper}>
           <header className={styles.header}>
             <CartPopover cartItem={cartItem} />
