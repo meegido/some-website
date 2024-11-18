@@ -26,7 +26,7 @@ describe('AI Gallery', () => {
       </div>
     );
 
-    const images = screen.getAllByRole('img');
+    const images = screen.getAllByRole('img') as HTMLImageElement[];
     expect(images).toHaveLength(4);
 
     images.forEach((image, index) => {
@@ -35,7 +35,7 @@ describe('AI Gallery', () => {
     });
   });
 
-  it('renders a grid with unique imaages', () => {
+  it('renders a grid with unique images', () => {
     render(<AiGallery />);
 
     const images = screen.getAllByRole('img');
@@ -44,5 +44,23 @@ describe('AI Gallery', () => {
     const uniqueImageSources = new Set(imageSources);
 
     expect(uniqueImageSources.size).toBe(imageSources.length);
+  });
+
+  it('allows user to filter images by its content characteristics', () => {
+    render(<AiGallery />);
+    const AI_IMAGES = [
+      {
+        url: new URL('../../assets/images/ai-images/estatues-2.png', import.meta.url).href,
+        tags: ['statue 🗿', 'buildings 🏰'],
+      },
+      {
+        url: new URL('../../assets/images/ai-images/elephant-2.png', import.meta.url).href,
+        tags: ['elephant 🐘'],
+      },
+    ];
+    const selectElement = screen.getByLabelText(/Filter by.../);
+
+    expect(AI_IMAGES).toHaveLength(2);
+    expect(selectElement).toHaveDisplayValue(/Choose/);
   });
 });

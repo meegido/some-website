@@ -7,6 +7,18 @@ const AiGallery = () => {
   const totalImages = AI_IMAGES.length;
   return (
     <div className={styles.wrapper}>
+      <section>
+        <label htmlFor="filter" aria-labelledby="Filter">
+          Filter by the elements the image contains
+        </label>
+        <select name="filter" id="filter" defaultValue="default">
+          <option value="default" disabled>
+            --Choose and option--
+          </option>
+          <option value="statue">Statue</option>
+          <option value="elephant">Elephant</option>
+        </select>
+      </section>
       <div className={styles.grid} role="grid">
         {range(numRows).map((rowIndex) => {
           return (
@@ -14,11 +26,12 @@ const AiGallery = () => {
               {range(numCols).map((colIndex) => {
                 const imageIndex = rowIndex * numCols + colIndex;
                 if (imageIndex >= totalImages) return;
+
                 const imageSrc = AI_IMAGES[imageIndex];
 
                 return (
                   <div key={colIndex} className={styles.cell}>
-                    <img src={imageSrc} alt={`Gallery image ${imageIndex + 1}`} />
+                    <img src={imageSrc.url} alt={`Gallery image ${imageIndex + 1}`} />
                   </div>
                 );
               })}
