@@ -1,4 +1,4 @@
-import AI_IMAGES from './ai-images.js';
+import AI_IMAGES from './ai-images.ts';
 import styles from './ai-gallery.module.css';
 
 const AiGallery = () => {
@@ -30,14 +30,14 @@ const AiGallery = () => {
   );
 };
 
-const range = (start, end, step = 1) => {
+const range = (start: number, end?: number, step: number = 1) => {
   let output = [];
   if (typeof end === 'undefined') {
     end = start;
     start = 0;
   }
 
-  for (let i = start; i < end; i += step) {
+  for (let i = start; i < (end ?? 0); i += step) {
     output.push(i);
   }
 

@@ -3,18 +3,33 @@ import globals from 'globals';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import vitest from '@vitest/eslint-plugin';
 import testingLibrary from 'eslint-plugin-testing-library';
 import jestDom from 'eslint-plugin-jest-dom';
+import typescript from '@typescript-eslint/eslint-plugin';
 
 export default [
-  { ignores: ['dist'] },
+  { ignores: ['dist', 'tsconfig.json', '**/*.d.ts'] },
+  eslintPluginPrettierRecommended,
   {
-    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      'plugin:react/recommended',
+      'plugin:react-hooks/recommended',
+      'plugin:@typescript-eslint/recommended',
+      'plugin:vitest/recommended',
+      'plugin:testing-library/react',
+      'plugin:jest-dom/recommended',
+    ],
+  },
+
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -27,6 +42,15 @@ export default [
         pragma: 'React',
         fragment: 'Fragment',
       },
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
+        },
+        alias: {
+          map: [['@', './src']],
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
+        },
+      },
     },
     plugins: {
       react,
@@ -35,21 +59,16 @@ export default [
       vitest,
       'testing-library': testingLibrary,
       'jest-dom': jestDom,
+      '@typescript-eslint': typescript,
     },
     rules: {
-      ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
-      ...reactHooks.configs.recommended.rules,
-      ...vitest.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-      'react/react-in-jsx-scope': 'off', // Disable the rule that requires React in scope
-      // PropTypes validation rules
+      'react/react-in-jsx-scope': 'off', // React 17+ JSX transform
       'react/prop-types': 'off',
       'react/require-default-props': 'off',
       'react/no-unused-prop-types': 'off',
+      indent: ['error', 2],
     },
   },
-  eslintConfigPrettier,
 ];

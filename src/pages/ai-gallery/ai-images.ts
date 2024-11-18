@@ -1,4 +1,4 @@
-const AI_IMAGES = [
+const AI_IMAGES: string[] = [
   new URL('../../assets/images/ai-images/estatues-2.png', import.meta.url).href,
   new URL('../../assets/images/ai-images/elephant-2.png', import.meta.url).href,
 
