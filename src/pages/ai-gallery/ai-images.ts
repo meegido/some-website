@@ -18,12 +18,12 @@ const AI_IMAGES: ImagesInfo[] = [
   {
     id: 'image-3',
     url: new URL('../../assets/images/ai-images/girl-2.png', import.meta.url).href,
-    tags: ['girl', 'clouds'],
+    tags: ['person', 'clouds'],
   },
   {
     id: 'image-4',
     url: new URL('../../assets/images/ai-images/utopia-4.png', import.meta.url).href,
-    tags: ['circuits', 'girl', 'road'],
+    tags: ['circuits', 'person', 'road'],
   },
   {
     id: 'image-5',
@@ -33,7 +33,7 @@ const AI_IMAGES: ImagesInfo[] = [
   {
     id: 'image-6',
     url: new URL('../../assets/images/ai-images/girl-3.png', import.meta.url).href,
-    tags: ['people', 'girl', 'clouds'],
+    tags: ['people', 'person', 'clouds'],
   },
   {
     id: 'image-7',

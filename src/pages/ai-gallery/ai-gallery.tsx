@@ -15,28 +15,27 @@ const AiGallery = () => {
     setSelectedOption(selectedTag);
 
     const filteredImages = AI_IMAGES.filter((image) => image.tags.includes(selectedTag));
-
     setImages(filteredImages);
-
-    console.log(filteredImages, 'filtered');
   };
 
   return (
     <div className={styles.wrapper}>
-      <section>
+      <section className={styles.select__wrapper}>
         <label htmlFor="filter" aria-labelledby="Filter">
-          Filter by the elements the image contains
+          Filter images by
         </label>
-        <select name="filter" id="filter" value={selectedOption} onChange={handleSelectChange}>
-          <option value="" disabled>
-            --Choose and option--
-          </option>
-          {notRepeatedTags.map((option) => (
-            <option key={option} value={option}>
-              {option}
+        <div className={styles.select}>
+          <select name="filter" id="filter" value={selectedOption} onChange={handleSelectChange}>
+            <option value="" disabled>
+              --Choose and option--
             </option>
-          ))}
-        </select>
+            {notRepeatedTags.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
       </section>
       <div className={styles.grid} role="grid">
         {images.length > 0 ? (

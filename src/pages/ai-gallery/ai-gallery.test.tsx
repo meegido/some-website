@@ -59,7 +59,7 @@ describe('AI Gallery', () => {
         tags: ['elephant'],
       },
     ];
-    const selectElement = screen.getByLabelText(/Filter by.../);
+    const selectElement = screen.getByLabelText(/Filter images by/);
     // const selectElement = screen.getByRole('combobox', { name: /Filter by/i });
 
     expect(AI_IMAGES).toHaveLength(2);

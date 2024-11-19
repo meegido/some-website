@@ -1,5 +1,9 @@
 .wrapper {
   padding: 0 var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  height: 100vh;
 }
 
 .grid {
@@ -11,10 +15,82 @@
   margin: 0 auto;
 }
 
+.select__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.select__wrapper label {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+.select {
+  --select-border: var(--pale-orange);
+  --select-focus: var(--dark-gray);
+  --select-arrow: var(--select-focus);
+  border: none;
+  position: relative;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 0;
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: inherit;
+  line-height: 24px;
+  outline: none;
+  background-image: linear-gradient(to top, #f9f9f9, hsl(25deg 100% 94% / 64%) 3%);
+  display: grid;
+  grid-template-areas: 'select';
+  align-items: center;
+}
+
+.select::after {
+  content: '';
+  width: 20px;
+  height: 14px;
+  background-color: var(--select-arrow);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  justify-self: end;
+}
+
+select,
+.select:after {
+  grid-area: select;
+}
+
+.select:focus-within {
+  height: fit-content;
+  outline: 2px solid var(--select-focus);
+  border-radius: 4px;
+}
 
 @media (min-width: 1200px) {
   .wrapper {
     padding-top: 48px;
+  }
+
+  .select__wrapper {
+    flex-direction: row;
   }
 }
 
