@@ -1,74 +1,74 @@
-type ImageData = {
+export type ImagesInfo = {
   id: string;
   url: string;
   tags: string[];
 };
 
-const AI_IMAGES: ImageData[] = [
+const AI_IMAGES: ImagesInfo[] = [
   {
     id: 'image-1',
     url: new URL('../../assets/images/ai-images/estatues-2.png', import.meta.url).href,
-    tags: ['statue 🗿', 'buildings 🏰'],
+    tags: ['statue', 'buildings', 'clouds'],
   },
   {
     id: 'image-2',
     url: new URL('../../assets/images/ai-images/elephant-2.png', import.meta.url).href,
-    tags: ['elephant 🐘'],
+    tags: ['elephant'],
   },
   {
     id: 'image-3',
     url: new URL('../../assets/images/ai-images/girl-2.png', import.meta.url).href,
-    tags: ['girl 🐘'],
+    tags: ['girl', 'clouds'],
   },
   {
     id: 'image-4',
     url: new URL('../../assets/images/ai-images/utopia-4.png', import.meta.url).href,
-    tags: ['utopia 🐘'],
+    tags: ['circuits', 'girl', 'road'],
   },
   {
     id: 'image-5',
     url: new URL('../../assets/images/ai-images/estatues.png', import.meta.url).href,
-    tags: ['statues 🐘'],
+    tags: ['statue', 'buildings', 'clouds'],
   },
   {
     id: 'image-6',
     url: new URL('../../assets/images/ai-images/girl-3.png', import.meta.url).href,
-    tags: ['statues 🐘'],
+    tags: ['people', 'girl', 'clouds'],
   },
   {
     id: 'image-7',
     url: new URL('../../assets/images/ai-images/elephant.png', import.meta.url).href,
-    tags: ['statues 🐘'],
+    tags: ['elephant', 'cicuits'],
   },
   {
     id: 'image-8',
     url: new URL('../../assets/images/ai-images/no-girl-2.png', import.meta.url).href,
-    tags: ['girl 🐘'],
+    tags: ['clouds', 'buildings', 'nature'],
   },
   {
     id: 'image-9',
     url: new URL('../../assets/images/ai-images/cat-4-1.png', import.meta.url).href,
-    tags: ['girl 🐘'],
+    tags: ['cat'],
   },
   {
     id: 'image-10',
     url: new URL('../../assets/images/ai-images/utopia-1.png', import.meta.url).href,
-    tags: ['girl 🐘'],
+    tags: ['statue', 'buildings', 'clouds', 'road'],
   },
   {
     id: 'image-11',
     url: new URL('../../assets/images/ai-images/cat-3.png', import.meta.url).href,
-    tags: ['girl 🐘'],
+    tags: ['cat'],
   },
   {
     id: 'image-12',
     url: new URL('../../assets/images/ai-images/utopia-3.png', import.meta.url).href,
-    tags: ['girl 🐘'],
+    tags: ['people', 'buildings', 'clouds', 'road'],
   },
   {
     id: 'image-13',
     url: new URL('../../assets/images/ai-images/utopia.png', import.meta.url).href,
-    tags: ['girl 🐘'],
+    tags: ['people', 'buildings', 'clouds', 'nature'],
   },
 ];
 

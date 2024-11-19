@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import AiGallery from './ai-gallery';
 
@@ -51,16 +52,57 @@ describe('AI Gallery', () => {
     const AI_IMAGES = [
       {
         url: new URL('../../assets/images/ai-images/estatues-2.png', import.meta.url).href,
-        tags: ['statue 🗿', 'buildings 🏰'],
+        tags: ['statue', 'buildings', 'clouds'],
       },
       {
         url: new URL('../../assets/images/ai-images/elephant-2.png', import.meta.url).href,
-        tags: ['elephant 🐘'],
+        tags: ['elephant'],
       },
     ];
     const selectElement = screen.getByLabelText(/Filter by.../);
+    // const selectElement = screen.getByRole('combobox', { name: /Filter by/i });
 
     expect(AI_IMAGES).toHaveLength(2);
     expect(selectElement).toHaveDisplayValue(/Choose/);
+  });
+
+  it('shows results related with the user select an option', () => {
+    render(<AiGallery />);
+    const AI_IMAGES = [
+      {
+        url: new URL('../../assets/images/ai-images/estatues-2.png', import.meta.url).href,
+        tags: ['statue', 'buildings', 'clouds'],
+      },
+      {
+        url: new URL('../../assets/images/ai-images/elephant-2.png', import.meta.url).href,
+        tags: ['elephant', 'clouds'],
+      },
+    ];
+
+    const tags = AI_IMAGES.flatMap((images) => images.tags);
+    const options = Array.from(new Set(tags));
+
+    const urls = AI_IMAGES.flatMap((image) => image.url);
+
+    expect(options).toHaveLength(4);
+    expect(urls).toHaveLength(2);
+
+    const defaultOption = screen.getByRole('option', {
+      name: /Choose and option/i,
+    }) as HTMLSelectElement;
+
+    expect(defaultOption.value).toBe('');
+
+    const selectElement = screen.getByRole('combobox');
+    const selectedOption = screen.getByRole('option', { name: 'elephant' }) as HTMLSelectElement;
+    userEvent.selectOptions(selectElement, selectedOption);
+
+    expect(selectedOption.value).toBe('elephant');
+
+    const results = AI_IMAGES.filter((image) => image.tags.includes(selectedOption.value)).map(
+      (image) => image.url
+    );
+
+    expect(results).toHaveLength(1);
   });
 });

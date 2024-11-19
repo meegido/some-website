@@ -1,0 +1,13 @@
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.cell {
+  flex: 1;
+}
+
+.cell img {
+  aspect-ratio: 9 / 6;
+  border-radius: 4px;
+}
