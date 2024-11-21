@@ -8,6 +8,7 @@ import Settings from './pages/settings/settings';
 import Exercises from './pages/exercises/exercises';
 import Quotes from './pages/quotes/quotes';
 import AiGallery from './pages/ai-gallery/ai-gallery';
+import Archieve from './pages/archieve/archieve.tsx';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'settings',
         element: <Settings />,
+      },
+      {
+        path: 'exercises/archieve',
+        element: <Archieve />,
       },
     ],
   },
