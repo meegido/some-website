@@ -1,19 +1,25 @@
-import { OpenLibraryResults } from 'api/open-library-repository';
+import { OpenLibraryResults, SearchParams } from 'api/open-library-api';
 import React from 'react';
 
 const Archieve = () => {
   const [results, setResults] = React.useState<OpenLibraryResults[]>([]);
 
-  const searchTerms = (data: OpenLibraryResults) => {
-    fetch('https://openlibrary.org/search.json?q=climate+change&limit=10&page=1', {
+  const searchTerms = (params: SearchParams) => {
+    const queryString = new URLSearchParams({
+      term: params.term,
+      limit: params.limit.toString(),
+      page: params.page.toString(),
+    }).toString();
+
+    fetch(`https://openlibrary.org/search.json?${queryString}`, {
       method: 'GET',
-      body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
     })
       .then((response) => response.json())
-      .then((newResults) => setResults([newResults, ...results]));
+      .then((newResults) => setResults([newResults, ...results]))
+      .catch((error) => console.log(error));
   };
 
   return <div>Hello archieve.org</div>;
