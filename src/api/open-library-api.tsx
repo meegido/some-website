@@ -20,7 +20,7 @@ export interface SearchParams {
   page: number;
 }
 
-export const searchTerms = async () => {
+export const getTerm = async () => {
   const baseUrl = 'https://api.example.com/data';
   const params = new URLSearchParams({
     term: 'climate+change',

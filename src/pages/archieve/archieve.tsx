@@ -1,10 +1,10 @@
-import { OpenLibraryResults, SearchParams } from 'api/open-library-api';
+import { OpenLibraryResult, SearchParams } from 'api/open-library-api';
 import React from 'react';
 
 const Archieve = () => {
-  const [results, setResults] = React.useState<OpenLibraryResults[]>([]);
+  const [results, setResults] = React.useState<OpenLibraryResult[]>([]);
 
-  const searchTerms = (params: SearchParams) => {
+  const getTerm = (params: SearchParams) => {
     const queryString = new URLSearchParams({
       term: params.term,
       limit: params.limit.toString(),

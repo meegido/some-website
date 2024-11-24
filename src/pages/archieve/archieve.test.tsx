@@ -44,10 +44,10 @@ describe('Archieve page', () => {
 
     server.use(getTerm(openLibraryResults));
 
-    const resourceImages = screen.getAllByRole('img', { name: /archieve$/i });
+    const resourceImages: HTMLImageElement[] = screen.getAllByRole('img', { name: /archieve$/i });
     expect(resourceImages).toHaveLength(2);
 
-    const altText = resourceImages.map((image) => (image as HTMLImageElement).alt);
+    const altText = resourceImages.map((image) => image.alt);
     expect(altText).toEqual(['Book 1 archieve', 'Book 2 archieve']);
     // equal is a mutable type (arrays and object). Numbers and strings can use ToBe
   });
