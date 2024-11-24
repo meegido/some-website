@@ -1,21 +1,36 @@
-import AI_IMAGES, { ImagesInfo } from './ai-images.ts';
+import { ImagesInfo, ImagesRepository, InMemoryImagesRepository } from './ai-images.ts';
 import styles from './ai-gallery.module.css';
 import React from 'react';
 import DynamicGallery from './components/dynamic-gallery.tsx';
 
-const AiGallery = () => {
-  const [images, setImages] = React.useState<ImagesInfo[]>(AI_IMAGES);
+interface AiGalleryProps {
+  imagesRepository: ImagesRepository;
+}
+
+const AiGallery = ({ imagesRepository = new InMemoryImagesRepository() }: AiGalleryProps) => {
+  const [allImages, setImages] = React.useState<ImagesInfo[]>([]);
+  const [filteredImages, setFliteredImages] = React.useState<ImagesInfo[]>([]);
   const [selectedOption, setSelectedOption] = React.useState('');
 
-  const tags = AI_IMAGES.flatMap((image) => image.tags);
+  React.useEffect(() => {
+    const fetchImages = async () => {
+      const retrievedImages = await imagesRepository.retrieve();
+      setImages(retrievedImages);
+      setFliteredImages(retrievedImages);
+    };
+
+    fetchImages();
+  }, []);
+
+  const tags = allImages.flatMap((image) => image.tags);
   const notRepeatedTags = Array.from(new Set(tags));
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTag = event.target.value;
     setSelectedOption(selectedTag);
 
-    const filteredImages = AI_IMAGES.filter((image) => image.tags.includes(selectedTag));
-    setImages(filteredImages);
+    const filteredImages = allImages.filter((image) => image.tags.includes(selectedTag));
+    setFliteredImages(filteredImages);
   };
 
   return (
@@ -38,8 +53,8 @@ const AiGallery = () => {
         </div>
       </section>
       <div className={styles.grid} role="grid">
-        {images.length > 0 ? (
-          <DynamicGallery images={images} numRows={8} numCols={3} />
+        {filteredImages.length > 0 ? (
+          <DynamicGallery images={filteredImages} numRows={8} numCols={3} />
         ) : (
           <p>No images to display</p>
         )}

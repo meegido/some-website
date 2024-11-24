@@ -1,4 +1,4 @@
 import { setupServer } from 'msw/node';
-import { handlers } from './handlers';
+import { archiveHandlers } from '../archieve/__tests__/handlers';
 
-export const server = setupServer(...handlers);
+export const server = setupServer(...archiveHandlers);

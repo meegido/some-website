@@ -4,6 +4,18 @@ export type ImagesInfo = {
   tags: string[];
 };
 
+export interface ImagesRepository {
+  retrieve(): Promise<ImagesInfo[]>;
+}
+
+export class InMemoryImagesRepository implements ImagesRepository {
+  async retrieve(): Promise<ImagesInfo[]> {
+    return new Promise((resolve) => {
+      resolve(AI_IMAGES);
+    });
+  }
+}
+
 const AI_IMAGES: ImagesInfo[] = [
   {
     id: 'image-1',

@@ -20,19 +20,23 @@ export interface SearchParams {
   page: number;
 }
 
-export const getTerm = async () => {
-  const baseUrl = 'https://api.example.com/data';
-  const params = new URLSearchParams({
-    term: 'climate+change',
-    limit: '10',
-    page: '1',
-  });
-  const url = `${baseUrl}?${params.toString()}`;
+export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> => {
+  const queryString = new URLSearchParams({
+    term: params.term,
+    limit: params.limit.toString(),
+    page: params.page.toString(),
+  }).toString();
 
-  fetch(url, {
+  const baseUrl = 'https://openlibrary.org/search.json';
+
+  const url = `${baseUrl}?${queryString.toString()}`;
+
+  const response = await fetch(url, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
-  }).then((response) => response.json());
+  });
+
+  return await response.json();
 };

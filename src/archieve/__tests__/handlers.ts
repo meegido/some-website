@@ -1,4 +1,4 @@
-import { OpenLibraryResult } from 'api/open-library-api';
+import { OpenLibraryResult } from 'archieve/api/open-library-api';
 import { http, HttpResponse } from 'msw';
 
 export type SearchResponse = OpenLibraryResult[];
@@ -21,4 +21,4 @@ export const getTerm = (defaultResponse: SearchResponse = []) => {
 
 const defaultResponse: SearchResponse = [];
 
-export const handlers = [getTerm(defaultResponse)];
+export const archiveHandlers = [getTerm(defaultResponse)];
