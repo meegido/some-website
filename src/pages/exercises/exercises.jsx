@@ -48,6 +48,14 @@ const Exercises = () => {
               <span>🙊</span>
             </Button>
           </article>
+          <article className={styles.card}>
+            <h2>Archieve.org</h2>
+            <img className={styles.thumbnail} src={quotesPreview} alt="Search Archive.org term" />
+            <Button type="button" onClick={() => handlePorjectOnClick('archieve')}>
+              <span>Search</span>
+              <span>🔎</span>
+            </Button>
+          </article>
         </section>
       </section>
     </>

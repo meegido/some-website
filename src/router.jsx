@@ -1,14 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './layout';
 import ErrorBoundary from './shared/components/error-boundary/error-boundary';
-import TipCalculator from './pages/tip-calculator/tip-calculator';
-import ProductPage from './pages/product-page/product-page';
+import TipCalculator from './projects/tip-calculator/tip-calculator';
+import ProductPage from './projects/product-page/product-page';
 import Landing from './pages/landing/landing';
 import Settings from './pages/settings/settings';
 import Exercises from './pages/exercises/exercises';
-import Quotes from './pages/quotes/quotes';
-import AiGallery from './pages/ai-gallery/ai-gallery';
-import Archieve from './archieve/archieve.tsx';
+import Quotes from './projects/quotes/quotes';
+import AiGallery from './pages/ai-gallery/ai-gallery.tsx';
+import Archieve from './projects/archieve/archieve.tsx';
 
 const router = createBrowserRouter([
   {

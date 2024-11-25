@@ -22,10 +22,11 @@ export interface SearchParams {
 
 export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> => {
   const queryString = new URLSearchParams({
-    term: params.term,
+    q: params.term,
     limit: params.limit.toString(),
     page: params.page.toString(),
   }).toString();
+  console.log(queryString, 'query string');
 
   const baseUrl = 'https://openlibrary.org/search.json';
 
@@ -33,9 +34,6 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
 
   const response = await fetch(url, {
     method: 'GET',
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
   });
 
   return await response.json();

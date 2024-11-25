@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import Archieve from 'archieve/archieve';
 import { server } from 'mocks/server';
 import { describe, expect, it } from 'vitest';
 import { SearchResponse, getTerm } from './handlers';
+import Archieve from '../archieve';
 
 describe('Archieve page', () => {
   it('list the results', async () => {

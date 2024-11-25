@@ -7,7 +7,7 @@ const Archieve = () => {
   React.useEffect(() => {
     const fetchResults = async () => {
       const newResults = await getTerm({
-        term: 'climate+change',
+        term: 'climate',
         limit: 10,
         page: 1,
       });
@@ -15,7 +15,9 @@ const Archieve = () => {
     };
 
     fetchResults();
-  }, [results]);
+  }, []);
+
+  console.log(results);
 
   return <div>Hello archieve.org</div>;
 };

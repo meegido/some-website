@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import AiGallery from './ai-gallery';
-import { ImagesInfo, ImagesRepository } from './ai-images';
+import { ImagesInfo, ImagesRepository } from './ai-images.ts';
 
 class FakeImageRepository implements ImagesRepository {
   retrieve(): Promise<ImagesInfo[]> {

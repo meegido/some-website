@@ -1,4 +1,4 @@
-import { ImagesInfo } from '../ai-images';
+import { ImagesInfo } from '../ai-images.ts';
 import styles from './dynamic-gallery.module.css';
 
 interface DynamicGalleryProps {
