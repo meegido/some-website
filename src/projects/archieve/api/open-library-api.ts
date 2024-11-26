@@ -25,15 +25,17 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
     q: params.term,
     limit: params.limit.toString(),
     page: params.page.toString(),
-  }).toString();
-  console.log(queryString, 'query string');
+  });
 
   const baseUrl = 'https://openlibrary.org/search.json';
 
-  const url = `${baseUrl}?${queryString.toString()}`;
+  const url = decodeURI(`${baseUrl}?${queryString}`);
 
   const response = await fetch(url, {
     method: 'GET',
+    // headers: {
+    //   'Content-type': 'application/json;',
+    // },
   });
 
   return await response.json();
