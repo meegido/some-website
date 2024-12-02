@@ -26,13 +26,8 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
   const useMockApi = import.meta.env.VITE_USE_MOCK_API === 'true';
 
   if (useMockApi) {
-    return mockResponse; // Return mock data
-  }
-
-  if (import.meta.env.VITE_USE_MOCK_API === 'true') {
     console.log('Mock API enabled');
-  } else {
-    console.log('Real API enabled');
+    return mockResponse; // Return mock data
   }
 
   const queryString = new URLSearchParams({
