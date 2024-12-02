@@ -1,3 +1,5 @@
+import { mockResponse } from '../../../mocks/mock-open-library-data';
+
 export interface OpenLibraryDoc {
   author_key: string[];
   author_name: string[];
@@ -21,6 +23,18 @@ export interface SearchParams {
 }
 
 export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> => {
+  const useMockApi = import.meta.env.VITE_USE_MOCK_API === 'true';
+
+  if (useMockApi) {
+    return mockResponse; // Return mock data
+  }
+
+  if (import.meta.env.VITE_USE_MOCK_API === 'true') {
+    console.log('Mock API enabled');
+  } else {
+    console.log('Real API enabled');
+  }
+
   const queryString = new URLSearchParams({
     q: params.term,
     limit: params.limit.toString(),
@@ -33,9 +47,9 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
 
   const response = await fetch(url, {
     method: 'GET',
-    // headers: {
-    //   'Content-type': 'application/json;',
-    // },
+    headers: {
+      'Content-type': 'application/json;',
+    },
   });
 
   return await response.json();

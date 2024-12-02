@@ -5,6 +5,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["vite/client"], // Ensure Vite's client types are included
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -26,5 +27,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["vite-env.d.ts", "src/**/*"]
 }
