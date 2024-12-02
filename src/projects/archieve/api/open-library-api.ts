@@ -47,9 +47,9 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
 
   const response = await fetch(url, {
     method: 'GET',
-    headers: {
-      'Content-type': 'application/json;',
-    },
+    // headers: {
+    //   'Content-type': 'application/json;',
+    // },
   });
 
   return await response.json();
