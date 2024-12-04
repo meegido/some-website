@@ -51,6 +51,7 @@ export interface SearchParams {
 
 export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> => {
   const useMockApi = import.meta.env.VITE_USE_MOCK_API === 'true';
+  console.log(useMockApi, 'PUTO MOCK TETE');
 
   if (useMockApi) {
     console.log('Mock API enabled');
@@ -73,6 +74,13 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
     //   'Content-type': 'application/json;',
     // },
   });
+
+  console.log(response.status, 'STATUS');
+
+  if (response.status === 400) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || `HTTP Error: ${response.status}`);
+  }
 
   return await response.json();
 };

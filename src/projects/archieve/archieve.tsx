@@ -1,17 +1,21 @@
 import React from 'react';
 import { getTerm, OpenLibraryDoc, OpenLibraryResult } from './api/open-library-api';
 
+type SearchStatus = 'idle' | 'error' | 'success' | 'loading';
+
 const Archieve = () => {
+  const [searchTerm, setSearchTerm] = React.useState<string>('');
+  const [status, setStatus] = React.useState<SearchStatus>('idle');
   const [results, setResults] = React.useState<OpenLibraryResult>({
     numFound: 0,
     docs: [],
   });
-  const [searchTerm, setSearchTerm] = React.useState<string>('');
 
-  console.log(searchTerm);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus('loading');
 
-  React.useEffect(() => {
-    const fetchResults = async () => {
+    try {
       const response = await getTerm({
         term: searchTerm,
         limit: 10,
@@ -19,13 +23,11 @@ const Archieve = () => {
       });
 
       setResults(response);
-    };
-
-    fetchResults();
-  }, []);
-
-  const handleChangeTerm = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+      setStatus('success');
+    } catch (error) {
+      console.error('Error fetching results:', error);
+      setStatus('error');
+    }
   };
 
   const docs = results.docs;
@@ -33,20 +35,22 @@ const Archieve = () => {
   return (
     <div>
       <article>
-        <form role="search">
-          <label htmlFor="search">Search this site</label>
+        <form role="search" onSubmit={handleSubmit}>
+          <label htmlFor="search">Search</label>
           <input
+            required={true}
             type="search"
             role="searchbox"
             aria-description="search results will appear below"
             placeholder="Search by term in open-library.org"
             id="search"
             value={searchTerm}
-            onChange={(event) => handleChangeTerm(event)}
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
+          <button>Go!</button>
         </form>
       </article>
-      {docs?.length > 0 ? (
+      {status === 'success' &&
         docs.map((document: OpenLibraryDoc) => (
           <article key={document.key}>
             <h3>{document.title}</h3>
@@ -55,10 +59,9 @@ const Archieve = () => {
               alt={document.title}
             />
           </article>
-        ))
-      ) : (
-        <p>No results found</p>
-      )}
+        ))}
+      {status === 'idle' && <h1>Wellcome</h1>}
+      {status === 'error' && <h2>Something went wrong, please try a different search</h2>}
     </div>
   );
 };
