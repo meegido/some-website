@@ -1,14 +1,41 @@
 import { mockResponse } from '../../../mocks/mock-open-library-data';
 
 export interface OpenLibraryDoc {
+  // Book
+  title: string;
+  type: string;
+  language: string[];
+  cover_i?: number;
+  first_publish_year: number;
+  publish_place: string[];
+  format: string[];
+  number_of_pages_median?: number;
+  seed: string[]; // links to author and subject (only)
+  key: string; //book link
+  lending_identifier_s?: string; //alternative book link
+
+  // Author
   author_key: string[];
   author_name: string[];
-  first_publish_year: number;
-  key: string;
-  cover_i: number;
-  language: string[];
-  seed: string[];
-  title: string;
+  contributor?: string[];
+
+  // Borrowable
+  osp_count?: number; // no borrow restrictions
+  public_scan_b: boolean;
+  ebook_access: string;
+  ebook_count_i: number;
+  readinglog_count: number;
+  want_to_read_count: number;
+  currently_reading_count: number;
+
+  // Ratings
+  id_goodreads: string[];
+  ratings_average: number;
+  ratings_count: number;
+
+  // Related topics
+  subject_key: string[]; // to build url
+  subject: string[]; // names
 }
 
 export interface OpenLibraryResult {
@@ -27,7 +54,7 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
 
   if (useMockApi) {
     console.log('Mock API enabled');
-    return mockResponse; // Return mock data
+    return mockResponse;
   }
 
   const queryString = new URLSearchParams({

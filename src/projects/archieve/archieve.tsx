@@ -6,25 +6,46 @@ const Archieve = () => {
     numFound: 0,
     docs: [],
   });
+  const [searchTerm, setSearchTerm] = React.useState<string>('');
+
+  console.log(searchTerm);
 
   React.useEffect(() => {
     const fetchResults = async () => {
       const response = await getTerm({
-        term: 'climate+change',
+        term: searchTerm,
         limit: 10,
         page: 1,
       });
-      console.log('Response:', response);
 
       setResults(response);
     };
 
     fetchResults();
   }, []);
+
+  const handleChangeTerm = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
   const docs = results.docs;
-  console.log('Rendering docs:', docs);
+
   return (
     <div>
+      <article>
+        <form role="search">
+          <label htmlFor="search">Search this site</label>
+          <input
+            type="search"
+            role="searchbox"
+            aria-description="search results will appear below"
+            placeholder="Search by term in open-library.org"
+            id="search"
+            value={searchTerm}
+            onChange={(event) => handleChangeTerm(event)}
+          />
+        </form>
+      </article>
       {docs?.length > 0 ? (
         docs.map((document: OpenLibraryDoc) => (
           <article key={document.key}>

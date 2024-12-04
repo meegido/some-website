@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { server } from '../../../mocks/server.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
 import Archieve from '../archieve';
+import userEvent from '@testing-library/user-event';
 
 describe('Archieve page', () => {
   beforeEach(() => {
@@ -10,11 +11,14 @@ describe('Archieve page', () => {
     });
   });
 
-  it('should list the search results', async () => {
+  it('should list search results after user types a topic', async () => {
     render(<Archieve />);
 
+    const searchInput = screen.getByRole('searchbox');
+    await userEvent.type(searchInput, 'Climate change');
+    expect(searchInput).toHaveValue('Climate change');
+
     const searchTitles = await screen.findAllByRole('heading');
-    expect(searchTitles).toHaveLength(1); // Matches the single item in `defaultResponse.docs`
-    expect(searchTitles[0]).toHaveTextContent('Climate change');
+    expect(searchTitles).toHaveLength(10);
   });
 });
