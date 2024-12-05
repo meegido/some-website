@@ -1,0 +1,147 @@
+.project__wrapper {
+  width: 100%;
+  height: 100%;
+  padding: var(--container-padding);
+  background: linear-gradient(
+    48deg,
+    rgba(249, 250, 251, 0.5) 18.01%,
+    #f7dfe1 33.2%,
+    #f2dbe4 42.34%,
+    #eed5e7 58.78%,
+    #f7dfe1 68.26%,
+    rgba(249, 250, 251, 0.5) 80.43%
+  );
+}
+
+.project__wrapper h1 {
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.document__info,
+.results__wrapper,
+.project,
+.document__details,
+.document__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.project {
+  gap: 32px;
+  border-radius: 16px;
+  background: #f9fafb;
+  box-shadow: 0px 4px 3.7px 0px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  padding: 40px 26px;
+}
+
+.results__wrapper,
+.search__wrapper {
+  border-radius: 12px;
+
+  width: 100%;
+}
+
+.results__wrapper {
+  padding: 0 16px;
+}
+
+.search__wrapper {
+  padding: 20px 32px;
+}
+
+.search__wrapper > div {
+  display: flex;
+  gap: 16px;
+}
+
+.document__info {
+  gap: 8px;
+}
+
+.document__wrapper {
+  gap: 26px;
+  border-bottom: 2px solid #e3e6ec;
+  background: #fff;
+  padding: 48px 24px;
+}
+
+.document__wrapper:last-of-type {
+  border-bottom: none;
+}
+
+.document__details {
+  gap: 18px;
+}
+
+.search__wrapper label {
+  display: none;
+}
+
+.search__wrapper input[type='search'] {
+  width: 100%;
+  border: 2px solid #ced4db;
+  border-radius: 14px;
+  height: 52px;
+  padding: 0 16px;
+  position: relative;
+}
+
+/* .search__wrapper button {
+  outline: 2px solid rgba(94, 103, 228, 0.979);
+} */
+
+.search__wrapper button:focus,
+.search__wrapper input[type='search']:focus {
+  box-shadow: 0 0 3px 0 #1183d6;
+  border-color: #1183d6;
+  outline: none;
+}
+
+.document__image {
+  min-width: 235px;
+}
+
+.document__image img {
+  width: 100%;
+  height: 100%;
+}
+
+.details__title {
+  display: inline-block;
+  font-size: 26px;
+  line-height: 38px;
+}
+
+.subject,
+.document__language {
+  text-transform: capitalize;
+}
+
+.subject__list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.subject__list li {
+  display: inline;
+}
+
+@media (min-width: 768px) {
+  .details__title {
+    display: inline;
+  }
+}
+
+@media (min-width: 1024px) {
+  .results__wrapper {
+    padding: 0 26px;
+  }
+
+  .document__wrapper {
+    gap: 32px;
+    padding: 48px 24px;
+    flex-direction: row;
+  }
+}

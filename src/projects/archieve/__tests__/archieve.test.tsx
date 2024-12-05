@@ -8,22 +8,19 @@ describe('Archieve page', () => {
     render(<Archieve />);
     const searchInput = screen.getByRole('searchbox');
     expect(searchInput).toBeInTheDocument();
-
-    const wellcomeText = screen.getByText(/Wellcome/i);
-    expect(wellcomeText).toBeInTheDocument();
   });
 
   it('should list search results after user enters the search term', async () => {
     render(<Archieve />);
 
     const searchInput = screen.getByRole('searchbox');
-    await userEvent.type(searchInput, 'Patatas change');
+    await userEvent.type(searchInput, 'Climate change{enter}');
 
-    const submitButton = screen.getByRole('button', { name: /go!/i });
-    await userEvent.click(submitButton);
+    // const submitButton = screen.getByRole('button', { name: /go!/i });
+    // await userEvent.click(submitButton);
 
     await waitFor(() => {
-      const searchTitles = screen.queryAllByRole('heading');
+      const searchTitles = screen.queryAllByRole('heading', { level: 3 });
       expect(searchTitles).toHaveLength(10);
     });
   });
@@ -32,10 +29,10 @@ describe('Archieve page', () => {
     render(<Archieve />);
 
     const searchInput = screen.getByRole('searchbox');
-    await userEvent.type(searchInput, 'error');
+    await userEvent.type(searchInput, 'error{enter}');
 
-    const submitButton = screen.getByRole('button', { name: /go!/i });
-    await userEvent.click(submitButton);
+    // const submitButton = screen.getByRole('button', { name: /go!/i });
+    // await userEvent.click(submitButton);
 
     await waitFor(() => {
       expect(
