@@ -101,11 +101,11 @@
 
 .document__image {
   min-width: 235px;
+  width: 400px;
 }
 
 .document__image img {
   width: 100%;
-  height: 100%;
 }
 
 .details__title {
