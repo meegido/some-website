@@ -7,6 +7,7 @@ export interface OpenLibraryDoc {
   language: string[];
   cover_i?: number;
   first_publish_year: number;
+  // cambiar por place y también iterar
   publish_place: string[];
   format: string[];
   number_of_pages_median?: number;
