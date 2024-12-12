@@ -123,6 +123,9 @@
 .subject__list {
   list-style: none;
   padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .subject__list li {

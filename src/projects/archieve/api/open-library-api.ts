@@ -1,12 +1,12 @@
+// import { mockResponseFeminism } from '../../../mocks/mock-open-library-data-2';
 import { mockResponse } from '../../../mocks/mock-open-library-data';
 
 export interface OpenLibraryDoc {
   // Book
   title: string;
   type: string;
-  language: string[];
   cover_i?: number;
-  first_publish_year: number;
+  publish_year: number[];
   // cambiar por place y también iterar
   publish_place: string[];
   format: string[];
@@ -14,16 +14,18 @@ export interface OpenLibraryDoc {
   seed: string[]; // links to author and subject (only)
   key: string; //book link
   lending_identifier_s?: string; //alternative book link
+  first_sentence?: string;
 
   // Author
   author_key: string[];
-  author_name: string[];
-  contributor?: string[];
+  author_name?: string[];
+  person?: string[];
+  people?: string[];
 
   // Borrowable
   osp_count?: number; // no borrow restrictions
   public_scan_b: boolean;
-  ebook_access: string;
+  ebook_access: 'no_ebook' | 'public' | 'borrowable';
   ebook_count_i: number;
   readinglog_count: number;
   want_to_read_count: number;

@@ -31,7 +31,6 @@ const Archieve = () => {
   };
 
   const docs = results.docs;
-  console.log(docs.map((doc) => doc.subject).map((subject) => subject));
 
   return (
     <div className={styles.project__wrapper}>
@@ -69,8 +68,14 @@ const Archieve = () => {
                       <span>
                         <h3>{document.title}</h3>
                       </span>
-                      <span>by</span> <span>{document.author_name}</span>
+                      <span>by</span>{' '}
+                      <span>
+                        {document?.person && document?.person.length <= 1
+                          ? document.person
+                          : document.author_name}
+                      </span>
                     </div>
+                    <div>{document.first_sentence && <p>{document.first_sentence}</p>}</div>
                     <div>
                       <p>Borrowable</p>
                     </div>
@@ -78,38 +83,52 @@ const Archieve = () => {
                   <article className={styles.document__info}>
                     <div>
                       {document.publish_place && (
-                        <span>Published place: {document.publish_place}. </span>
+                        <span>Published place: {document.publish_place[0]}. </span>
                       )}
-                      <span>Year: {document.first_publish_year}.</span>{' '}
+                      <span>Year: {document.publish_year[0]}.</span>{' '}
                       {document.number_of_pages_median && (
                         <span>Number of pages: {document.number_of_pages_median}.</span>
                       )}{' '}
-                      <span className={styles.document__language}>
-                        Language: {document.language}.
-                      </span>
                     </div>
-                    {document.contributor && (
-                      <div>
-                        <p>Contributors: {document.contributor}</p>
-                      </div>
-                    )}
                   </article>
                   <article>
                     {document.subject && document.subject_key && (
-                      <ul className={styles.subject__list}>
-                        {document.subject.map((subject, index) => (
-                          <li key={index}>
-                            <a
-                              className={styles.subject}
-                              href={`https://openlibrary.org/subjects/${document.subject_key[index]}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {subject}.{' '}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                      <div>
+                        <p>Related topics</p>
+                        <ul className={styles.subject__list}>
+                          {document.subject.map((subject, index) => (
+                            <li key={index}>
+                              <a
+                                className={styles.subject}
+                                href={`https://openlibrary.org/subjects/${document.subject_key[index]}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {subject}.{' '}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {document.person && (
+                      <>
+                        <p>Related people</p>
+                        <ul>
+                          {document.person?.map((individual, index) => (
+                            <li key={individual}>
+                              <a
+                                className={styles.subject}
+                                href={`https://openlibrary.org/subjects/person:${document.person?.[index]}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {individual}.{' '}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
                     )}
                   </article>
                 </section>
