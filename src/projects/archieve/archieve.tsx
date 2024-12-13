@@ -75,27 +75,46 @@ const Archieve = () => {
                           : document.author_name}
                       </span>
                     </div>
-                    <div>{document.first_sentence && <p>{document.first_sentence}</p>}</div>
-                    <div>
-                      <p>Borrowable</p>
+                    <div className={styles.borrow}>
+                      {document.ebook_access === 'public' && (
+                        <p className={styles.public}>Bookable</p>
+                      )}
+                      {document.ebook_access === 'no_ebook' && (
+                        <p className={styles.no__ebook}>Not in library</p>
+                      )}
+                      {document.ebook_access === 'borrowable' && (
+                        <p className={styles.borrowable}>Borrowable</p>
+                      )}
                     </div>
                   </article>
+                  <div className={styles.document__sentence}>
+                    {document.first_sentence && <p>{document.first_sentence}</p>}
+                  </div>
                   <article className={styles.document__info}>
-                    <div>
+                    <div className={styles['document__info--item']}>
                       {document.publish_place && (
-                        <span>Published place: {document.publish_place[0]}. </span>
+                        <>
+                          <span>Published place: </span>
+                          <span>{document.publish_place[0]}.</span>
+                        </>
                       )}
-                      <span>Year: {document.publish_year[0]}.</span>{' '}
+                      <div className={styles['document__info--item']}>
+                        <span>Year: </span>
+                        <span>{document.publish_year[0]}.</span>
+                      </div>{' '}
                       {document.number_of_pages_median && (
-                        <span>Number of pages: {document.number_of_pages_median}.</span>
+                        <div>
+                          <span>Number of pages: </span>
+                          <span>{document.number_of_pages_median}.</span>
+                        </div>
                       )}{' '}
                     </div>
                   </article>
-                  <article>
+                  <article className={styles.document__related}>
                     {document.subject && document.subject_key && (
                       <div>
-                        <p>Related topics</p>
-                        <ul className={styles.subject__list}>
+                        <h4>Related topics</h4>
+                        <ul className={styles.related__list}>
                           {document.subject.map((subject, index) => (
                             <li key={index}>
                               <a
@@ -112,9 +131,9 @@ const Archieve = () => {
                       </div>
                     )}
                     {document.person && (
-                      <>
-                        <p>Related people</p>
-                        <ul>
+                      <div>
+                        <h4>Related people</h4>
+                        <ul className={styles.related__list}>
                           {document.person?.map((individual, index) => (
                             <li key={individual}>
                               <a
@@ -128,7 +147,7 @@ const Archieve = () => {
                             </li>
                           ))}
                         </ul>
-                      </>
+                      </div>
                     )}
                   </article>
                 </section>

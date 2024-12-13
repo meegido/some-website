@@ -1,4 +1,4 @@
-import { OpenLibraryResult } from 'projects/archieve/api/open-library-api';
+import { OpenLibraryResult } from '../projects/archieve/api/open-library-api';
 
 export const mockResponse: OpenLibraryResult = {
   numFound: 19522,

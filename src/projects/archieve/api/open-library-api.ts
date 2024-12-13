@@ -1,5 +1,5 @@
-// import { mockResponseFeminism } from '../../../mocks/mock-open-library-data-2';
-import { mockResponse } from '../../../mocks/mock-open-library-data';
+import { mockResponseFeminism } from '../../../mocks/mock-open-library-data-2';
+// import { mockResponse } from '../../../mocks/mock-open-library-data';
 
 export interface OpenLibraryDoc {
   // Book
@@ -25,7 +25,7 @@ export interface OpenLibraryDoc {
   // Borrowable
   osp_count?: number; // no borrow restrictions
   public_scan_b: boolean;
-  ebook_access: 'no_ebook' | 'public' | 'borrowable';
+  ebook_access: BORROW__STATUS;
   ebook_count_i: number;
   readinglog_count: number;
   want_to_read_count: number;
@@ -57,7 +57,7 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
 
   if (useMockApi) {
     console.log('Mock API enabled');
-    return mockResponse;
+    return mockResponseFeminism;
   }
 
   const queryString = new URLSearchParams({
