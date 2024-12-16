@@ -67,7 +67,6 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
   });
 
   const baseUrl = 'https://openlibrary.org/search.json';
-
   const url = decodeURI(`${baseUrl}?${queryString}`);
 
   const response = await fetch(url, {
@@ -76,8 +75,6 @@ export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> 
     //   'Content-type': 'application/json;',
     // },
   });
-
-  console.log(response.status, 'STATUS');
 
   if (response.status === 400) {
     const errorData = await response.json();

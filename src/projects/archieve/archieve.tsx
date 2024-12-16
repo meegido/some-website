@@ -3,7 +3,8 @@ import { getTerm, OpenLibraryDoc, OpenLibraryResult } from './api/open-library-a
 import styles from './archieve.module.css';
 import useToggle from '../../hooks/use-toggle';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import StarRating from './components/star-rating';
+import StarRating from './components/stars/star-rating';
+import Pagination from './components/pagination/pagination';
 
 type SearchStatus = 'idle' | 'error' | 'success' | 'loading';
 
@@ -14,25 +15,47 @@ const Archieve = () => {
     numFound: 0,
     docs: [],
   });
+  const [page, setPage] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState(1);
   const [isOpen, toggleOpen] = useToggle(false);
   const dropdownRef = React.useRef<HTMLUListElement>(null);
+  const limit = 5;
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const fetchResults = async () => {
     setStatus('loading');
 
     try {
       const response = await getTerm({
         term: searchTerm,
-        limit: 10,
-        page: 1,
+        limit: limit,
+        page: page,
       });
 
       setResults(response);
+      setTotalPages(Math.ceil(response.numFound / limit));
       setStatus('success');
     } catch (error) {
       setStatus('error');
     }
+  };
+
+  React.useEffect(() => {
+    if (searchTerm) {
+      fetchResults();
+    }
+  }, [page]);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    fetchResults();
+  };
+
+  const handlePageChange = (direction: 'next' | 'previous') => {
+    setPage((prevPage: number) => {
+      if (direction === 'next') return prevPage + 1;
+      if (direction === 'previous') return Math.max(prevPage - 1, 1) || 1;
+      return prevPage;
+    });
   };
 
   const docs = results.docs;
@@ -194,6 +217,9 @@ const Archieve = () => {
 
         {status === 'error' && <h2>Something went wrong, please try a different search</h2>}
       </section>
+      {docs && docs.length > 0 && (
+        <Pagination page={page} totalPages={totalPages} handlePageChange={handlePageChange} />
+      )}
     </div>
   );
 };

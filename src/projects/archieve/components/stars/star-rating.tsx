@@ -37,7 +37,7 @@ const StarRating = ({ rating, ratingCount }: StarRatingProps) => {
           />
         ))}
       </span>
-      <p>{ratingCount} Ratings</p>
+      <p>{ratingCount < 0 || ratingCount === undefined ? '0 Ratings' : ratingCount + ' Ratings'}</p>
     </div>
   );
 };

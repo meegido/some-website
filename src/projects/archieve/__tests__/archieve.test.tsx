@@ -31,13 +31,27 @@ describe('Archieve page', () => {
     const searchInput = screen.getByRole('searchbox');
     await userEvent.type(searchInput, 'error{enter}');
 
-    // const submitButton = screen.getByRole('button', { name: /go!/i });
-    // await userEvent.click(submitButton);
-
     await waitFor(() => {
       expect(
         screen.queryByText(/Something went wrong, please try a different search/i)
       ).toBeInTheDocument();
     });
   });
+
+  it('should show the pagination buttons when the results load', async () => {
+    render(<Archieve />);
+
+    const searchInput = screen.getByRole('searchbox');
+    await userEvent.type(searchInput, 'Climate change{enter}');
+
+    await waitFor(() => {
+      const prevButton = screen.queryByRole('button', { name: /previous/i });
+      expect(prevButton).toBeInTheDocument();
+
+      const nextButton = screen.queryByRole('button', { name: /next/i });
+      expect(nextButton).toBeInTheDocument();
+    });
+  });
+
+  it('should load next results when user click on next page', () => {});
 });

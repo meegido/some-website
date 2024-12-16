@@ -1,6 +1,5 @@
 .project__wrapper {
   width: 100%;
-  height: 100%;
   padding: var(--container-padding);
   background: linear-gradient(
     48deg,
@@ -11,11 +10,12 @@
     #f7dfe1 68.26%,
     rgba(249, 250, 251, 0.5) 80.43%
   );
-  height: 100vh;
+  height: 100%; /*  Container query?  */
+  min-height: 100vh;
 }
 
 .project {
-  gap: 32px;
+  gap: 32px; /*  Container query?  */
   border-radius: 16px;
   background: #f9fafb;
   box-shadow: 0px 4px 3.7px 0px rgba(0, 0, 0, 0.3);
@@ -27,6 +27,7 @@
   text-align: center;
 }
 
+.document__related > div,
 .document__card,
 .document__related,
 .document__info,
@@ -58,6 +59,7 @@
   gap: 16px;
 }
 
+.document__related > div,
 .document__info {
   gap: 8px;
 }
@@ -76,7 +78,7 @@
   gap: 26px;
 }
 
-.document__wrapper:last-of-type {
+.document__card:last-of-type {
   border-bottom: none;
 }
 
@@ -114,6 +116,7 @@
 
 .document__image {
   min-width: 232px;
+  box-shadow: -1px 2px 11px -2px rgba(0, 0, 0, 0.75);
 }
 
 .document__image img {

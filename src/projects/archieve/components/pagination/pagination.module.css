@@ -1,0 +1,13 @@
+.pagination__wrappper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  gap: 16px;
+}
+
+.pagination__wrappper button {
+  border: 2px solid #f7dfe1;
+}
