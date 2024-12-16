@@ -3,6 +3,7 @@ import { getTerm, OpenLibraryDoc, OpenLibraryResult } from './api/open-library-a
 import styles from './archieve.module.css';
 import useToggle from '../../hooks/use-toggle';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import StarRating from './components/star-rating';
 
 type SearchStatus = 'idle' | 'error' | 'success' | 'loading';
 
@@ -174,10 +175,10 @@ const Archieve = () => {
                   </section>
                 </div>
                 <div className={styles.borrow__info}>
-                  <div>
-                    <p>{document.ratings_average}</p>
-                    <p>{document.ratings_count}</p>
-                  </div>
+                  <StarRating
+                    rating={document.ratings_average}
+                    ratingCount={document.ratings_count}
+                  />
                   <div className={`${styles.borrow} ${styles.reading}`}>
                     <p className={styles.info}>
                       <span>{document.readinglog_count}</span> <span>Reading</span>

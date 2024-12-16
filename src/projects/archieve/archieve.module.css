@@ -265,6 +265,7 @@
     border-top: none;
     border-left: 2px solid #e3e6ec;
     padding: 24px;
+    gap: 26px;
   }
 
   .document__image {
@@ -275,6 +276,7 @@
 @media (min-width: 1440px) {
   .document__wrapper {
     gap: 32px;
+    padding: 48px 48px 48px 24px;
   }
 
   .document__image {
@@ -282,6 +284,6 @@
   }
 
   .borrow__info {
-    padding: 48px 24px;
+    padding: 48px 24px 16px 40px;
   }
 }

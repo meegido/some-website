@@ -1,0 +1,10 @@
+.stars__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.stars__row {
+  display: flex;
+}
