@@ -1,6 +1,8 @@
 import React from 'react';
 import { getTerm, OpenLibraryDoc, OpenLibraryResult } from './api/open-library-api';
 import styles from './archieve.module.css';
+import useToggle from '../../hooks/use-toggle';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 type SearchStatus = 'idle' | 'error' | 'success' | 'loading';
 
@@ -11,6 +13,8 @@ const Archieve = () => {
     numFound: 0,
     docs: [],
   });
+  const [isOpen, toggleOpen] = useToggle(false);
+  const dropdownRef = React.useRef<HTMLUListElement>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -113,21 +117,32 @@ const Archieve = () => {
                   <article className={styles.document__related}>
                     {document.subject && document.subject_key && (
                       <div>
-                        <h4>Related topics</h4>
-                        <ul className={styles.related__list}>
-                          {document.subject.map((subject, index) => (
-                            <li key={index}>
-                              <a
-                                className={styles.subject}
-                                href={`https://openlibrary.org/subjects/${document.subject_key[index]}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {subject}.{' '}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
+                        <div className={styles.open__content}>
+                          <h4>Related topics</h4>
+                          <button onClick={() => toggleOpen()}>
+                            {isOpen ? (
+                              <ChevronUp size={20} strokeWidth={3} />
+                            ) : (
+                              <ChevronDown size={20} strokeWidth={3} />
+                            )}
+                          </button>
+                        </div>
+                        {isOpen && (
+                          <ul className={styles.related__list} ref={dropdownRef}>
+                            {document.subject.map((subject, index) => (
+                              <li key={index}>
+                                <a
+                                  className={styles.subject}
+                                  href={`https://openlibrary.org/subjects/${document.subject_key[index]}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {subject}.{' '}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                     )}
                     {document.person && (
@@ -142,7 +157,7 @@ const Archieve = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                {individual}.{' '}
+                                {individual}.{'  '}
                               </a>
                             </li>
                           ))}

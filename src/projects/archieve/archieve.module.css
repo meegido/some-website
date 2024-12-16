@@ -136,6 +136,10 @@
   text-transform: capitalize;
 }
 
+.subject {
+  text-decoration: none;
+}
+
 .related__list {
   list-style: none;
   padding-left: 0;
@@ -191,6 +195,16 @@
     padding: 48px 24px;
     flex-direction: row;
   }
+}
+
+.open__content {
+  display: flex;
+  align-items: center;
+}
+
+.open__content button {
+  background-color: transparent;
+  padding: 0 8px;
 }
 
 @media (min-width: 1200px) {
