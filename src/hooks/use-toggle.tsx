@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useToggle = (initialValue = false) => {
+const useToggle = (initialValue: boolean = false): [boolean, () => void] => {
   const [value, setValue] = React.useState(initialValue);
 
   if (typeof initialValue !== 'boolean' && typeof initialValue !== 'function') {

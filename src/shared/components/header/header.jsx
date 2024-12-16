@@ -1,12 +1,14 @@
 import React from 'react';
 import styles from './header.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/theme-provider';
 import { Moon, Sun } from 'lucide-react';
 import ProfileDropdown from './profile-dropdown/profile-dropdown';
 
 const Header = () => {
   const { theme, toggleTheme } = React.useContext(ThemeContext);
+
+ 
 
   return (
     <div className={styles.header__wrapper} data-theme={theme}>
@@ -34,7 +36,7 @@ const Header = () => {
                 {theme === 'light' ? <Sun /> : <Moon />}
               </button>
             </div>
-            <ProfileDropdown />
+            <ProfileDropdown></ProfileDropdown>
           </div>
         </div>
       </header>
