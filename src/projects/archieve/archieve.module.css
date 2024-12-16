@@ -14,11 +14,20 @@
   height: 100vh;
 }
 
+.project {
+  gap: 32px;
+  border-radius: 16px;
+  background: #f9fafb;
+  box-shadow: 0px 4px 3.7px 0px rgba(0, 0, 0, 0.3);
+  padding: 40px 0px;
+}
+
 .project__wrapper h1 {
   padding-bottom: 40px;
   text-align: center;
 }
 
+.document__card,
 .document__related,
 .document__info,
 .results__wrapper,
@@ -27,14 +36,6 @@
 .document__wrapper {
   display: flex;
   flex-direction: column;
-}
-
-.project {
-  gap: 32px;
-  border-radius: 16px;
-  background: #f9fafb;
-  box-shadow: 0px 4px 3.7px 0px rgba(0, 0, 0, 0.3);
-  padding: 40px 0px;
 }
 
 .results__wrapper,
@@ -51,6 +52,7 @@
   padding: 20px 32px;
 }
 
+.borrow__info,
 .search__wrapper > div {
   display: flex;
   gap: 16px;
@@ -64,11 +66,14 @@
   gap: 24px;
 }
 
-.document__wrapper {
-  gap: 26px;
+.document__card {
   border-bottom: 2px solid #e3e6ec;
   background: #fff;
   padding: 48px 24px;
+}
+
+.document__wrapper {
+  gap: 26px;
 }
 
 .document__wrapper:last-of-type {
@@ -156,6 +161,13 @@
   width: fit-content;
 }
 
+.borrow.reading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
 .borrow p {
   color: #640d00;
   font-size: 18px;
@@ -172,8 +184,22 @@
   background-color: #fef0c7;
 }
 
+.borrow .info {
+  background-color: #f2f4f7;
+}
+
 .borrow .no__ebook {
   background-color: #fec9c7;
+}
+
+.borrow__info {
+  border-top: 2px solid #e3e6ec;
+  padding: 24px 0;
+  justify-content: space-between;
+}
+
+.info {
+  width: fit-content;
 }
 
 @media (min-width: 768px) {
@@ -208,6 +234,16 @@
 }
 
 @media (min-width: 1200px) {
+  .document__wrapper {
+    flex: 1 1 0;
+    gap: 16px;
+  }
+
+  .document__card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
   .document__intro {
     flex-direction: row;
     align-items: baseline;
@@ -222,5 +258,30 @@
     display: flex;
     width: 100%;
     flex: 1 1 0;
+  }
+
+  .borrow__info {
+    flex-direction: column;
+    border-top: none;
+    border-left: 2px solid #e3e6ec;
+    padding: 24px;
+  }
+
+  .document__image {
+    min-width: 128px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .document__wrapper {
+    gap: 32px;
+  }
+
+  .document__image {
+    min-width: 226px;
+  }
+
+  .borrow__info {
+    padding: 48px 24px;
   }
 }

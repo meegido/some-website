@@ -25,7 +25,7 @@ export interface OpenLibraryDoc {
   // Borrowable
   osp_count?: number; // no borrow restrictions
   public_scan_b: boolean;
-  ebook_access: BORROW__STATUS;
+  ebook_access: string;
   ebook_count_i: number;
   readinglog_count: number;
   want_to_read_count: number;

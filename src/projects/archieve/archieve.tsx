@@ -59,113 +59,134 @@ const Archieve = () => {
         <section className={styles.results__wrapper}>
           {status === 'success' &&
             docs.map((document: OpenLibraryDoc) => (
-              <article key={document.key} className={styles.document__wrapper}>
-                <div className={styles.document__image}>
-                  <img
-                    src={`https://covers.openlibrary.org/b/id/${document.cover_i}-M.jpg`}
-                    alt={document.title}
-                  />
-                </div>
-                <section className={styles.document__details}>
-                  <article className={styles.document__intro}>
-                    <div className={styles.details__title}>
-                      <span>
-                        <h3>{document.title}</h3>
-                      </span>
-                      <span>by</span>{' '}
-                      <span>
-                        {document?.person && document?.person.length <= 1
-                          ? document.person
-                          : document.author_name}
-                      </span>
-                    </div>
-                    <div className={styles.borrow}>
-                      {document.ebook_access === 'public' && (
-                        <p className={styles.public}>Bookable</p>
-                      )}
-                      {document.ebook_access === 'no_ebook' && (
-                        <p className={styles.no__ebook}>Not in library</p>
-                      )}
-                      {document.ebook_access === 'borrowable' && (
-                        <p className={styles.borrowable}>Borrowable</p>
-                      )}
-                    </div>
-                  </article>
-                  <div className={styles.document__sentence}>
-                    {document.first_sentence && <p>{document.first_sentence}</p>}
+              <article key={document.key} className={styles.document__card}>
+                <div className={styles.document__wrapper}>
+                  <div className={styles.document__image}>
+                    <img
+                      src={`https://covers.openlibrary.org/b/id/${document.cover_i}-M.jpg`}
+                      alt={document.title}
+                    />
                   </div>
-                  <article className={styles.document__info}>
-                    <div className={styles['document__info--item']}>
-                      {document.publish_place && (
-                        <>
-                          <span>Published place: </span>
-                          <span>{document.publish_place[0]}.</span>
-                        </>
-                      )}
-                      <div className={styles['document__info--item']}>
-                        <span>Year: </span>
-                        <span>{document.publish_year[0]}.</span>
-                      </div>{' '}
-                      {document.number_of_pages_median && (
-                        <div>
-                          <span>Number of pages: </span>
-                          <span>{document.number_of_pages_median}.</span>
-                        </div>
-                      )}{' '}
+                  <section className={styles.document__details}>
+                    <article className={styles.document__intro}>
+                      <div className={styles.details__title}>
+                        <span>
+                          <h3>{document.title}</h3>
+                        </span>
+                        <span>by</span>{' '}
+                        <span>
+                          {document?.person && document?.person.length <= 1
+                            ? document.person
+                            : document.author_name}
+                        </span>
+                      </div>
+                      <div className={styles.borrow}>
+                        {document.ebook_access === 'public' && (
+                          <p className={styles.public}>Bookable</p>
+                        )}
+                        {document.ebook_access === 'no_ebook' && (
+                          <p className={styles.no__ebook}>Not in library</p>
+                        )}
+                        {document.ebook_access === 'borrowable' && (
+                          <p className={styles.borrowable}>Borrowable</p>
+                        )}
+                      </div>
+                    </article>
+                    <div className={styles.document__sentence}>
+                      {document.first_sentence && <p>{document.first_sentence}</p>}
                     </div>
-                  </article>
-                  <article className={styles.document__related}>
-                    {document.subject && document.subject_key && (
-                      <div>
-                        <div className={styles.open__content}>
-                          <h4>Related topics</h4>
-                          <button onClick={() => toggleOpen()}>
-                            {isOpen ? (
-                              <ChevronUp size={20} strokeWidth={3} />
-                            ) : (
-                              <ChevronDown size={20} strokeWidth={3} />
-                            )}
-                          </button>
+                    <article className={styles.document__info}>
+                      <div className={styles['document__info--item']}>
+                        {document.publish_place && (
+                          <>
+                            <span>Published place: </span>
+                            <span>{document.publish_place[0]}.</span>
+                          </>
+                        )}
+                        <div className={styles['document__info--item']}>
+                          <span>Year: </span>
+                          <span>{document.publish_year[0]}.</span>
+                        </div>{' '}
+                        {document.number_of_pages_median && (
+                          <div>
+                            <span>Number of pages: </span>
+                            <span>{document.number_of_pages_median}.</span>
+                          </div>
+                        )}{' '}
+                      </div>
+                    </article>
+                    <article className={styles.document__related}>
+                      {document.subject && document.subject_key && (
+                        <div>
+                          <div className={styles.open__content}>
+                            <h4>Related topics</h4>
+                            <button onClick={() => toggleOpen()}>
+                              {isOpen ? (
+                                <ChevronUp size={20} strokeWidth={3} />
+                              ) : (
+                                <ChevronDown size={20} strokeWidth={3} />
+                              )}
+                            </button>
+                          </div>
+                          {isOpen && (
+                            <ul className={styles.related__list} ref={dropdownRef}>
+                              {document.subject.map((sub, index) => {
+                                // console.log(sub);
+                                // console.log(document.subject_key, 'key');
+
+                                return (
+                                  <li key={index}>
+                                    <a
+                                      className={styles.subject}
+                                      href={`https://openlibrary.org/subjects/${document.subject_key[index]}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      {sub}.{'  '}
+                                    </a>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          )}
                         </div>
-                        {isOpen && (
-                          <ul className={styles.related__list} ref={dropdownRef}>
-                            {document.subject.map((subject, index) => (
-                              <li key={index}>
+                      )}
+                      {document.person && (
+                        <div>
+                          <h4>Related people</h4>
+                          <ul className={styles.related__list}>
+                            {document.person?.map((individual, index) => (
+                              <li key={individual}>
                                 <a
                                   className={styles.subject}
-                                  href={`https://openlibrary.org/subjects/${document.subject_key[index]}`}
+                                  href={`https://openlibrary.org/subjects/person:${document.person?.[index]}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  {subject}.{' '}
+                                  {individual}.{'  '}
                                 </a>
                               </li>
                             ))}
                           </ul>
-                        )}
-                      </div>
-                    )}
-                    {document.person && (
-                      <div>
-                        <h4>Related people</h4>
-                        <ul className={styles.related__list}>
-                          {document.person?.map((individual, index) => (
-                            <li key={individual}>
-                              <a
-                                className={styles.subject}
-                                href={`https://openlibrary.org/subjects/person:${document.person?.[index]}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {individual}.{'  '}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </article>
-                </section>
+                        </div>
+                      )}
+                    </article>
+                  </section>
+                </div>
+                <div className={styles.borrow__info}>
+                  <div>
+                    <p>{document.ratings_average}</p>
+                    <p>{document.ratings_count}</p>
+                  </div>
+                  <div className={`${styles.borrow} ${styles.reading}`}>
+                    <p className={styles.info}>
+                      <span>{document.readinglog_count}</span> <span>Reading</span>
+                    </p>
+                    <p className={styles.info}>
+                      <span>{document.want_to_read_count}</span> <span>Want to read</span>
+                    </p>
+                  </div>
+                </div>
               </article>
             ))}
         </section>
