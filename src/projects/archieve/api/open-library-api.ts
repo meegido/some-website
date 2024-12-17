@@ -38,7 +38,7 @@ export interface OpenLibraryDoc {
 
   // Related topics
   subject_key: string[]; // to build url
-  subject: string[]; // names
+  subject_facet: string[]; // names
 }
 
 export interface OpenLibraryResult {

@@ -162,16 +162,18 @@ const Archieve = () => {
                             </div>
                             {isOpen && (
                               <ul className={styles.related__list} ref={dropdownRef}>
-                                {document.subject.map((sub, index) => {
+                                {document.subject_facet?.map((facet, index) => {
+                                  const subjectKey = document.subject_key?.[index];
+                                  if (!subjectKey) return null;
                                   return (
-                                    <li key={sub}>
+                                    <li key={subjectKey}>
                                       <a
                                         className={styles.subject}
-                                        href={`https://openlibrary.org/subjects/${document.subject_key[index]}`}
+                                        href={`https://openlibrary.org/subjects/${subjectKey}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                       >
-                                        {sub}.{'  '}
+                                        {facet}.{'  '}
                                       </a>
                                     </li>
                                   );
