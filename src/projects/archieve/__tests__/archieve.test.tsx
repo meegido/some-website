@@ -1,7 +1,9 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Archieve from '../archieve';
 import userEvent from '@testing-library/user-event';
+
+
 
 describe('Archieve page', () => {
   it('when it loads, should show only a search box', () => {
@@ -44,14 +46,20 @@ describe('Archieve page', () => {
     const searchInput = screen.getByRole('searchbox');
     await userEvent.type(searchInput, 'Climate change{enter}');
 
-    await waitFor(() => {
-      const prevButton = screen.queryByRole('button', { name: /previous/i });
-      expect(prevButton).toBeInTheDocument();
+    const prevButton = screen.queryByRole('button', { name: /previous/i });
+    expect(prevButton).toBeInTheDocument();
 
-      const nextButton = screen.queryByRole('button', { name: /next/i });
-      expect(nextButton).toBeInTheDocument();
-    });
+    const nextButton = screen.queryByRole('button', { name: /next/i });
+    expect(nextButton).toBeInTheDocument();
   });
 
-  it('should load next results when user click on next page', () => {});
+  it('should call fetch to load results when user click on next page', async () => {
+    render(<Archieve />);
+
+    const searchInput = screen.getByRole('searchbox');
+    await userEvent.type(searchInput, 'Climate change{enter}');
+
+    const nextButton = screen.getByRole('button', { name: /next/i });
+    fireEvent.click(nextButton);
+  });
 });
