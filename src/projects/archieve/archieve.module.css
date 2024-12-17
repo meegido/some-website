@@ -116,11 +116,11 @@
 
 .document__image {
   min-width: 232px;
-  box-shadow: -1px 2px 11px -2px rgba(0, 0, 0, 0.75);
 }
 
 .document__image img {
   width: 100%;
+  box-shadow: -1px 2px 11px -2px rgba(0, 0, 0, 0.75);
 }
 
 .document__intro {
@@ -179,6 +179,10 @@
   border-radius: 18px;
 }
 
+.borrow.reading p {
+  color: rgba(69, 79, 98, 1);
+}
+
 .borrow .borrowable {
   background-color: #c7fee5;
 }
@@ -205,6 +209,16 @@
   width: fit-content;
 }
 
+.open__content {
+  display: flex;
+  align-items: center;
+}
+
+.open__content button {
+  background-color: transparent;
+  padding: 0 8px;
+}
+
 @media (min-width: 768px) {
   .project {
     padding: 40px 26px;
@@ -224,16 +238,6 @@
     padding: 48px 24px;
     flex-direction: row;
   }
-}
-
-.open__content {
-  display: flex;
-  align-items: center;
-}
-
-.open__content button {
-  background-color: transparent;
-  padding: 0 8px;
 }
 
 @media (min-width: 1200px) {
@@ -259,7 +263,7 @@
   .borrow {
     justify-content: flex-end;
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     flex: 1 1 0;
   }
 
@@ -283,7 +287,7 @@
   }
 
   .document__image {
-    min-width: 226px;
+    min-width: 240px;
   }
 
   .borrow__info {
