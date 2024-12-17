@@ -1,7 +1,6 @@
 import React from 'react';
 import { getTerm, OpenLibraryDoc, OpenLibraryResult } from './api/open-library-api';
 import styles from './archieve.module.css';
-import useToggle from '../../hooks/use-toggle';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import StarRating from './components/stars/star-rating';
 import Pagination from './components/pagination/pagination';
@@ -148,7 +147,7 @@ const Archieve = () => {
                         </div>
                       </article>
                       <article className={styles.document__related}>
-                        {document.subject && document.subject_key && (
+                        {document.subject_facet && document.subject_key && (
                           <div>
                             <div className={styles.open__content}>
                               <h4>Related topics</h4>
