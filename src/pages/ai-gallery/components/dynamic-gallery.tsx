@@ -35,7 +35,7 @@ const DynamicGallery: React.FC<DynamicGalleryProps> = ({ images, numCols, numRow
 };
 
 const range = (start: number, end?: number, step: number = 1) => {
-  let output = [];
+  const output = [];
   if (typeof end === 'undefined') {
     end = start;
     start = 0;

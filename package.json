@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format:prettier": "prettier --write .",
     "format": "eslint . prettier --check \"**/*.{js,ts,jsx,tsx}\"",
     "test": "vitest"
