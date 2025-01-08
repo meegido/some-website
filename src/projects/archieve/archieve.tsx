@@ -20,7 +20,7 @@ const Archieve = () => {
   const dropdownRef = React.useRef<HTMLUListElement>(null);
   const limit = 5;
 
-  const fetchResults = async () => {
+  const fetchResults = React.useCallback(async () => {
     setStatus('loading');
 
     try {
@@ -36,13 +36,13 @@ const Archieve = () => {
     } catch (error) {
       setStatus('error');
     }
-  };
+  }, [page, limit, searchTerm]);
 
   React.useEffect(() => {
     if (searchTerm) {
       fetchResults();
     }
-  }, [page]);
+  }, [searchTerm, fetchResults]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
