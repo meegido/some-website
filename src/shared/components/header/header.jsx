@@ -38,21 +38,19 @@ const Header = () => {
             </div>
           </Drawer>
         ) : (
-          <div className={styles.desktop__nav}>
-            <nav>
-              <ul className={styles.navigation__list}>
-                <li>
-                  <NavLink to="/exercises">Exercises</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/ai-gallery">AI Gallery</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/about">About</NavLink>
-                </li>
-              </ul>
-            </nav>
-          </div>
+          <nav className={styles.desktop__nav}>
+            <ul className={styles.navigation__list}>
+              <li>
+                <NavLink to="/exercises">Exercises</NavLink>
+              </li>
+              <li>
+                <NavLink to="/ai-gallery">AI Gallery</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">About</NavLink>
+              </li>
+            </ul>
+          </nav>
         )}
         <div className={styles.actions}>
           <div className={styles.theme__button}>
