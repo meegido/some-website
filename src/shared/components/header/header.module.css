@@ -1,16 +1,13 @@
 .header__wrapper {
   height: var(--header-height);
   padding: 32px var(--container-padding);
-  width: 100%;
   display: flex;
-  align-items: center;
 }
 
 .header {
   display: flex;
-  width: 100%;
+  flex: 1 1;
   color: var(--color-text);
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -18,7 +15,6 @@
   display: flex;
   justify-content: flex-start;
   padding: 0;
-  width: 100%;
   font-size: 32px;
 }
 
@@ -27,18 +23,44 @@
   color: var(--color-text);
 }
 
-nav {
-  display: flex;
-  width: 100%;
+.hamburguer__btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: transform 200ms;
 }
 
-nav ul {
+.hamburguer__btn:hover {
+  transform: scale(1.1);
+}
+
+.desktop__nav {
+  display: none;
+}
+
+.actions {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+nav .navigation__list {
   list-style: none;
   width: 100%;
   padding: 0;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: 32px;
 }
 
@@ -48,35 +70,55 @@ nav li a {
   font-weight: 600;
 }
 
-nav li a:hover {
-  color: rgb(69 86 198);
-}
-
-.action__items {
+.mobile__nav {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 24px;
-  width: 100%;
-}
-
-.header__button {
-  background-color: transparent;
-  padding: 0;
-  color: var(--color-text);
-}
-
-.header__button:focus {
-  outline: none;
-}
-
-.theme__button {
-  width: 32px;
-  height: 32px;
+  padding-top: 32px;
 }
 
 @media (min-width: 1200px) {
   .logotype {
     font-size: 34px;
+  }
+
+  .drawer {
+    display: none;
+  }
+
+  .hamburguer__btn {
+    display: none;
+  }
+
+  .desktop__nav {
+    display: flex;
+    width: 100%;
+  }
+
+  nav .navigation__list {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
+  }
+
+  nav li a:hover {
+    color: rgb(69 86 198);
+  }
+
+  .header__button {
+    background-color: transparent;
+    padding: 0;
+    color: var(--color-text);
+  }
+
+  .header__button:focus {
+    outline: none;
+  }
+
+  .theme__button {
+    width: 32px;
+    height: 32px;
   }
 }
