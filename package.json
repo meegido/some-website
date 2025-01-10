@@ -47,7 +47,7 @@
     "eslint-plugin-vitest": "^0.5.4",
     "globals": "^15.14.0",
     "jsdom": "^25.0.1",
-    "msw": "^2.6.5",
+    "msw": "^2.7.0",
     "prettier": "3.3.3",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.1",
