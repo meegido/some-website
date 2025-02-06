@@ -59,6 +59,25 @@ const projects = [
     ],
     repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/projects/quotes',
   },
+  {
+    id: 'archieve',
+    title: 'Archieve API Search',
+    description: `Sometimes, when I read an article, I want to save only a chunk of it. I want to remember the related concepts and people that are not present in this specific chunk of text. This is a learning exercise to practice forms in React. `,
+    challengeLink: '',
+    challengeSiteName: '',
+    learnings: ['MSW', 'Test doubles', 'Testing library matchers'],
+    skills: ['TDD', 'TS', 'React', 'API Fetch'],
+    requirements: [
+      `The form to add a new quote is open when the user clicks the New Quote button.`,
+      `The quote shouldn't be add if the required fields are empty.`,
+      `Show an error when user submit the quote with the required fields empty.`,
+      `Display the tags as hashtags.`,
+      `If a no required input is empty, remove the title inside the quote's card`,
+      `TO DO: dismiss the modal with escape key (custom hook).`,
+      `TO DO: limit the characters in the quote's textarea.`,
+    ],
+    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/projects/archieve',
+  },
 ];
 
 export default projects;

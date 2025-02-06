@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import tipCalculatorPreview from '../../assets/images/tip-calculator-preview.jpg';
 import ecommercePagePreview from '../../assets/images/product-page-ecommerce.jpg';
 import quotesPreview from '../../assets/images/quotes-preview.png';
+import archivePreview from '../../assets/images/archive-preview.png';
 import Button from '../../shared/components/button/button';
 
 const Exercises = () => {
@@ -50,7 +51,7 @@ const Exercises = () => {
           </article>
           <article className={styles.card}>
             <h2>Archieve.org</h2>
-            <img className={styles.thumbnail} src={quotesPreview} alt="Search Archive.org term" />
+            <img className={styles.thumbnail} src={archivePreview} alt="Search Archive.org term" />
             <Button type="button" onClick={() => handlePorjectOnClick('archieve')}>
               <span>Search</span>
               <span>🔎</span>

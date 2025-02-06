@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: var(--white);
-  background-color: var(--black);
+  /* color: var(--white);
+  background-color: var(--black); */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -107,14 +107,14 @@
 
 [data-theme='dark'] {
   --color-text: var(--pale-orange);
-  --color-bg: hsl(0deg 0% 8%);
+  --color-bg: var(--color-bg);
 }
 
 body {
   font-size: 16px;
   box-sizing: border-box;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  /* color: var(--color-text);
+  background-color: var(--color-bg); */
 }
 
 h1 {
@@ -146,7 +146,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: var(--color-bg);
   }
   button {
     background-color: transparent;
