@@ -34,7 +34,7 @@
   min-width: 200px;
   display: block;
 
-  background: white;
+  background: var(--white);
   padding: 32px;
   animation: slideIn 500ms cubic-bezier(0.14, 0.78, 0.36, 1);
 }

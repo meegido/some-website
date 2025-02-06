@@ -21,21 +21,19 @@ const Header = () => {
 
         {isMenuOpen ? (
           <Drawer handleDismiss={toggleIsMenuOpen} className={styles.drawer}>
-            <div className={styles.mobile__nav}>
-              <nav>
-                <ul className={styles.navigation__list}>
-                  <li>
-                    <NavLink to="/exercises">Exercises</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/ai-gallery">AI Gallery</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/about">About</NavLink>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            <nav className={styles.mobile__nav}>
+              <ul className={styles.navigation__list}>
+                <li>
+                  <NavLink to="/exercises">Exercises</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/ai-gallery">AI Gallery</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/about">About</NavLink>
+                </li>
+              </ul>
+            </nav>
           </Drawer>
         ) : (
           <nav className={styles.desktop__nav}>

@@ -48,6 +48,7 @@
   max-width: 360px;
 }
 
+.github,
 .skills,
 .learning__tags {
   display: flex;
@@ -109,9 +110,22 @@
   font-size: 12px;
 }
 
+.github {
+  gap: 8px;
+  align-items: center;
+}
+
 .github img {
   display: block;
   height: 20px;
+}
+
+.github {
+  color: var(--color-text);
+}
+
+.github:hover {
+  color: rgb(69 86 198);
 }
 
 @media (min-width: 1200px) {
@@ -153,7 +167,6 @@
   .learnings__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 46px;
     max-width: 450px;
   }
 

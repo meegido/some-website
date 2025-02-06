@@ -55,7 +55,13 @@ const ProjectDetails = ({ project, className = '' }) => {
                   </div>
                 </article>
                 <article className={styles.learnings}>
-                  <section className={styles.skills}>
+                  <section className={styles.learning__tags}>
+                    <h2>Skills Used</h2>
+                    {skills.map((skill) => (
+                      <p key={skill}>{skill}</p>
+                    ))}
+                  </section>
+                  <section className={styles.repo__link}>
                     <a
                       className={styles.github}
                       href={repositoryLink}
@@ -63,13 +69,8 @@ const ProjectDetails = ({ project, className = '' }) => {
                       rel="noopener noreferrer"
                     >
                       <img src={GithubLogo} alt="Github project link" />
+                      <p>Exercise link</p>
                     </a>
-                    <h2>Skills Used</h2>
-                  </section>
-                  <section className={styles.learning__tags}>
-                    {skills.map((skill) => (
-                      <p key={skill}>{skill}</p>
-                    ))}
                   </section>
                 </article>
               </section>

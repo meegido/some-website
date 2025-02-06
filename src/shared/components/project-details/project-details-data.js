@@ -16,7 +16,7 @@ const projects = [
       'See hover states for all interactive elements on the page',
       'Change minus icon in cart to trash icon when items quantity is one (added by me).',
     ],
-    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/pages/product-page',
+    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/projects/product-page',
   },
   {
     id: 'tip-calculator',
@@ -38,7 +38,7 @@ const projects = [
       `View the optimal layout for the app depending on their device's screen size.`,
       `See hover states for all interactive elements on the page.`,
     ],
-    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/pages/tip-calculator',
+    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/projects/tip-calculator',
   },
   {
     id: 'quotes',
@@ -57,7 +57,7 @@ const projects = [
       `TO DO: dismiss the modal with escape key (custom hook).`,
       `TO DO: limit the characters in the quote's textarea.`,
     ],
-    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/pages/quotes',
+    repositoryLink: 'https://github.com/meegido/some-website/tree/main/src/projects/quotes',
   },
 ];
 

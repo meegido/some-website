@@ -3,8 +3,6 @@ import { describe, expect, it } from 'vitest';
 import Archieve from '../archieve';
 import userEvent from '@testing-library/user-event';
 
-
-
 describe('Archieve page', () => {
   it('when it loads, should show only a search box', () => {
     render(<Archieve />);
