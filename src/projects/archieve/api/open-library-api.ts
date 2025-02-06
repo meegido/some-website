@@ -56,13 +56,14 @@ export interface SearchParams {
 export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> => {
   const useMockApi = import.meta.env.VITE_USE_MOCK_API === 'true';
 
-  // if (useMockApi) {
-  //   console.log('Mock API enabled');
-  //   return mockResponseFeminism;
-  // }
+  if (useMockApi) {
+    console.log('Mock API enabled');
+    return mockResponseFeminism;
+  }
 
   const queryString = new URLSearchParams({
     q: params.term,
+    fields: '*, availability',
     limit: params.limit.toString(),
     page: params.page.toString(),
   });
