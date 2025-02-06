@@ -4,6 +4,8 @@ import styles from './archieve.module.css';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import StarRating from './components/stars/star-rating';
 import Pagination from './components/pagination/pagination';
+import ProjectDetails from '../../shared/components/project-details/project-details.jsx';
+import PROJECT__DATA from '../../shared/components/project-details/project-details-data.js';
 
 type SearchStatus = 'idle' | 'error' | 'success' | 'loading';
 
@@ -19,6 +21,8 @@ const Archieve = () => {
   const [isDorpdownOpen, setIsDorpdownOpen] = React.useState<{ [key: string]: boolean }>({});
   const dropdownRef = React.useRef<HTMLUListElement>(null);
   const limit = 5;
+
+  const projectData = PROJECT__DATA.find((project: { id: string }) => project.id === 'archieve');
 
   const fetchResults = React.useCallback(async () => {
     setStatus('loading');
@@ -66,168 +70,171 @@ const Archieve = () => {
   const docs = results.docs;
 
   return (
-    <div className={styles.project__wrapper}>
-      <h1>Search in Open Library</h1>
-      <section className={styles.project}>
-        <form role="search" onSubmit={handleSubmit} className={styles.search__wrapper}>
-          <label htmlFor="search">Search in Open Library</label>
-          <div>
-            <input
-              required={true}
-              type="search"
-              role="searchbox"
-              aria-description="search results will appear below"
-              placeholder="Search by term"
-              id="search"
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-            />
-            <button>Search</button>
-          </div>
-        </form>
-        <section className={styles.results__wrapper}>
-          {status === 'success' &&
-            docs.map((document: OpenLibraryDoc) => {
-              const isOpen = isDorpdownOpen[document.key] || false;
-              return (
-                <article key={document.key} className={styles.document__card}>
-                  <div className={styles.document__wrapper}>
-                    <div className={styles.document__image}>
-                      <img
-                        src={`https://covers.openlibrary.org/b/id/${document.cover_i}-M.jpg`}
-                        alt={document.title}
-                      />
-                    </div>
-                    <section className={styles.document__details}>
-                      <article className={styles.document__intro}>
-                        <div className={styles.details__title}>
-                          <span>
-                            <h3>{document.title}</h3>
-                          </span>
-                          <span>by</span>{' '}
-                          <span>
-                            {document?.person && document?.person.length <= 1
-                              ? document.person
-                              : document.author_name}
-                          </span>
-                        </div>
-                        <div className={styles.borrow}>
-                          {document.ebook_access === 'public' && (
-                            <p className={styles.public}>Bookable</p>
-                          )}
-                          {document.ebook_access === 'no_ebook' && (
-                            <p className={styles.no__ebook}>Not in library</p>
-                          )}
-                          {document.ebook_access === 'borrowable' && (
-                            <p className={styles.borrowable}>Borrowable</p>
-                          )}
-                        </div>
-                      </article>
-                      <div className={styles.document__sentence}>
-                        {document.first_sentence && <p>{document.first_sentence}</p>}
+    <section>
+      <ProjectDetails project={projectData} className={`${styles.transparent} `} />
+      <div className={styles.project__wrapper}>
+        <h1>Search books by term</h1>
+        <section className={styles.project}>
+          <form role="search" onSubmit={handleSubmit} className={styles.search__wrapper}>
+            <label htmlFor="search">Search in Open Library</label>
+            <div>
+              <input
+                required={true}
+                type="search"
+                role="searchbox"
+                aria-description="search results will appear below"
+                placeholder="Search by term"
+                id="search"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+              />
+              <button>Search</button>
+            </div>
+          </form>
+          <section className={styles.results__wrapper}>
+            {status === 'success' &&
+              docs.map((document: OpenLibraryDoc) => {
+                const isOpen = isDorpdownOpen[document.key] || false;
+                return (
+                  <article key={document.key} className={styles.document__card}>
+                    <div className={styles.document__wrapper}>
+                      <div className={styles.document__image}>
+                        <img
+                          src={`https://covers.openlibrary.org/b/id/${document.cover_i}-M.jpg`}
+                          alt={document.title}
+                        />
                       </div>
-                      <article className={styles.document__info}>
-                        <div className={styles['document__info--item']}>
-                          {document.publish_place && (
-                            <>
-                              <span>Published place: </span>
-                              <span>{document.publish_place[0]}.</span>
-                            </>
-                          )}
-                          <div className={styles['document__info--item']}>
-                            <span>Year: </span>
-                            <span>{document.first_publish_year}.</span>
-                          </div>{' '}
-                          {document.number_of_pages_median && (
-                            <div>
-                              <span>Number of pages: </span>
-                              <span>{document.number_of_pages_median}.</span>
-                            </div>
-                          )}{' '}
-                        </div>
-                      </article>
-                      <article className={styles.document__related}>
-                        {document.subject_facet && document.subject_key && (
-                          <div>
-                            <div className={styles.open__content}>
-                              <h4>Related topics</h4>
-                              <button onClick={() => handleDropdown(document.key)}>
-                                {isOpen ? (
-                                  <ChevronUp size={20} strokeWidth={3} />
-                                ) : (
-                                  <ChevronDown size={20} strokeWidth={3} />
-                                )}
-                              </button>
-                            </div>
-                            {isOpen && (
-                              <ul className={styles.related__list} ref={dropdownRef}>
-                                {document.subject_facet?.map((facet, index) => {
-                                  const subjectKey = document.subject_key?.[index];
-                                  if (!subjectKey) return null;
-                                  return (
-                                    <li key={subjectKey}>
-                                      <a
-                                        className={styles.subject}
-                                        href={`https://openlibrary.org/subjects/${subjectKey}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                      >
-                                        {facet}.{'  '}
-                                      </a>
-                                    </li>
-                                  );
-                                })}
-                              </ul>
+                      <section className={styles.document__details}>
+                        <article className={styles.document__intro}>
+                          <div className={styles.details__title}>
+                            <span>
+                              <h3>{document.title}</h3>
+                            </span>
+                            <span>by</span>{' '}
+                            <span>
+                              {document?.person && document?.person.length <= 1
+                                ? document.person
+                                : document.author_name}
+                            </span>
+                          </div>
+                          <div className={styles.borrow}>
+                            {document.ebook_access === 'public' && (
+                              <p className={styles.public}>Bookable</p>
+                            )}
+                            {document.ebook_access === 'no_ebook' && (
+                              <p className={styles.no__ebook}>Not in library</p>
+                            )}
+                            {document.ebook_access === 'borrowable' && (
+                              <p className={styles.borrowable}>Borrowable</p>
                             )}
                           </div>
-                        )}
-                        {document.person && (
-                          <div>
-                            <h4>Related people</h4>
-                            <ul className={styles.related__list}>
-                              {document.person?.map((individual, index) => (
-                                <li key={individual}>
-                                  <a
-                                    className={styles.subject}
-                                    href={`https://openlibrary.org/subjects/person:${document.person?.[index]}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    {individual}.{'  '}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
+                        </article>
+                        <div className={styles.document__sentence}>
+                          {document.first_sentence && <p>{document.first_sentence}</p>}
+                        </div>
+                        <article className={styles.document__info}>
+                          <div className={styles['document__info--item']}>
+                            {document.publish_place && (
+                              <>
+                                <span>Published place: </span>
+                                <span>{document.publish_place[0]}.</span>
+                              </>
+                            )}
+                            <div className={styles['document__info--item']}>
+                              <span>Year: </span>
+                              <span>{document.first_publish_year}.</span>
+                            </div>{' '}
+                            {document.number_of_pages_median && (
+                              <div>
+                                <span>Number of pages: </span>
+                                <span>{document.number_of_pages_median}.</span>
+                              </div>
+                            )}{' '}
                           </div>
-                        )}
-                      </article>
-                    </section>
-                  </div>
-                  <div className={styles.borrow__info}>
-                    <StarRating
-                      rating={document.ratings_average}
-                      ratingCount={document.ratings_count}
-                    />
-                    <div className={`${styles.borrow} ${styles.reading}`}>
-                      <p className={styles.info}>
-                        <span>{document.readinglog_count}</span> <span>Reading</span>
-                      </p>
-                      <p className={styles.info}>
-                        <span>{document.want_to_read_count}</span> <span>Want to read</span>
-                      </p>
+                        </article>
+                        <article className={styles.document__related}>
+                          {document.subject_facet && document.subject_key && (
+                            <div>
+                              <div className={styles.open__content}>
+                                <h4>Related topics</h4>
+                                <button onClick={() => handleDropdown(document.key)}>
+                                  {isOpen ? (
+                                    <ChevronUp size={20} strokeWidth={3} />
+                                  ) : (
+                                    <ChevronDown size={20} strokeWidth={3} />
+                                  )}
+                                </button>
+                              </div>
+                              {isOpen && (
+                                <ul className={styles.related__list} ref={dropdownRef}>
+                                  {document.subject_facet?.map((facet, index) => {
+                                    const subjectKey = document.subject_key?.[index];
+                                    if (!subjectKey) return null;
+                                    return (
+                                      <li key={subjectKey}>
+                                        <a
+                                          className={styles.subject}
+                                          href={`https://openlibrary.org/subjects/${subjectKey}`}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                        >
+                                          {facet}.{'  '}
+                                        </a>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              )}
+                            </div>
+                          )}
+                          {document.person && (
+                            <div>
+                              <h4>Related people</h4>
+                              <ul className={styles.related__list}>
+                                {document.person?.map((individual, index) => (
+                                  <li key={individual}>
+                                    <a
+                                      className={styles.subject}
+                                      href={`https://openlibrary.org/subjects/person:${document.person?.[index]}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      {individual}.{'  '}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </article>
+                      </section>
                     </div>
-                  </div>
-                </article>
-              );
-            })}
-        </section>
+                    <div className={styles.borrow__info}>
+                      <StarRating
+                        rating={document.ratings_average}
+                        ratingCount={document.ratings_count}
+                      />
+                      <div className={`${styles.borrow} ${styles.reading}`}>
+                        <p className={styles.info}>
+                          <span>{document.readinglog_count}</span> <span>Reading</span>
+                        </p>
+                        <p className={styles.info}>
+                          <span>{document.want_to_read_count}</span> <span>Want to read</span>
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+          </section>
 
-        {status === 'error' && <h2>Something went wrong, please try a different search</h2>}
-      </section>
-      {docs && docs.length > 0 && (
-        <Pagination page={page} totalPages={totalPages} handlePageChange={handlePageChange} />
-      )}
-    </div>
+          {status === 'error' && <h2>Something went wrong, please try a different search</h2>}
+        </section>
+        {docs && docs.length > 0 && (
+          <Pagination page={page} totalPages={totalPages} handlePageChange={handlePageChange} />
+        )}
+      </div>
+    </section>
   );
 };
 
