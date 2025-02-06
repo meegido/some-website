@@ -136,7 +136,7 @@ const Archieve = () => {
                           )}
                           <div className={styles['document__info--item']}>
                             <span>Year: </span>
-                            <span>{document.publish_year[0]}.</span>
+                            <span>{document.first_publish_year}.</span>
                           </div>{' '}
                           {document.number_of_pages_median && (
                             <div>

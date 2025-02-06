@@ -7,6 +7,7 @@ export interface OpenLibraryDoc {
   type: string;
   cover_i?: number;
   publish_year: number[];
+  first_publish_year: number;
   // cambiar por place y también iterar
   publish_place: string[];
   format: string[];
@@ -55,10 +56,10 @@ export interface SearchParams {
 export const getTerm = async (params: SearchParams): Promise<OpenLibraryResult> => {
   const useMockApi = import.meta.env.VITE_USE_MOCK_API === 'true';
 
-  if (useMockApi) {
-    console.log('Mock API enabled');
-    return mockResponseFeminism;
-  }
+  // if (useMockApi) {
+  //   console.log('Mock API enabled');
+  //   return mockResponseFeminism;
+  // }
 
   const queryString = new URLSearchParams({
     q: params.term,
