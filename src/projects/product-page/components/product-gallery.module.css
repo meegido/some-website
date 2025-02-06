@@ -1,6 +1,5 @@
 .carousel {
   position: relative;
-  padding-top: 56px;
 }
 
 .carousel__wrapper {
@@ -61,6 +60,10 @@
   .carousel {
     padding-top: 0;
     flex: 1 1 0;
+  }
+
+  .carousel__wrapper {
+    position: relative;
   }
 
   .carousel__wrapper img {

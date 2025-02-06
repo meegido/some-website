@@ -3,13 +3,13 @@
 }
 
 .cart__wrapper {
-  min-width: 392px;
+  min-width: 292px;
   width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 16px;
   position: absolute;
-  transform: translate(-176px, 14px);
+  transform: translate(-246px, 14px);
   z-index: 1;
   background-color: #fff;
 }
@@ -119,6 +119,7 @@
 
 @media (min-width: 768px) {
   .cart__wrapper {
+    min-width: 392px;
     transform: translate(-338px, 14px);
   }
 }

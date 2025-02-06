@@ -17,7 +17,7 @@
 .header {
   display: flex;
   justify-content: flex-end;
-  height: 100px;
+  padding: 24px 0px 32px;
 }
 
 .page__wrapper ul {
@@ -104,7 +104,7 @@
 
 @media (min-width: 768px) {
   .project__wrapper {
-    padding: 36px var(--container-padding);
+    padding: 0px var(--container-padding);
   }
 }
 

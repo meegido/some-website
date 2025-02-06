@@ -1,8 +1,7 @@
 .lightbox {
   z-index: 1;
   position: fixed;
-  top: 0%;
-  left: 0%;
+  top: 0;
   background-color: rgba(14, 14, 14, 0.65);
   width: 100vw;
   height: 100vh;
@@ -10,8 +9,11 @@
 
 .lightbox__wrapper {
   position: absolute;
-  top: 12%;
-  left: 30%;
+  top: 450px;
+  margin-inline: auto;
+  left: 0;
+  right: 0;
+  width: fit-content;
 }
 
 .carousel__wrapper .ligthbox__image {
@@ -34,22 +36,59 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 8%;
   position: relative;
 }
 
 .lightbox__controls button {
   position: absolute;
   color: var(--orange);
+  background-color: var(--pure-white);
   border-radius: 50%;
   padding: 10px;
   top: 40%;
 }
 
 .lightbox__controls button:first-of-type {
-  left: -26px;
+  left: 14px;
 }
 
 .lightbox__controls button:last-of-type {
-  right: -26px;
+  right: 14px;
+}
+
+@media (min-width: 768px) {
+  .lightbox {
+    left: 0;
+    right: 0;
+  }
+
+  .lightbox__wrapper {
+    /* 334px */
+    top: 26%;
+  }
+  .lightbox__controls {
+    margin: 0 auto;
+    width: 90%;
+    top: 24px;
+  }
+
+  .lightbox__controls button:first-of-type {
+    left: -26px;
+  }
+
+  .lightbox__controls button:last-of-type {
+    right: -26px;
+  }
+}
+
+@media (min-width: 768px) {
+  .lightbox__wrapper {
+    top: 37%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .lightbox__wrapper {
+    top: 10%;
+  }
 }
