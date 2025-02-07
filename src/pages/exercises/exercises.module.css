@@ -37,7 +37,6 @@
 
 .card h2 {
   padding: 8px 16px;
-  color: var(--color-text);
 }
 
 @media (min-width: 768px) {

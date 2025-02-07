@@ -9,10 +9,6 @@
   transition: border-color 0.25s;
 }
 
-button:hover {
-  color: rgba(94, 103, 228, 0.979);
-}
-
 button:focus,
 button:focus-visible {
   outline: none;

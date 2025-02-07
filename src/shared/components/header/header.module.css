@@ -20,7 +20,6 @@
 
 .logotype a {
   text-decoration: none;
-  color: var(--color-text);
 }
 
 .hamburguer__btn {
@@ -64,7 +63,6 @@ nav .navigation__list {
 }
 
 nav li a {
-  color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
 }
