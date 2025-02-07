@@ -75,6 +75,12 @@
   gap: 8px;
 }
 
+.content__wrapper h2,
+.content__wrapper h3,
+.content__wrapper p {
+  color: var(--black);
+}
+
 .product__description,
 .project__content {
   gap: 16px;
@@ -113,6 +119,7 @@
 .github {
   gap: 8px;
   align-items: center;
+  text-decoration-color: var(--black);
 }
 
 .github img {
@@ -120,11 +127,13 @@
   height: 20px;
 }
 
-.github {
-  color: var(--color-text);
+.github p {
+  color: var(--black);
 }
 
-.github:hover {
+.github:hover,
+.github:hover p {
+  text-decoration-color: rgb(69 86 198);
   color: rgb(69 86 198);
 }
 

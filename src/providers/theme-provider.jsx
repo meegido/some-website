@@ -11,6 +11,10 @@ const ThemeProvider = ({ children }) => {
     window.localStorage.setItem('color-theme', theme);
   }, [theme]);
 
+  React.useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
+
   const toggleTheme = React.useCallback(() => {
     setTheme((currentTheme) => {
       return currentTheme === 'light' ? 'dark' : 'light';

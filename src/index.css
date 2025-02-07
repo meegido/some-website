@@ -17,9 +17,6 @@
   --light-bg: var(--pure-white);
   --light-color: var(--black);
 
-  --dark-bg: var(--black);
-  --dark-color: var(--pure-white);
-
   --black: #0e0e0efa;
   --pure-white: rgba(255, 255, 255, 0.87);
   --white: var(--pale-orange);
@@ -33,11 +30,18 @@
   --bg-color: light-dark(var(--light-bg), var(--dark-bg));
 }
 
+[data-theme='dark'] {
+  --dark-bg: var(--black);
+  --dark-color: var(--pure-white);
+  --color-text: var(--pure-white);
+  --bg-color: var(--black);
+}
+
 body {
   font-size: 16px;
   box-sizing: border-box;
-  color: light-dark(var(--light-color), var(--dark-color));
-  background-color: light-dark(var(--light-bg), var(--dark-bg));
+  color: var(--dark-color);
+  background-color: var(--dark-bg);
 }
 
 h1 {
@@ -56,10 +60,10 @@ button {
   font-size: 16px;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
   background-color: transparent;
+  color: var(--color-text);
 }
 
 a:hover,
@@ -71,11 +75,6 @@ button:hover span {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-  }
 }
 
 @media (min-width: 360px) {
