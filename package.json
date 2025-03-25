@@ -54,6 +54,6 @@
     "vite": "^6.2.2",
     "vite-plugin-css-modules": "^0.0.1",
     "vite-plugin-dts": "^4.3.0",
-    "vitest": "^2.1.5"
+    "vitest": "^3.0.9"
   }
 }
